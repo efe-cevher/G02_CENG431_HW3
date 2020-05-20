@@ -22,10 +22,6 @@ public class Video extends Observable {
         this.comments = comments;
     }
 
-    public void addObserver(Observer observer){
-        super.addObserver(observer);
-    }
-
     public void like(){
         likes++;
         notifyObservers();
@@ -39,11 +35,6 @@ public class Video extends Observable {
     public void addComment(Comment comment){
         comments.add(comment);
         notifyObservers();
-    }
-
-    @Override
-    public void notifyObservers() {
-        super.notifyObservers();
     }
 
     public int getId() {
