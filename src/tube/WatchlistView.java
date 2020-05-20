@@ -27,6 +27,7 @@ public class WatchlistView implements Observer {
         showWatchlists();
     }
 
+
     public void showWatchlists(){
         /*String[] columns = { "id", "title", "content", "Go to video" };
         Object[][] data = new Object[watchlist.getVideos().size()][4];
@@ -55,4 +56,5 @@ public class WatchlistView implements Observer {
 
     //'Remove a video' is clicked
     public void onClickRemove(){ watchlistController.onRemoveVideo(); }
+
 }

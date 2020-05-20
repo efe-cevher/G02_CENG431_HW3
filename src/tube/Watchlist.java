@@ -7,19 +7,10 @@ import java.util.Observable;
 public class Watchlist extends Observable {
     private List<Video> videos;
 
-    public Watchlist(List<Video> videos, WatchlistView watchlistView) {
-        this.videos = new ArrayList<Video>(videos.size());
-        this.videos.addAll(videos);
-        addObserver(watchlistView);
-    }
-
-    public Watchlist(List<Video> videos){
+    public Watchlist(List<Video> videos) {
         this.videos = new ArrayList<Video>(videos.size());
         this.videos.addAll(videos);
     }
-
-
-    public void setWatchlistView(WatchlistView watchlistView) { addObserver(watchlistView);}
 
     //Return a copy of videos
     public List<Video> getVideos(){

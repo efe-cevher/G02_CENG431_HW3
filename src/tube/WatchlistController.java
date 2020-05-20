@@ -1,9 +1,6 @@
 package tube;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class WatchlistController {
 
@@ -13,16 +10,8 @@ public class WatchlistController {
     public WatchlistController(Watchlist watchlist){
         this.watchlistView = new WatchlistView(watchlist, this);
         this.watchlist = watchlist;
+        watchlist.addObserver(watchlistView);
     }
-
-
-    public void setWatchlist(Watchlist watchlist){
-        this.watchlist = watchlist;
-    }
-
-    public Watchlist getWatchlist() { return watchlist; }
-
-    public WatchlistView getWatchlistView() { return watchlistView; }
 
     public void onAddVideo(){
         int id = Integer.parseInt(watchlistView.getUserInput("Video id:"));
@@ -31,7 +20,7 @@ public class WatchlistController {
         Date date = new Date();
         int likes = 0;
         int dislikes = 0;
-        Map<String, String> comments = new HashMap<String, String>();
+        List<Comment> comments = new ArrayList<Comment>();
         watchlist.add(new Video(id, title, content, date, likes, dislikes, comments));
     }
 

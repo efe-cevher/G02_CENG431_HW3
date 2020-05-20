@@ -11,9 +11,8 @@ public class User {
     private List<Integer> likedVideos;
     private List<Integer> dislikedVideos;
     private List<Watchlist> watchlists;
-    private List<Observer> observers;
 
-    public User(String username, String password, List<User> following, List<User> followers, List<Integer> likedVideos, List<Integer> dislikedVideos, List<Watchlist> watchlists, List<Observer> observers) {
+    public User(String username, String password, List<User> following, List<User> followers, List<Integer> likedVideos, List<Integer> dislikedVideos, List<Watchlist> watchlists) {
         this.username = username;
         this.password = password;
         this.following = following;
@@ -21,6 +20,61 @@ public class User {
         this.likedVideos = likedVideos;
         this.dislikedVideos = dislikedVideos;
         this.watchlists = watchlists;
-        this.observers = observers;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<User> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<User> following) {
+        this.following = following;
+    }
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    public List<Integer> getLikedVideos() {
+        return likedVideos;
+    }
+
+    public void setLikedVideos(List<Integer> likedVideos) {
+        this.likedVideos = likedVideos;
+    }
+
+    public List<Integer> getDislikedVideos() {
+        return dislikedVideos;
+    }
+
+    public void setDislikedVideos(List<Integer> dislikedVideos) {
+        this.dislikedVideos = dislikedVideos;
+    }
+
+    public List<Watchlist> getWatchlists() {
+        return watchlists;
+    }
+
+    public void setWatchlists(List<Watchlist> watchlists) {
+        this.watchlists = watchlists;
     }
 }
