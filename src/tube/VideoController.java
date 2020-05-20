@@ -1,37 +1,48 @@
 package tube;
 
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 public class VideoController {
     private Video video;
     private VideoView videoView;
 
-    public VideoController() {
-        //test
-        List<Comment> comments = new ArrayList<>();
-        comments.add(new Comment("Ali", "OLAMAAZ"));
-        comments.add(new Comment("Ali", "OLAMAAZ"));
-        comments.add(new Comment("Ali", "OLAMAAZ"));
-        comments.add(new Comment("Ali", "OLAMAAZ"));
-        comments.add(new Comment("Ali", "OLAMAAZ"));
-        comments.add(new Comment("Ali", "OLAMAAZ"));
-        comments.add(new Comment("Ali", "OLAMAAZ"));
+    public VideoController(Video video, VideoView videoView) {
 
-        this.video = new Video(12, "title", "content", new Date(), 2, 3, comments);
-        this.videoView = new VideoView(this, video);
+        this.video = video;
+        this.videoView = videoView;
+
         video.addObserver(videoView);
+
+        videoView.addDislikeActionListener(new dislikeActionListener());
+        videoView.addLikeActionListener(new likeActionListener());
+        videoView.addCommentActionListener(new commentActionListener());
     }
 
-    public void onLike(){
-        video.like();
+    private class dislikeActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            video.dislike();
+        }
     }
 
-    public void onDislike(){
-        video.dislike();
+    private class likeActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            video.like();
+        }
     }
 
-    public void onComment(String comment){
-        video.addComment(new Comment("efe",comment));
+    private class commentActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String commentText = videoView.getCommentText();
+            video.addComment(new Comment("efe", commentText));
+        }
     }
 
 }

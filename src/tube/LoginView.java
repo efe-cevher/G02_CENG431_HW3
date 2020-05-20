@@ -62,6 +62,10 @@ public class LoginView {
         frame.repaint();
     }
 
+    public JFrame getFrame() {
+        return frame;
+    }
+
     public void securityCheckFailed(){
         passwordText.setBackground(Color.RED);
     }

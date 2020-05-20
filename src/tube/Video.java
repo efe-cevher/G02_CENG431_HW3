@@ -12,7 +12,7 @@ public class Video extends Observable {
     private int dislikes;
     private List<Comment> comments;
 
-    public Video(int id, String title, String content, Date date, int likes, int dislikes, List<Comment> comments) {
+    public Video(int id, String title, String content, Date date, int likes, int dislikes, List<Comment> comments){
         this.id = id;
         this.title = title;
         this.content = content;
@@ -24,16 +24,19 @@ public class Video extends Observable {
 
     public void like(){
         likes++;
+        setChanged();
         notifyObservers();
     }
 
     public void dislike(){
         dislikes++;
+        setChanged();
         notifyObservers();
     }
 
     public void addComment(Comment comment){
         comments.add(comment);
+        setChanged();
         notifyObservers();
     }
 
