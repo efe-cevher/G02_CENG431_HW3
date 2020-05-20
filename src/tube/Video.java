@@ -10,10 +10,9 @@ public class Video extends Observable {
     private Date date;
     private int likes;
     private int dislikes;
-    private Map<String,String> comments;
-    private List<Observer> observers;
+    private List<Comment> comments;
 
-    public Video(int id, String title, String content, Date date, int likes, int dislikes, Map<String, String> comments, List<Observer> observers) {
+    public Video(int id, String title, String content, Date date, int likes, int dislikes, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -21,7 +20,58 @@ public class Video extends Observable {
         this.likes = likes;
         this.dislikes = dislikes;
         this.comments = comments;
-        this.observers = observers;
+    }
+
+    public void addObserver(Observer observer){
+        super.addObserver(observer);
+    }
+
+    public void like(){
+        likes++;
+        notifyObservers();
+    }
+
+    public void dislike(){
+        dislikes++;
+        notifyObservers();
+    }
+
+    public void addComment(Comment comment){
+        comments.add(comment);
+        notifyObservers();
+    }
+
+    @Override
+    public void notifyObservers() {
+        super.notifyObservers();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
 
