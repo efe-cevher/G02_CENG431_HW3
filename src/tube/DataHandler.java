@@ -5,17 +5,22 @@ import java.util.*;
 public class DataHandler  implements IDataHandler, Observer {
     Map<String,User> userMap;
     Map<Integer,Video> videoMap;
-
+    IStorage videoStorage;
+    IFormatter<Map<Integer,Video>> videoFormatter;
     public DataHandler() {
         //load from xml and json
         this.userMap = new HashMap<>();
-        this.videoMap = new HashMap<>();
+        this.videoStorage = new FileStorage("videos.json");
+        this.videoFormatter = new JSONFormatter();
+        this.videoMap = videoFormatter.toObject(videoStorage.read());
         addObservers();
     }
 
     private void addObservers(){
         for (Video video: videoMap.values()){
             video.addObserver(this);
+            String videoMapJson = videoFormatter.toFormat(videoMap);
+            videoStorage.save(videoMapJson);
         }
         for (User user: userMap.values()){
             user.addObserver(this);
