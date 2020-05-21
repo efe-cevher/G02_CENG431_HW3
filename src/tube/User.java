@@ -1,9 +1,10 @@
 package tube;
 
 import java.util.List;
+import java.util.Observable;
 import java.util.Observer;
 
-public class User {
+public class User extends Observable {
     private String username;
     private String password;
     private List<User> following;
@@ -76,5 +77,13 @@ public class User {
 
     public void setWatchlists(List<Watchlist> watchlists) {
         this.watchlists = watchlists;
+        setChanged();
+        notifyObservers();
+    }
+
+    public void addWatchlist(Watchlist watchlist) {
+        this.watchlists.add(watchlist);
+        setChanged();
+        notifyObservers();
     }
 }
