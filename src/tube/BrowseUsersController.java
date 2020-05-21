@@ -6,6 +6,7 @@ public class BrowseUsersController {
 
     public BrowseUsersController(BrowseUsersView browseUsersView){
         this.browseUsersView = browseUsersView;
+
     }
 
 }

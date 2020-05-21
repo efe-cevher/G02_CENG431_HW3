@@ -1,6 +1,11 @@
 package tube;
 
+import java.util.List;
+
 public interface IDataHandler {
+
+    public List<User> getUserList();
+
     public User getUser(String username);
 
     public Video getVideo(int id);

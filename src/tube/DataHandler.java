@@ -1,9 +1,8 @@
 package tube;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class DataHandler implements IDataHandler{
+public class DataHandler  implements IDataHandler, Observer {
     Map<String,User> userMap;
     Map<Integer,Video> videoMap;
 
@@ -11,6 +10,20 @@ public class DataHandler implements IDataHandler{
         //load from xml and json
         this.userMap = new HashMap<>();
         this.videoMap = new HashMap<>();
+        addObservers();
+    }
+
+    private void addObservers(){
+        for (Video video: videoMap.values()){
+            video.addObserver(this);
+        }
+        for (User user: userMap.values()){
+            user.addObserver(this);
+        }
+    }
+
+    public List<User> getUserList(){
+        return new ArrayList<>(userMap.values());
     }
 
     public User getUser(String username){
@@ -23,11 +36,22 @@ public class DataHandler implements IDataHandler{
 
     public void putUser(User user){
         userMap.put(user.getUsername(), user);
-        //Also update xml
+
     }
 
     public void putVideo(Video video){
         videoMap.put(video.getId(), video);
-        //Also update json
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof Video){
+            Video video = (Video) o;
+            putVideo(video);
+        }else{
+            User user = (User) o;
+            putUser(user);
+        }
     }
 }

@@ -87,7 +87,7 @@ public class BrowseUsersView implements Observer {
 
 
 
-/*
+
     public static void main(String[] args) {
 
         User user1 = new User("zekihan","123456", null , null, null, null, null);
@@ -176,8 +176,8 @@ public class BrowseUsersView implements Observer {
         follower.add(user40);
 
         User user = new User("kaanalgan", "123456", following, follower, null, null, null);
-        BrowseUsersView trialView = new BrowseUsersView(user, new JF);
+        BrowseUsersView trialView = new BrowseUsersView(new FrameManager(), user);
 
     }
-*/
+
 }

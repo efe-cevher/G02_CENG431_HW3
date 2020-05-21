@@ -1,5 +1,6 @@
 package tube;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -75,6 +76,15 @@ public class User extends Observable {
         return watchlists;
     }
 
+    public List<Watchlist> getAllWatchLists(){
+        List<Watchlist> watchlists = new ArrayList<>();
+        watchlists.addAll(getWatchlists());
+        for(User usr : getFollowing()){
+            watchlists.addAll(usr.getWatchlists());
+        }
+        return watchlists;
+    }
+
     public void setWatchlists(List<Watchlist> watchlists) {
         this.watchlists = watchlists;
         setChanged();
@@ -86,4 +96,5 @@ public class User extends Observable {
         setChanged();
         notifyObservers();
     }
+
 }

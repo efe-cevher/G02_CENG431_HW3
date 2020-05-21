@@ -3,16 +3,17 @@ package tube;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.*;
-import java.util.List;
 
 public class BrowseWatchlistView implements Observer {
     private JPanel panel;
     private JButton mainMenuButton;
-    private JButton logoutButton;
+    private JButton backButton;
     private JButton createWatchlistButton;
     private JButton openWatchlistButton;
     private JScrollPane scrollPane;
+    private JList<String> jWatchlists;
     private FrameManager frame;
     private User user;
 
@@ -41,32 +42,20 @@ public class BrowseWatchlistView implements Observer {
         mainMenuButton.setBounds(10, 400, 120, 25);
         panel.add(mainMenuButton);
 
-        logoutButton = new JButton("Log Out");
-        logoutButton.setBounds(140, 400, 80, 25);
-        panel.add(logoutButton);
-
         frame.setNewPanel(panel);
+
     }
 
     private void showLists() {
-        List<Watchlist> userWatchlists = user.getWatchlists();
-        DefaultListModel<String> WatchlistsModels = new DefaultListModel<>();
-        StringBuilder s = new StringBuilder();
-        for (Watchlist wl:userWatchlists ) {
-            s.append(wl.getName());
-            s.append(", ");
+        String[] watchlistsArr = new String[user.getAllWatchLists().size()];
+        int i = 0;
+        for(Watchlist wl: user.getAllWatchLists()){
+            watchlistsArr[i] = "<html><body>" + wl.getName() + "<br>" + "By: " + user.getUsername() + "<br>" + " " + "<br>" + "</span></body></html>}";
+            i++;
         }
-        WatchlistsModels.addElement("Your WatchLists: " + s);
-        for(User usr : user.getFollowing()){
-            StringBuilder s1 = new StringBuilder();
-            for (Watchlist wl:usr.getWatchlists() ) {
-                s1.append(wl.getName());
-                s1.append(", ");
-            }
-            WatchlistsModels.addElement(usr.getUsername() + "'s WatchLists: " + s1);
-        }
-        JList<String> watchlists = new JList<>(WatchlistsModels);
-        scrollPane.setViewportView(watchlists);
+        System.out.println(watchlistsArr[2]);
+        jWatchlists = new JList<>(watchlistsArr);
+        scrollPane.setViewportView(jWatchlists);
     }
 
     //Get user input from a popup
@@ -86,13 +75,20 @@ public class BrowseWatchlistView implements Observer {
         mainMenuButton.addActionListener(actionListener);
     }
 
-    public void addLogOutActionListener(ActionListener actionListener) {
-        logoutButton.addActionListener(actionListener);
+    public void addOpenWatchlistMouseListener(MouseListener mouseListener) {
+        jWatchlists.addMouseListener(mouseListener);
+    }
+
+    public int getSelectedListIndex(){
+        return jWatchlists.getSelectedIndex();
+    }
+
+    public FrameManager getFrame() {
+        return frame;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("ad");
         user = (User) o;
         showLists();
     }

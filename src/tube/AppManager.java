@@ -10,5 +10,6 @@ public class AppManager {
     public void start(){
         LoginView loginView = new LoginView(frame);
         LoginController loginController = new LoginController(loginView);
+
     }
 }

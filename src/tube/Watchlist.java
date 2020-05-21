@@ -31,13 +31,13 @@ public class Watchlist extends Observable {
 
     //Remove video from the watchlist
     public void remove(int id){
-        for(Video video : videos){
-            if(video.getId() == id){
-                videos.remove(video);
-            }
-        }
+        videos.removeIf(video -> video.getId() == id);
         setChanged();
         notifyObservers(getVideos());
     }
 
+    @Override
+    public String toString() {
+        return "Watchlist " + "name='" + name;
+    }
 }

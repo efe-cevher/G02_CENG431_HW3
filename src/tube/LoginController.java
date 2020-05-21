@@ -32,11 +32,10 @@ public class LoginController {
             //go somewhere
         //else
             //loginView.securityCheckFailed();
-        MenuView menuView = new MenuView(loginView.getFrame());
-        MenuController menuController = new MenuController(menuView);
 
+        //MenuView menuView = new MenuView(loginView.getFrame());
+       //MenuController menuController = new MenuController(menuView);
 
-/*
         List<Comment> comments = new ArrayList<>();
         comments.add(new Comment("Ali", "OLAMAAZ"));
         comments.add(new Comment("Ali", "Merhaba Vidyonu vidomda gosterebilirmiyim sagul"));
@@ -46,7 +45,7 @@ public class LoginController {
         VideoController videoController = new VideoController(video, videoView);
         System.out.println(username);
         System.out.println(password);
-*/
+
     }
 
 }

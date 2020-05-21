@@ -9,13 +9,12 @@ public class WatchlistController {
     private WatchlistView watchlistView;
     private Watchlist watchlist;
 
-    public WatchlistController(Watchlist watchlist, WatchlistView watchlistView){
+    public WatchlistController(WatchlistView watchlistView, Watchlist watchlist){
         this.watchlistView = watchlistView;
         this.watchlist = watchlist;
         watchlist.addObserver(watchlistView);
         watchlistView.addGoToVideoActionListener(new goToVideoActionListener());
         watchlistView.addMainMenuActionListener(new mainMenuActionListener());
-        watchlistView.addLogOutActionListener(new logOutActionListener());
         watchlistView.addAddVideoActionListener(new addVideoActionListener());
         watchlistView.addDeleteVideoActionListener(new deleteVideoActionListener());
     }
@@ -30,7 +29,7 @@ public class WatchlistController {
             Date date = new Date();
             int likes = 0;
             int dislikes = 0;
-            List<Comment> comments = new ArrayList<Comment>();
+            List<Comment> comments = new ArrayList<>();
             watchlist.add(new Video(id, title, content, date, likes, dislikes, comments));
         }
     }
@@ -58,10 +57,4 @@ public class WatchlistController {
         }
     }
 
-    private class logOutActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    }
 }

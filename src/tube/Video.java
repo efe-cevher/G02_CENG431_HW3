@@ -20,6 +20,7 @@ public class Video extends Observable {
         this.likes = likes;
         this.dislikes = dislikes;
         this.comments = comments;
+
     }
 
     public void like(){

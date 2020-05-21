@@ -27,6 +27,8 @@ public class VideoView implements Observer {
         this.video = video;
         this.frame = frame;
         showVideoView();
+        video.addObserver(this);
+
     }
 
     public void showVideoView(){
