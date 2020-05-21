@@ -1,17 +1,40 @@
 package tube;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class JSONFormatter implements IFormatter<Map<Integer,Video>>{
     private Gson gson;
 
     public JSONFormatter() {
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
+        this.gson = new GsonBuilder()
+                .setDateFormat("EEE, dd MMM yyyy HH:mm:ss ZZZ")
+                .setExclusionStrategies(new ExclusionStrategy() {
+                    @Override
+                    public boolean shouldSkipField(FieldAttributes field) {
+                        if (field.getDeclaringClass() == Observable.class && field.getName().equals("changed")) {
+                            return true;
+                        }
+                        else if (field.getDeclaringClass() == Observable.class && field.getName().equals("obs")) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    @Override
+                    public boolean shouldSkipClass(Class<?> clazz) {
+                        return false;
+                    }
+                })
+                .setPrettyPrinting()
+                .create();
     }
 
     public String toFormat(Video video){
@@ -39,10 +62,14 @@ public class JSONFormatter implements IFormatter<Map<Integer,Video>>{
         }
 
         JSONFormatter jsonFormatter = new JSONFormatter();
-        String videoMapJson = jsonFormatter.toFormat(videoMap);
         IStorage storage = new FileStorage("videos.json");
+
+        String videoMapJson = jsonFormatter.toFormat(videoMap);
+        System.out.println(videoMapJson);
         storage.save(videoMapJson);
+
         Map<Integer,Video> videoMap2 = jsonFormatter.toObject(storage.read());
-        System.out.println(videoMap2.get(50).getId() == videoMap.get(50).getId());
+        String videoMapJson2 = jsonFormatter.toFormat(videoMap2);
+        System.out.println(videoMapJson2);
     }
 }
