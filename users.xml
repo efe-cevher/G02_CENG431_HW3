@@ -60,8 +60,22 @@
         <dislikedVideo>2</dislikedVideo>
     </dislikedVideos>
     <watchlists>
-        <watchlist/>
-        <watchlist/>
+        <watchlist>
+            <name>hey1</name>
+            <videos>
+                <video/>
+                <video/>
+                <video/>
+            </videos>
+        </watchlist>
+        <watchlist>
+            <name>hey2</name>
+            <videos>
+                <video/>
+                <video/>
+                <video/>
+            </videos>
+        </watchlist>
     </watchlists>
 </user>
 

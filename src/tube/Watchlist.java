@@ -30,9 +30,11 @@ public class Watchlist extends Observable {
 
 
     //Return a copy of videos
+
     public List<Video> getVideos(){
         return new ArrayList<Video>(videos);
     }
+
 
     //Add a video to the watchlist
     public void add(Video video){

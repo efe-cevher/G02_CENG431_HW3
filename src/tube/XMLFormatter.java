@@ -6,16 +6,14 @@ import org.w3c.dom.Element;
 
 import javax.swing.*;
 import javax.xml.*;
-import javax.xml.bind.JAXB;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import javax.xml.bind.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -62,7 +60,27 @@ public class XMLFormatter {
     }
 
 
-    public static void marshal(User user) throws JAXBException, IOException{
+    private static User jaxbXmlFileToObject() {
+
+        File xmlFile = new File("users.xml");
+        User user = null;
+
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(User.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            user = (User) jaxbUnmarshaller.unmarshal(xmlFile);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+
+    /*public static void marshal(User user) throws JAXBException, IOException{
 
         JAXBContext context = JAXBContext.newInstance(User.class);
         StringWriter sw = new StringWriter();
@@ -70,7 +88,7 @@ public class XMLFormatter {
         mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         mar.marshal(user, sw);
         System.out.println(sw.toString());
-    }
+    }*/
 
     public static void main(String[] args) throws JAXBException, IOException {
 
@@ -105,7 +123,23 @@ public class XMLFormatter {
 
         //serializationDriver(users);
 
-       jaxbObjectToXML(user1);
+       //jaxbObjectToXML(user1);
         //marshal(user1);
+        User user = jaxbXmlFileToObject();
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        for(User user12 : user.getFollowing()){
+            System.out.println("Following: " + user12.getUsername());
+        }
+
+        for(Integer inte : user.getDislikedVideos()){
+            System.out.println("Disliked: " + inte);
+        }
+
+        for(Integer inte : user.getLikedVideos()){
+            System.out.println("Liked: " + inte);
+        }
+
+
     }
 }
