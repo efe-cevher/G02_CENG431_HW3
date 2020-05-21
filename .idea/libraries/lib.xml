@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb/istack-commons-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb/javax.activation-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb/jaxb-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb/jaxb-runtime.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
