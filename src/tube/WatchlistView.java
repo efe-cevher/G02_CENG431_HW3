@@ -19,7 +19,7 @@ public class WatchlistView implements Observer {
     private JPanel panel;
     private JLabel label;
 
-    public WatchlistView(Watchlist watchlist, FrameManager frame) {
+    public WatchlistView(FrameManager frame, Watchlist watchlist) {
         this.frame = frame;
         this.watchlist = watchlist;
         showWatchlist();
@@ -70,7 +70,7 @@ public class WatchlistView implements Observer {
     @Override
     //Whenever the watchlist changes, update the view
     public void update(Observable o, Object arg) {
-        watchlist = ((Watchlist)arg);
+        watchlist = (Watchlist) o;
         showWatchlist();
     }
 
@@ -118,7 +118,7 @@ public class WatchlistView implements Observer {
         videos.add(video6);
 
         Watchlist w = new Watchlist(videos, "gayisgay");
-        WatchlistView watchlistView = new WatchlistView(w, new FrameManager());
+        WatchlistView watchlistView = new WatchlistView(new FrameManager(), w);
     }
 
 }
