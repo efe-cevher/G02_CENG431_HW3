@@ -12,14 +12,14 @@ public class WatchlistView implements Observer {
 
     private Watchlist watchlist;
     private JButton goToVideoButton, mainMenuButton, logoutButton, addVideoButton, removeVideoButton;
-    private JFrame frame;
+    private FrameManager frame;
     private JScrollPane scrollPane;
     private JList<String> videos;
     private DefaultListModel<String> videoModels;
     private JPanel panel;
     private JLabel label;
 
-    public WatchlistView(Watchlist watchlist, JFrame frame) {
+    public WatchlistView(Watchlist watchlist, FrameManager frame) {
         this.frame = frame;
         this.watchlist = watchlist;
         showWatchlist();
@@ -63,10 +63,7 @@ public class WatchlistView implements Observer {
         logoutButton.setBounds(140, 400, 80, 25);
         panel.add(logoutButton);
 
-        frame.getContentPane().removeAll();
-        frame.add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        frame.setNewPanel(panel);
     }
 
 
@@ -103,10 +100,7 @@ public class WatchlistView implements Observer {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("IZTECHTube");
-        frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+
         List<Video> videos = new ArrayList<Video>();
 
         Video video = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
@@ -124,7 +118,7 @@ public class WatchlistView implements Observer {
         videos.add(video6);
 
         Watchlist w = new Watchlist(videos, "gayisgay");
-        WatchlistView watchlistView = new WatchlistView(w, frame);
+        WatchlistView watchlistView = new WatchlistView(w, new FrameManager());
     }
 
 }
