@@ -1,9 +1,7 @@
 package tube;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class FileStorage implements IStorage{
 
@@ -35,6 +33,24 @@ public class FileStorage implements IStorage{
                 e.printStackTrace();
             }
         }
+    }
+
+    //Read string from the file
+    public String read(){
+        StringBuilder content = new StringBuilder();
+
+        try {
+            File f = new File(filePath);
+            Scanner scanner = new Scanner(f);
+            while (scanner.hasNextLine()) {
+                content.append(scanner.nextLine());
+            }
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return content.toString();
     }
 
     public void append(String data){

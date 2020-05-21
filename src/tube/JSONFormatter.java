@@ -39,10 +39,10 @@ public class JSONFormatter implements IFormatter<Map<Integer,Video>>{
         }
 
         JSONFormatter jsonFormatter = new JSONFormatter();
-        String s = jsonFormatter.toFormat(videoMap);
+        String videoMapJson = jsonFormatter.toFormat(videoMap);
         IStorage storage = new FileStorage("videos.json");
-        storage.save(s);
-
-        //Map<Integer,Video> videoMap2 = jsonFormatter.toObject(s);
+        storage.save(videoMapJson);
+        Map<Integer,Video> videoMap2 = jsonFormatter.toObject(storage.read());
+        System.out.println(videoMap2.get(50).getId() == videoMap.get(50).getId());
     }
 }
