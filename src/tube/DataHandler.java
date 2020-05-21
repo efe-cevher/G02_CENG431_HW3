@@ -15,7 +15,7 @@ public class DataHandler  implements IDataHandler, Observer {
         this.videoStorage = new FileStorage("videos.json");
         this.userStorage = new FileStorage("users.xml");
         this.videoFormatter = new JSONFormatter();
-        this.userFormatter = new XMLFormatter();
+        //this.userFormatter = new XMLFormatter();
         this.videoMap = videoFormatter.toObject(videoStorage.read());
         addObservers();
     }

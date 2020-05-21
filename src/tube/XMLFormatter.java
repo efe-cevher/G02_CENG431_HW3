@@ -1,19 +1,24 @@
 package tube;
 
+import com.thoughtworks.xstream.XStream;
+
 import javax.xml.*;
 import javax.xml.bind.*;
 import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-public class XMLFormatter implements IFormatter<User>{
+public class XMLFormatter{
 
 
     public XMLFormatter() {
     }
 
-
-    public String toFormat(User user)
+    public static String toFormat(List<User> user)
     {
         String xmlContent = "";
         try
@@ -42,8 +47,37 @@ public class XMLFormatter implements IFormatter<User>{
         return xmlContent;
     }
 
+   /* public String toFormat(User user)
+    {
+        String xmlContent = "";
+        try
+        {
+            //Create JAXB Context
+            JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
 
-    public  User toObject(String xmlAsStr) {
+            //Create Marshaller
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            //Required formatting??
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            //Print XML String to Console
+            StringWriter sw = new StringWriter();
+
+            //Write XML to StringWriter
+            jaxbMarshaller.marshal(user, sw);
+
+            //Verify XML Content
+            xmlContent = sw.toString();
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return xmlContent;
+    }*/
+
+
+    public static User toObject(String xmlAsStr) {
 
         File xmlFile = new File("users.xml");
 
@@ -65,22 +99,61 @@ public class XMLFormatter implements IFormatter<User>{
     }
 
 
-    /*public static void marshal(User user) throws JAXBException, IOException{
 
-        JAXBContext context = JAXBContext.newInstance(User.class);
-        StringWriter sw = new StringWriter();
-        Marshaller mar= context.createMarshaller();
-        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        mar.marshal(user, sw);
-        System.out.println(sw.toString());
-    }*/
+    public static String toFormat(Users user){
+        XStream xstream = new XStream();
+        xstream.alias("user", User.class);
+        xstream.alias("users", Users.class);
+        xstream.addImplicitCollection(Users.class, "users");
+        return xstream.toXML(user);
+    }
 
-   /* public static void main(String[] args) throws JAXBException, IOException {
+    public static Users fromFormat(String data){
+        XStream xstream = new XStream();
+        xstream.alias("user", User.class);
+        xstream.alias("users", Users.class);
+        xstream.addImplicitCollection(Users.class, "users");
+        String xmlContent = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                "<users>\n" +
+                "    <user>\n" +
+                "        <username>kaanalgan</username>\n" +
+                "        <password>123456</password>\n" +
+                "        <followings/>\n" +
+                "        <followers/>\n" +
+                "        <likedVideos/>\n" +
+                "        <dislikedVideos/>\n" +
+                "        <watchlists/>\n" +
+                "    </user>\n" +
+                "    <user>\n" +
+                "        <username>efecan</username>\n" +
+                "        <password>123456</password>\n" +
+                "        <followings/>\n" +
+                "        <followers/>\n" +
+                "        <likedVideos/>\n" +
+                "        <dislikedVideos/>\n" +
+                "        <watchlists/>\n" +
+                "    </user>\n" +
+                "    <user>\n" +
+                "        <username>zekihan</username>\n" +
+                "        <password>123456</password>\n" +
+                "        <followings/>\n" +
+                "        <followers/>\n" +
+                "        <likedVideos/>\n" +
+                "        <dislikedVideos/>\n" +
+                "        <watchlists/>\n" +
+                "    </user>\n" +
+                "</users>";
+        Users users = (Users)xstream.fromXML(xmlContent);
+        return users;
 
-        User user2 = new User("user2","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        User user3 = new User("user3","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        User user4 = new User("user4","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        User user5 = new User("user5","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+    }
+
+    public static void main(String[] args) throws JAXBException, IOException {
+
+        User user2 = new User("kaan","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        User user3 = new User("efecan","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        User user4 = new User("zekihan","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        User user5 = new User("gayegemen","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         List<User> users = new ArrayList<>();
         users.add(user2);
         users.add(user3);
@@ -95,7 +168,9 @@ public class XMLFormatter implements IFormatter<User>{
         List<Watchlist> watchlists = new ArrayList<>();
         watchlists.add(watchlist);
         watchlists.add(watchlist2);
+
         List<Integer> liked = new ArrayList<>();
+
         liked.add(1);
         liked.add(2);
         liked.add(2);
@@ -108,29 +183,16 @@ public class XMLFormatter implements IFormatter<User>{
 
         //serializationDriver(users);
 
-       toFormat(user1);
+        /*Users listOfUsers = new Users(users);
+        String xml = toFormat(listOfUsers);
+        System.out.println(xml);*/
         //marshal(user1);
-        User user = toObject("");
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        for(User user12 : user.getFollowing()){
-            System.out.println("Following: " + user12.getUsername());
+
+        Users users1 = fromFormat("");
+        for(User u : users1.getUsers()){
+            System.out.println("Username: " + u.getUsername());
+            System.out.println("Password: " + u.getPassword());
         }
 
-        for(Integer inte : user.getDislikedVideos()){
-            System.out.println("Disliked: " + inte);
-        }
-
-        for(Integer inte : user.getLikedVideos()){
-            System.out.println("Liked: " + inte);
-        }
-
-        for(Watchlist w : user.getWatchlists()){
-            for(Integer v : w.getVideos()){
-                System.out.println("Video Id: " + v);
-            }
-        }
-
-
-    }*/
+    }
 }

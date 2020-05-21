@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<user>
-    <username>kaanalgan</username>
-    <password>123456</password>
-    <followings/>
-    <followers/>
-    <likedVideos/>
-    <dislikedVideos/>
-    <watchlists/>
-</user>
-
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<user>
-    <username>efecan</username>
-    <password>123456</password>
-    <followings/>
-    <followers/>
-    <likedVideos/>
-    <dislikedVideos/>
-    <watchlists/>
-</user>
-
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<user>
-    <username>zekihan</username>
-    <password>123456</password>
-    <followings/>
-    <followers/>
-    <likedVideos/>
-    <dislikedVideos/>
-    <watchlists/>
-</user>
-
+<users>
+    <user>
+        <username>kaanalgan</username>
+        <password>123456</password>
+        <followings/>
+        <followers/>
+        <likedVideos/>
+        <dislikedVideos/>
+        <watchlists/>
+    </user>
+    <user>
+        <username>efecan</username>
+        <password>123456</password>
+        <followings/>
+        <followers/>
+        <likedVideos/>
+        <dislikedVideos/>
+        <watchlists/>
+    </user>
+    <user>
+        <username>zekihan</username>
+        <password>123456</password>
+        <followings/>
+        <followers/>
+        <likedVideos/>
+        <dislikedVideos/>
+        <watchlists/>
+    </user>
+</users>

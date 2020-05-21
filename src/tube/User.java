@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.*;
 import java.util.Observer;
 
 @XmlRootElement(name = "user")
-@XmlType(propOrder={"username", "password", "following", "followers", "likedVideos", "dislikedVideos", "watchlists"})
+@XmlType(propOrder={"username", "password", "followings", "followers", "likedVideos", "dislikedVideos", "watchlists"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class User extends Observable {
 
@@ -16,7 +16,7 @@ public class User extends Observable {
 
     @XmlElementWrapper(name="followings")
     @XmlElement(name="following")
-    private List<User> following;
+    private List<User> followings;
 
     @XmlElementWrapper(name="followers")
     @XmlElement(name="follower")
@@ -39,7 +39,7 @@ public class User extends Observable {
     public User(String username, String password, List<User> following, List<User> followers, List<Integer> likedVideos, List<Integer> dislikedVideos, List<Watchlist> watchlists) {
         this.username = username;
         this.password = password;
-        this.following = following;
+        this.followings = following;
         this.followers = followers;
         this.likedVideos = likedVideos;
         this.dislikedVideos = dislikedVideos;
@@ -71,13 +71,13 @@ public class User extends Observable {
 
 
     public List<User> getFollowing() {
-        return following;
+        return followings;
     }
 
 
 
     public void setFollowing(List<User> following) {
-        this.following = following;
+        this.followings = following;
     }
 
 
