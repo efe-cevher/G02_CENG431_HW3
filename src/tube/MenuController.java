@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 
 public class MenuController {
     MenuView menuView;
+    User user;
 
-    public MenuController(MenuView menuView) {
+    public MenuController(MenuView menuView, User user) {
         this.menuView = menuView;
+        this.user = user;
         menuView.addBrowseUsersActionListener(new BrowseUsersActionListener());
         menuView.addBrowseWatchlistsActionListener(new BrowseWatchlistsActionListener());
         menuView.addLogoutActionListener(new LogoutActionListener());

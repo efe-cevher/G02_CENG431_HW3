@@ -26,15 +26,16 @@ public class LoginController {
 
 
     private void checkCredentials(String username, char[] password) {
-        //get data from somewhere
-        //if(alright)
-            //User user = new User()
-            //go somewhere
-        //else
-            //loginView.securityCheckFailed();
+        DataHandler dataHandler = new DataHandler();
+        User user = dataHandler.getUser(username);
 
-        //MenuView menuView = new MenuView(loginView.getFrame());
-       //MenuController menuController = new MenuController(menuView);
+        if(user.getPassword().equals(String.valueOf(password))){
+            MenuView menuView = new MenuView(loginView.getFrame());
+            MenuController menuController = new MenuController(menuView, user);
+        }
+        else{
+            loginView.securityCheckFailed();
+        }
 
         List<Comment> comments = new ArrayList<>();
         comments.add(new Comment("Ali", "OLAMAAZ"));
