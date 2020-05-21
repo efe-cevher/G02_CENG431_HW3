@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class JSONFormatter {
+public class JSONFormatter implements IFormatter<Video>{
     Gson gson;
 
     public JSONFormatter() {
         this.gson = new Gson();
     }
 
-    public String toJson(Video video){
+    public String toFormat(Video video){
         return gson.toJson(video);
     }
 
-    public Video fromJson(String video){
+    public Video toObject(String video){
         return gson.fromJson(video,Video.class);
     }
 
@@ -29,10 +29,10 @@ public class JSONFormatter {
         comments.add(new Comment("asd4","asd4"));
         Video video = new Video(1,"video1","video1content",new Date(),5,1,comments);
         JSONFormatter jsonFormatter = new JSONFormatter();
-        String s = jsonFormatter.toJson(video);
+        String s = jsonFormatter.toFormat(video);
         System.out.println(s);
-        Video video1 = jsonFormatter.fromJson(s);
-        String s1 = jsonFormatter.toJson(video1);
+        Video video1 = jsonFormatter.toObject(s);
+        String s1 = jsonFormatter.toFormat(video1);
         System.out.println(s1);
     }
 }

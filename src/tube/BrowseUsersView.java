@@ -29,7 +29,6 @@ public class BrowseUsersView {
 
 
     private void initiateLayout(){
-        frame = new JFrame("IZTECHTube Users");
 
         panel1 = new JPanel(new BorderLayout());
 

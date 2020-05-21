@@ -2,48 +2,79 @@ package tube;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 public class WatchlistView implements Observer {
 
     private Watchlist watchlist;
-    private WatchlistController watchlistController;
-    private List<JButton> redirectButtons;
-    private List<JLabel> videoLabels;
+    private JButton goToVideoButton, mainMenuButton, logoutButton, addVideoButton, removeVideoButton;
     private JFrame frame;
-    private JTable videos;
+    private JScrollPane scrollPane;
+    private JList<String> videos;
+    private DefaultListModel<String> videoModels;
+    private JPanel panel;
+    private JLabel label;
 
-    public WatchlistView(Watchlist watchlist, WatchlistController watchlistController) {
-        frame = new JFrame("IZTECHTube");
-        frame.setSize(1000, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public WatchlistView(Watchlist watchlist, JFrame frame) {
+        this.frame = frame;
         this.watchlist = watchlist;
-        this.watchlistController = watchlistController;
-        showWatchlists();
+        showWatchlist();
     }
 
 
-    public void showWatchlists(){
-        /*String[] columns = { "id", "title", "content", "Go to video" };
-        Object[][] data = new Object[watchlist.getVideos().size()][4];
-        JButton directButton = new JButton("Go to video");
-        List<Video> videos = new ArrayList<Video>(watchlist.getVideos());
-        for(int i=0; i<watchlist.getVideos().size(); i++){
-            data[i] = new Object{videos.get(i).getId(), watchlist.getVideos().get(i).getTitle(), videos.get(i).getContent(), };
+    public void showWatchlist(){
+        panel = new JPanel(new GridLayout(3, 1));
+        panel.setLayout(null);
+
+        JLabel videoTitle = new JLabel(watchlist.getName());
+        videoTitle.setBounds(10, 10, 80, 25);
+        panel.add(videoTitle);
+
+        DefaultListModel<String> videoModels = new DefaultListModel<>();
+        for(Video v : watchlist.getVideos()){
+            videoModels.addElement("id: " + v.getId() + "   title: " + v.getTitle());
         }
-        videos = new JTable(, columns);*/
+        videos = new JList<String>(videoModels);
+        JScrollPane scrollPane = new JScrollPane(videos);
+        scrollPane.setBounds(10, 40, 450, 250);
+        panel.add(scrollPane);
+
+        addVideoButton = new JButton("Add video");
+        addVideoButton.setBounds(120, 320, 120, 25);
+        panel.add(addVideoButton);
+
+        removeVideoButton = new JButton("Delete video");
+        removeVideoButton.setBounds(270, 320, 120, 25);
+        panel.add(removeVideoButton);
+
+        goToVideoButton = new JButton("Watch");
+        goToVideoButton.setBounds(10, 320, 80, 25);
+        panel.add(goToVideoButton);
+
+        mainMenuButton = new JButton("Main Menu");
+        mainMenuButton.setBounds(10, 400, 120, 25);
+        panel.add(mainMenuButton);
+
+        logoutButton = new JButton("Log Out");
+        logoutButton.setBounds(140, 400, 80, 25);
+        panel.add(logoutButton);
+
+        frame.getContentPane().removeAll();
+        frame.add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
     }
 
 
+    @Override
     //Whenever the watchlist changes, update the view
     public void update(Observable o, Object arg) {
         watchlist = ((Watchlist)arg);
-        showWatchlists();
+        showWatchlist();
     }
 
     //Get user input from a popup
@@ -51,10 +82,49 @@ public class WatchlistView implements Observer {
         return JOptionPane.showInputDialog(message);
     }
 
-    //'Add a video' is clicked
-    public void onClickAdd(){ watchlistController.onAddVideo(); }
+    public void addAddVideoActionListener(ActionListener actionListener) {
+        goToVideoButton.addActionListener(actionListener);
+    }
 
-    //'Remove a video' is clicked
-    public void onClickRemove(){ watchlistController.onRemoveVideo(); }
+    public void addDeleteVideoActionListener(ActionListener actionListener) {
+        goToVideoButton.addActionListener(actionListener);
+    }
+
+    public void addGoToVideoActionListener(ActionListener actionListener) {
+        goToVideoButton.addActionListener(actionListener);
+    }
+
+    public void addMainMenuActionListener(ActionListener actionListener) {
+        mainMenuButton.addActionListener(actionListener);
+    }
+
+    public void addLogOutActionListener(ActionListener actionListener) {
+        logoutButton.addActionListener(actionListener);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("IZTECHTube");
+        frame.setSize(500, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        List<Video> videos = new ArrayList<Video>();
+
+        Video video = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
+        Video video2 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
+        Video video3 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
+        Video video4 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
+        Video video5 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
+        Video video6 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
+
+        videos.add(video);
+        videos.add(video2);
+        videos.add(video3);
+        videos.add(video4);
+        videos.add(video5);
+        videos.add(video6);
+
+        Watchlist w = new Watchlist(videos, "gayisgay");
+        WatchlistView watchlistView = new WatchlistView(w, frame);
+    }
 
 }
