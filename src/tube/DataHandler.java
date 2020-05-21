@@ -5,14 +5,17 @@ import java.util.*;
 public class DataHandler  implements IDataHandler, Observer {
     Map<String,User> userMap;
     Map<Integer,Video> videoMap;
-    IStorage videoStorage;
+    IStorage videoStorage, userStorage;
     IFormatter<Map<Integer,Video>> videoFormatter;
+    IFormatter<User> userFormatter;
 
     public DataHandler() {
         //load from xml and json
         this.userMap = new HashMap<>();
         this.videoStorage = new FileStorage("videos.json");
+        this.userStorage = new FileStorage("users.xml");
         this.videoFormatter = new JSONFormatter();
+        this.userFormatter = new XMLFormatter();
         this.videoMap = videoFormatter.toObject(videoStorage.read());
         addObservers();
     }
@@ -40,7 +43,9 @@ public class DataHandler  implements IDataHandler, Observer {
 
     public void putUser(User user){
         userMap.put(user.getUsername(), user);
-
+        //List<User> users = new ArrayList<>(userMap.values());
+        String userAsXML = userFormatter.toFormat(user);
+        userStorage.append(userAsXML);
     }
 
     public void putVideo(Video video){
@@ -58,5 +63,12 @@ public class DataHandler  implements IDataHandler, Observer {
             User user = (User) o;
             putUser(user);
         }
+    }
+
+    public static void main(String[] args) {
+        DataHandler d = new DataHandler();
+        d.putUser(new User("kaanalgan", "123456", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+        d.putUser(new User("efecan", "123456", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+        d.putUser(new User("zekihan", "123456", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
     }
 }

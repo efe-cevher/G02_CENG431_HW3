@@ -46,9 +46,7 @@ public class User extends Observable {
         this.watchlists = watchlists;
     }
 
-    public User(){
-
-    }
+    public User(){}
 
 
     public String getUsername() {

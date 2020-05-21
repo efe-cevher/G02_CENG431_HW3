@@ -1,39 +1,23 @@
 package tube;
 
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import javax.swing.*;
 import javax.xml.*;
 import javax.xml.bind.*;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-public class XMLFormatter {
+public class XMLFormatter implements IFormatter<User>{
 
-    private Document domDoc;
 
     public XMLFormatter() {
     }
 
 
-    public static void jaxbObjectToXML(User user)
+    public String toFormat(User user)
     {
+        String xmlContent = "";
         try
         {
-            FileStorage fileStorage = new FileStorage("users.xml");
-
             //Create JAXB Context
             JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
 
@@ -50,27 +34,28 @@ public class XMLFormatter {
             jaxbMarshaller.marshal(user, sw);
 
             //Verify XML Content
-            String xmlContent = sw.toString();
-            fileStorage.save(xmlContent);
-            System.out.println( xmlContent );
+            xmlContent = sw.toString();
 
         } catch (JAXBException e) {
             e.printStackTrace();
         }
+        return xmlContent;
     }
 
 
-    private static User jaxbXmlFileToObject() {
+    public  User toObject(String xmlAsStr) {
 
         File xmlFile = new File("users.xml");
+
         User user = null;
 
         JAXBContext jaxbContext;
         try
         {
             jaxbContext = JAXBContext.newInstance(User.class);
+            StringReader reader = new StringReader(xmlAsStr);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            user = (User) jaxbUnmarshaller.unmarshal(xmlFile);
+            user = (User) jaxbUnmarshaller.unmarshal(reader);
         }
         catch (JAXBException e)
         {
@@ -90,7 +75,7 @@ public class XMLFormatter {
         System.out.println(sw.toString());
     }*/
 
-    public static void main(String[] args) throws JAXBException, IOException {
+   /* public static void main(String[] args) throws JAXBException, IOException {
 
         User user2 = new User("user2","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         User user3 = new User("user3","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
@@ -123,9 +108,9 @@ public class XMLFormatter {
 
         //serializationDriver(users);
 
-       jaxbObjectToXML(user1);
+       toFormat(user1);
         //marshal(user1);
-        User user = jaxbXmlFileToObject();
+        User user = toObject("");
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());
         for(User user12 : user.getFollowing()){
@@ -147,5 +132,5 @@ public class XMLFormatter {
         }
 
 
-    }
+    }*/
 }

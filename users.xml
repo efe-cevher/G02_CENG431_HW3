@@ -1,81 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <user>
-    <username>user1</username>
-    <password>123</password>
-    <followings>
-        <following>
-            <username>user2</username>
-            <password>123</password>
-            <followings/>
-            <followers/>
-            <likedVideos/>
-            <dislikedVideos/>
-            <watchlists/>
-        </following>
-        <following>
-            <username>user3</username>
-            <password>123</password>
-            <followings/>
-            <followers/>
-            <likedVideos/>
-            <dislikedVideos/>
-            <watchlists/>
-        </following>
-        <following>
-            <username>user4</username>
-            <password>123</password>
-            <followings/>
-            <followers/>
-            <likedVideos/>
-            <dislikedVideos/>
-            <watchlists/>
-        </following>
-        <following>
-            <username>user5</username>
-            <password>123</password>
-            <followings/>
-            <followers/>
-            <likedVideos/>
-            <dislikedVideos/>
-            <watchlists/>
-        </following>
-    </followings>
+    <username>kaanalgan</username>
+    <password>123456</password>
+    <followings/>
     <followers/>
-    <likedVideos>
-        <likedVideo>1</likedVideo>
-        <likedVideo>2</likedVideo>
-        <likedVideo>2</likedVideo>
-        <likedVideo>2</likedVideo>
-        <likedVideo>2</likedVideo>
-        <likedVideo>2</likedVideo>
-        <likedVideo>2</likedVideo>
-    </likedVideos>
-    <dislikedVideos>
-        <dislikedVideo>1</dislikedVideo>
-        <dislikedVideo>2</dislikedVideo>
-        <dislikedVideo>2</dislikedVideo>
-        <dislikedVideo>2</dislikedVideo>
-        <dislikedVideo>2</dislikedVideo>
-        <dislikedVideo>2</dislikedVideo>
-        <dislikedVideo>2</dislikedVideo>
-    </dislikedVideos>
-    <watchlists>
-        <watchlist>
-            <name>hey1</name>
-            <videos>
-                <video>1</video>
-                <video>1</video>
-                <video>1</video>
-            </videos>
-        </watchlist>
-        <watchlist>
-            <name>hey2</name>
-            <videos>
-                <video>1</video>
-                <video>1</video>
-                <video>1</video>
-            </videos>
-        </watchlist>
-    </watchlists>
+    <likedVideos/>
+    <dislikedVideos/>
+    <watchlists/>
+</user>
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user>
+    <username>efecan</username>
+    <password>123456</password>
+    <followings/>
+    <followers/>
+    <likedVideos/>
+    <dislikedVideos/>
+    <watchlists/>
+</user>
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user>
+    <username>zekihan</username>
+    <password>123456</password>
+    <followings/>
+    <followers/>
+    <likedVideos/>
+    <dislikedVideos/>
+    <watchlists/>
 </user>
 
