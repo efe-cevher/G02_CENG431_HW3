@@ -101,10 +101,10 @@ public class XMLFormatter {
         users.add(user3);
         users.add(user4);
         users.add(user5);
-        List<Video> videos = new ArrayList<Video>();
-        videos.add(new Video(1,"gay","isgay",new Date(), 0,0,null));
-        videos.add(new Video(1,"gay","isgay",new Date(), 0,0,null));
-        videos.add(new Video(1,"gay","isgay",new Date(), 0,0,null));
+        List<Integer> videos = new ArrayList<>();
+        videos.add((new Video(1,"gay","isgay",new Date(), 0,0,null).getId()));
+        videos.add((new Video(1,"gay","isgay",new Date(), 0,0,null)).getId());
+        videos.add((new Video(1,"gay","isgay",new Date(), 0,0,null)).getId());
         Watchlist watchlist = new Watchlist(videos, "hey1");
         Watchlist watchlist2 = new Watchlist(videos, "hey2");
         List<Watchlist> watchlists = new ArrayList<>();
@@ -123,7 +123,7 @@ public class XMLFormatter {
 
         //serializationDriver(users);
 
-       //jaxbObjectToXML(user1);
+       jaxbObjectToXML(user1);
         //marshal(user1);
         User user = jaxbXmlFileToObject();
         System.out.println(user.getUsername());
@@ -138,6 +138,12 @@ public class XMLFormatter {
 
         for(Integer inte : user.getLikedVideos()){
             System.out.println("Liked: " + inte);
+        }
+
+        for(Watchlist w : user.getWatchlists()){
+            for(Integer v : w.getVideos()){
+                System.out.println("Video Id: " + v);
+            }
         }
 
 

@@ -77,9 +77,9 @@ public class BrowseWatchlistController {
     }
 
     public static void main(String[] args) {
-        List<Video> videos1 = new ArrayList<>();
-        List<Video> videos2 = new ArrayList<>();
-        List<Video> videos3 = new ArrayList<>();
+        List<Integer> videos1 = new ArrayList<>();
+        List<Integer> videos2 = new ArrayList<>();
+        List<Integer> videos3 = new ArrayList<>();
 
         Video video = new Video(1, "why1", "are you gay", new Date(), 0, 0, null);
         Video video2 = new Video(2, "why2", "are you gay", new Date(), 0, 0, null);
@@ -88,12 +88,12 @@ public class BrowseWatchlistController {
         Video video5 = new Video(5, "why5", "are you gay", new Date(), 0, 0, null);
         Video video6 = new Video(6, "why6", "are you gay", new Date(), 0, 0, null);
 
-        videos1.add(video);
-        videos1.add(video2);
-        videos2.add(video3);
-        videos2.add(video4);
-        videos3.add(video5);
-        videos3.add(video6);
+        videos1.add(video.getId());
+        videos1.add(video2.getId());
+        videos2.add(video3.getId());
+        videos2.add(video4.getId());
+        videos3.add(video5.getId());
+        videos3.add(video6.getId());
 
         Watchlist w1 = new Watchlist(videos1, "gayisgay1");
         Watchlist w2 = new Watchlist(videos2, "gayisgay2");

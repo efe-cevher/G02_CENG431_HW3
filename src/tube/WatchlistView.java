@@ -35,8 +35,8 @@ public class WatchlistView implements Observer {
         panel.add(videoTitle);
 
         DefaultListModel<String> videoModels = new DefaultListModel<>();
-        for(Video v : watchlist.getVideos()){
-            videoModels.addElement("id: " + v.getId() + "   title: " + v.getTitle());
+        for(Integer videoId : watchlist.getVideos()){
+            videoModels.addElement("id: " + videoId);
         }
         videos = new JList<String>(videoModels);
         JScrollPane scrollPane = new JScrollPane(videos);
@@ -101,7 +101,7 @@ public class WatchlistView implements Observer {
 
     public static void main(String[] args) {
 
-        List<Video> videos = new ArrayList<Video>();
+        List<Integer> videos = new ArrayList<>();
 
         Video video = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
         Video video2 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
@@ -110,12 +110,12 @@ public class WatchlistView implements Observer {
         Video video5 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
         Video video6 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
 
-        videos.add(video);
-        videos.add(video2);
-        videos.add(video3);
-        videos.add(video4);
-        videos.add(video5);
-        videos.add(video6);
+        videos.add(video.getId());
+        videos.add(video2.getId());
+        videos.add(video3.getId());
+        videos.add(video4.getId());
+        videos.add(video5.getId());
+        videos.add(video6.getId());
 
         Watchlist w = new Watchlist(videos, "gayisgay");
         WatchlistView watchlistView = new WatchlistView(new FrameManager(), w);

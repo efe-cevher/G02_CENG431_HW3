@@ -63,17 +63,17 @@
         <watchlist>
             <name>hey1</name>
             <videos>
-                <video/>
-                <video/>
-                <video/>
+                <video>1</video>
+                <video>1</video>
+                <video>1</video>
             </videos>
         </watchlist>
         <watchlist>
             <name>hey2</name>
             <videos>
-                <video/>
-                <video/>
-                <video/>
+                <video>1</video>
+                <video>1</video>
+                <video>1</video>
             </videos>
         </watchlist>
     </watchlists>

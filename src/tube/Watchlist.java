@@ -14,38 +14,41 @@ public class Watchlist extends Observable {
     @XmlElement
     private String name;
 
-    @XmlElementWrapper(name="videos")
-    @XmlElement(name="video")
-    private List<Video> videos;
+    @XmlElementWrapper(name = "videos")
+    @XmlElement(name = "video")
+    private List<Integer> videos;
 
-    public Watchlist(List<Video> videos, String name) {
-        this.videos = new ArrayList<Video>(videos.size());
+    public Watchlist(List<Integer> videos, String name) {
+        this.videos = new ArrayList<>(videos.size());
         this.videos.addAll(videos);
         this.name = name;
     }
 
-    public Watchlist(){}
+    public Watchlist() {
+    }
 
-    public String getName() { return this.name; }
+    public String getName() {
+        return this.name;
+    }
 
 
     //Return a copy of videos
 
-    public List<Video> getVideos(){
-        return new ArrayList<Video>(videos);
+    public List<Integer> getVideos() {
+        return new ArrayList<>(videos);
     }
 
 
     //Add a video to the watchlist
-    public void add(Video video){
-        videos.add(video);
+    public void add(Integer videoId) {
+        videos.add(videoId);
         setChanged();
         notifyObservers(getVideos());
     }
 
     //Remove video from the watchlist
-    public void remove(int id){
-        videos.removeIf(video -> video.getId() == id);
+    public void remove(int id) {
+        videos.removeIf(video -> video == id);
         setChanged();
         notifyObservers(getVideos());
     }
@@ -54,4 +57,5 @@ public class Watchlist extends Observable {
     public String toString() {
         return "Watchlist " + "name='" + name;
     }
+
 }

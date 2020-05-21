@@ -23,14 +23,7 @@ public class WatchlistController {
     private class addVideoActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int id = Integer.parseInt(watchlistView.getUserInput("Video id:"));
-            String title = watchlistView.getUserInput("Video title:");
-            String content = watchlistView.getUserInput("Video content:");
-            Date date = new Date();
-            int likes = 0;
-            int dislikes = 0;
-            List<Comment> comments = new ArrayList<>();
-            watchlist.add(new Video(id, title, content, date, likes, dislikes, comments));
+
         }
     }
 
