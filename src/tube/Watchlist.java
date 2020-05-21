@@ -1,11 +1,21 @@
 package tube;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlList;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+@XmlRootElement
 public class Watchlist extends Observable {
+
+    @XmlElement
     private String name;
+
+    @XmlElementWrapper(name="videos")
+    @XmlElement(name="video")
     private List<Video> videos;
 
     public Watchlist(List<Video> videos, String name) {
@@ -13,6 +23,8 @@ public class Watchlist extends Observable {
         this.videos.addAll(videos);
         this.name = name;
     }
+
+    public Watchlist(){}
 
     public String getName() { return this.name; }
 

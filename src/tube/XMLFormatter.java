@@ -4,16 +4,22 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.swing.*;
 import javax.xml.*;
 import javax.xml.bind.JAXB;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class XMLFormatter {
@@ -23,72 +29,51 @@ public class XMLFormatter {
     public XMLFormatter() {
     }
 
-    protected void buildDOMDocument(List<User> users) {
 
-        DocumentBuilderFactory factory;
-        DocumentBuilder builder;
-        DOMImplementation impl;
-        Element elmt1;
-        Element elmt2;
+    public static void jaxbObjectToXML(User user)
+    {
+        try
+        {
+            FileStorage fileStorage = new FileStorage("users.xml");
 
-        try {
-            factory = DocumentBuilderFactory.newInstance();
-            builder = factory.newDocumentBuilder();
-            impl = builder.getDOMImplementation();
-            domDoc = impl.createDocument(null, null, null);
-            elmt1 = domDoc.createElement("root");
-            domDoc.appendChild(elmt1);
+            //Create JAXB Context
+            JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
 
-            for (User user:users) {
-                elmt2 = domDoc.createElement("user");
-                elmt2.setTextContent(user.toString());
-                elmt1.appendChild(elmt2);
+            //Create Marshaller
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-            }
+            //Required formatting??
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-        }
-        catch (ParserConfigurationException ex) {
-            ex.printStackTrace();
-        }
-    }
+            //Print XML String to Console
+            StringWriter sw = new StringWriter();
 
-    protected void serializeXML() {
+            //Write XML to StringWriter
+            jaxbMarshaller.marshal(user, sw);
 
-        DOMSource domSrc;
-        Transformer txformer;
-        StringWriter sw;
-        StreamResult sr;
+            //Verify XML Content
+            String xmlContent = sw.toString();
+            fileStorage.save(xmlContent);
+            System.out.println( xmlContent );
 
-        try {
-            domSrc = new DOMSource(domDoc);
-
-            txformer = TransformerFactory.newInstance().newTransformer();
-            txformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-            txformer.setOutputProperty(OutputKeys.METHOD, "xml");
-            txformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            txformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            txformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
-            txformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-
-            sw = new StringWriter();
-            sr = new StreamResult(sw);
-
-            txformer.transform(domSrc, sr);
-
-            System.out.println(sw.toString());
-        } catch (TransformerException | TransformerFactoryConfigurationError ex) {
-            ex.printStackTrace();
+        } catch (JAXBException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void serializationDriver(List<User> users) {
 
-        XMLFormatter lcl = new XMLFormatter();
-        lcl.buildDOMDocument(users);
-        lcl.serializeXML();
+    public static void marshal(User user) throws JAXBException, IOException{
+
+        JAXBContext context = JAXBContext.newInstance(User.class);
+        StringWriter sw = new StringWriter();
+        Marshaller mar= context.createMarshaller();
+        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        mar.marshal(user, sw);
+        System.out.println(sw.toString());
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JAXBException, IOException {
+
         User user2 = new User("user2","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         User user3 = new User("user3","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         User user4 = new User("user4","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
@@ -98,13 +83,29 @@ public class XMLFormatter {
         users.add(user3);
         users.add(user4);
         users.add(user5);
-        User user1 = new User("user1","123",users,new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        List<Video> videos = new ArrayList<Video>();
+        videos.add(new Video(1,"gay","isgay",new Date(), 0,0,null));
+        videos.add(new Video(1,"gay","isgay",new Date(), 0,0,null));
+        videos.add(new Video(1,"gay","isgay",new Date(), 0,0,null));
+        Watchlist watchlist = new Watchlist(videos, "hey1");
+        Watchlist watchlist2 = new Watchlist(videos, "hey2");
+        List<Watchlist> watchlists = new ArrayList<>();
+        watchlists.add(watchlist);
+        watchlists.add(watchlist2);
+        List<Integer> liked = new ArrayList<>();
+        liked.add(1);
+        liked.add(2);
+        liked.add(2);
+        liked.add(2);
+        liked.add(2);
+        liked.add(2);
+        liked.add(2);
+
+        User user1 = new User("user1","123", users, new ArrayList<>(), liked, liked, watchlists);
 
         //serializationDriver(users);
 
-        StringWriter sw = new StringWriter();
-        JAXB.marshal(user1, sw);
-        String xmlString = sw.toString();
-        System.out.println(xmlString);
+       jaxbObjectToXML(user1);
+        //marshal(user1);
     }
 }

@@ -1,10 +1,16 @@
 package tube;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
+@XmlRootElement
 public class Video extends Observable {
 
+    @XmlAttribute
     private int id;
+
     private String title;
     private String content;
     private Date date;
@@ -22,6 +28,8 @@ public class Video extends Observable {
         this.comments = comments;
 
     }
+
+    public Video(){}
 
     public void like(){
         likes++;

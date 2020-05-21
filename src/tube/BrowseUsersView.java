@@ -39,12 +39,12 @@ public class BrowseUsersView implements Observer {
         scrollPane = new JScrollPane();
 
         userModels = new DefaultListModel<String>();
-        for(User nextUser: user.getFollowers()){
+        /*for(User nextUser: user.getFollowers()){
             userModels.addElement("User:    " + nextUser.getUsername());
         }
         for(User nextUser: user.getFollowing()){
             userModels.addElement("User:    " + nextUser.getUsername());
-        }
+        }*/
 
         users = new JList<String>(userModels);
         scrollPane.setViewportView(users);
@@ -86,7 +86,7 @@ public class BrowseUsersView implements Observer {
     }
 
 
-
+/*
 
     public static void main(String[] args) {
 
@@ -177,7 +177,7 @@ public class BrowseUsersView implements Observer {
 
         User user = new User("kaanalgan", "123456", following, follower, null, null, null);
         BrowseUsersView trialView = new BrowseUsersView(new FrameManager(), user);
-
+*/
     }
 
-}
+
