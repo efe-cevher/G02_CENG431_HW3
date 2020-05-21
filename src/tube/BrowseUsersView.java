@@ -7,10 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class BrowseUsersView {
+public class BrowseUsersView implements Observer {
 
-    private BrowseUsersController browseUsersController;
     private User user;
     private JFrame frame;
     private JList<String> users;
@@ -20,15 +21,15 @@ public class BrowseUsersView {
     private JScrollPane scrollPane;
     private final JLabel label = new JLabel("IZTECHTube Users");
 
-    public BrowseUsersView(BrowseUsersController browseUsersController, User user){
-        this.browseUsersController = browseUsersController;
+    public BrowseUsersView(User user, JFrame frame){
         this.user = user;
-        initiateLayout();
+        this.frame = frame;
+        showBrowseUsers();
     }
 
 
 
-    private void initiateLayout(){
+    private void showBrowseUsers(){
 
         panel1 = new JPanel(new BorderLayout());
 
@@ -53,29 +54,12 @@ public class BrowseUsersView {
 
 
         mainMenuButton = new JButton("Main Menu");
-        mainMenuButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
 
         logoutButton = new JButton("Sign out");
-        logoutButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-
 
         followButton = new JButton("Follow User");
-        followButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
 
         unfollowButton = new JButton("Unfollow User");
-        unfollowButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
 
         panel2.add(followButton);
         panel2.add(unfollowButton);
@@ -85,13 +69,34 @@ public class BrowseUsersView {
         panel3.add(panel1);
         panel3.add(panel2);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel3);
-        frame.setSize(500, 500);
-        frame.setVisible(true);
+        frame.getContentPane().removeAll();
+        frame.add(panel3, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {}
+
+    public void addFollowActionListener(ActionListener actionListener) {
+        followButton.addActionListener(actionListener);
+    }
+
+    public void addUnfollowActionListener(ActionListener actionListener) {
+        unfollowButton.addActionListener(actionListener);
+    }
+
+    public void addMainMenuActionListener(ActionListener actionListener) {
+        mainMenuButton.addActionListener(actionListener);
+    }
+
+    public void addLogoutActionListener(ActionListener actionListener) {
+        logoutButton.addActionListener(actionListener);
     }
 
 
+
+/*
     public static void main(String[] args) {
 
         User user1 = new User("zekihan","123456", null , null, null, null, null);
@@ -180,8 +185,8 @@ public class BrowseUsersView {
         follower.add(user40);
 
         User user = new User("kaanalgan", "123456", following, follower, null, null, null);
-        BrowseUsersView trialView = new BrowseUsersView(null, user);
+        BrowseUsersView trialView = new BrowseUsersView(user, new JF);
 
     }
-
+*/
 }
