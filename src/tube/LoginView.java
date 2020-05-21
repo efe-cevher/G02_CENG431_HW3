@@ -7,22 +7,16 @@ import java.awt.event.ActionListener;
 
 public class LoginView {
 
-    private LoginController controller;
     private JLabel userLabel;
     private JTextField usernameText;
     private JLabel passwordLabel;
     private JPasswordField passwordText;
     private JButton loginButton;
     private JPanel panel;
-    private JFrame frame;
+    private FrameManager frame;
 
-    public LoginView(LoginController controller) {
-        this.controller = controller;
-
-        frame = new JFrame("IztechTube");
-        frame.setSize(800, 450);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public LoginView(FrameManager frame) {
+        this.frame = frame;
         showLoginView();
     }
 
@@ -49,20 +43,23 @@ public class LoginView {
         loginButton = new JButton("login");
         loginButton.setBounds(10, 80, 80, 25);
         panel.add(loginButton);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.checkCredentials(usernameText.getText(),passwordText.getPassword());
-            }
-        });
 
-        frame.getContentPane().removeAll();
-        frame.add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        frame.setNewPanel(panel);
     }
 
-    public JFrame getFrame() {
+    public void addLoginActionListener(ActionListener actionListener){
+        loginButton.addActionListener(actionListener);
+    }
+
+    public String getUsername(){
+        return usernameText.getText();
+    }
+
+    public char[] getPassword(){
+        return passwordText.getPassword();
+    }
+
+    public FrameManager getFrame() {
         return frame;
     }
 

@@ -13,7 +13,7 @@ import java.util.Observer;
 public class BrowseUsersView implements Observer {
 
     private User user;
-    private JFrame frame;
+    private FrameManager frame;
     private JList<String> users;
     private DefaultListModel<String> userModels;
     private JButton followButton, unfollowButton, mainMenuButton, logoutButton;
@@ -21,13 +21,11 @@ public class BrowseUsersView implements Observer {
     private JScrollPane scrollPane;
     private final JLabel label = new JLabel("IZTECHTube Users");
 
-    public BrowseUsersView(User user, JFrame frame){
+    public BrowseUsersView(FrameManager frame, User user){
         this.user = user;
         this.frame = frame;
         showBrowseUsers();
     }
-
-
 
     private void showBrowseUsers(){
 
@@ -36,7 +34,6 @@ public class BrowseUsersView implements Observer {
         GridLayout gridLayout = new GridLayout(4, 1);
         gridLayout.setVgap(10);
         panel2 = new JPanel(gridLayout);
-
         panel3 = new JPanel(new GridLayout(2, 1));
 
         scrollPane = new JScrollPane();
@@ -48,17 +45,14 @@ public class BrowseUsersView implements Observer {
         for(User nextUser: user.getFollowing()){
             userModels.addElement("User:    " + nextUser.getUsername());
         }
+
         users = new JList<String>(userModels);
         scrollPane.setViewportView(users);
         panel1.add(scrollPane);
 
-
         mainMenuButton = new JButton("Main Menu");
-
         logoutButton = new JButton("Sign out");
-
         followButton = new JButton("Follow User");
-
         unfollowButton = new JButton("Unfollow User");
 
         panel2.add(followButton);
@@ -69,10 +63,7 @@ public class BrowseUsersView implements Observer {
         panel3.add(panel1);
         panel3.add(panel2);
 
-        frame.getContentPane().removeAll();
-        frame.add(panel3, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        frame.setNewPanel(panel1);
     }
 
     @Override

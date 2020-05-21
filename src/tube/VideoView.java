@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.List;
 
 public class VideoView implements Observer {
-    private JFrame frame;
+    private FrameManager frame;
     private JPanel panel;
     private Video video;
     private JTextField commentField;
@@ -23,8 +23,7 @@ public class VideoView implements Observer {
     private JLabel dislikeCount;
     private JList<Comment> commentJList;
 
-
-    public VideoView(JFrame frame, Video video) {
+    public VideoView(FrameManager frame, Video video) {
         this.video = video;
         this.frame = frame;
         showVideoView();
@@ -70,17 +69,13 @@ public class VideoView implements Observer {
         commentButton.setBounds(320, 340, 90, 25);
         panel.add(commentButton);
 
-
         commentJList = new JList<>(reverseList(video.getComments()));
 
         JScrollPane scrollCommentPane = new JScrollPane(commentJList);
         scrollCommentPane.setBounds(10, 380, 400, 250);
         panel.add(scrollCommentPane);
 
-        frame.getContentPane().removeAll();
-        frame.add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        frame.setNewPanel(panel);
     }
 
     public void addDislikeActionListener(ActionListener actionListener) {

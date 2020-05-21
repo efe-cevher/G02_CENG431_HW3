@@ -3,7 +3,7 @@ package tube;
 public class Main {
 
     public static void main(String[] args) {
-
-        LoginController loginController = new LoginController();
+        AppManager appManager = new AppManager();
+        appManager.start();
     }
 }

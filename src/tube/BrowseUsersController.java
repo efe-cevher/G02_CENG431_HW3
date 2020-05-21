@@ -4,9 +4,8 @@ public class BrowseUsersController {
 
     private BrowseUsersView browseUsersView;
 
-
-    public BrowseUsersController(){
-
+    public BrowseUsersController(BrowseUsersView browseUsersView){
+        this.browseUsersView = browseUsersView;
     }
 
 }

@@ -58,10 +58,6 @@ public class BrowseWatchlistController {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("IZTECHTube");
-        frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         List<Video> videos1 = new ArrayList<>();
         List<Video> videos2 = new ArrayList<>();
         List<Video> videos3 = new ArrayList<>();
@@ -106,7 +102,7 @@ public class BrowseWatchlistController {
         users.add(user6);
         User user1 = new User("heyyy1",null,users,null,null,null,watchlists1);
 
-        BrowseWatchlistView browseWatchlistView = new BrowseWatchlistView(frame,user1);
+        BrowseWatchlistView browseWatchlistView = new BrowseWatchlistView(new FrameManager(),user1);
         new BrowseWatchlistController(user1, browseWatchlistView);
     }
 

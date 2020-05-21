@@ -8,15 +8,15 @@ import java.util.List;
 
 public class BrowseWatchlistView implements Observer {
     private JPanel panel;
-    JButton mainMenuButton;
-    JButton logoutButton;
-    JButton createWatchlistButton;
-    JButton openWatchlistButton;
-    JScrollPane scrollPane;
-    private JFrame frame;
+    private JButton mainMenuButton;
+    private JButton logoutButton;
+    private JButton createWatchlistButton;
+    private JButton openWatchlistButton;
+    private JScrollPane scrollPane;
+    private FrameManager frame;
     private User user;
 
-    public BrowseWatchlistView(JFrame frame, User user) {
+    public BrowseWatchlistView(FrameManager frame, User user) {
         this.frame = frame;
         this.user = user;
 
@@ -45,10 +45,7 @@ public class BrowseWatchlistView implements Observer {
         logoutButton.setBounds(140, 400, 80, 25);
         panel.add(logoutButton);
 
-        frame.getContentPane().removeAll();
-        frame.add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        frame.setNewPanel(panel);
     }
 
     private void showLists() {

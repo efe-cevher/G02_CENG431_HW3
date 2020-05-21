@@ -1,11 +1,6 @@
 package tube;
-
-import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 
 public class VideoController {
     private Video video;
@@ -17,27 +12,26 @@ public class VideoController {
         this.videoView = videoView;
 
         video.addObserver(videoView);
-
-        videoView.addDislikeActionListener(new dislikeActionListener());
-        videoView.addLikeActionListener(new likeActionListener());
-        videoView.addCommentActionListener(new commentActionListener());
+        videoView.addDislikeActionListener(new DislikeActionListener());
+        videoView.addLikeActionListener(new LikeActionListener());
+        videoView.addCommentActionListener(new CommentActionListener());
     }
 
-    private class dislikeActionListener implements ActionListener {
+    private class DislikeActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             video.dislike();
         }
     }
 
-    private class likeActionListener implements ActionListener {
+    private class LikeActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             video.like();
         }
     }
 
-    private class commentActionListener implements ActionListener {
+    private class CommentActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             String commentText = videoView.getCommentText();
