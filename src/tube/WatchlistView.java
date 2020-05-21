@@ -80,11 +80,11 @@ public class WatchlistView implements Observer {
     }
 
     public void addAddVideoActionListener(ActionListener actionListener) {
-        goToVideoButton.addActionListener(actionListener);
+        addVideoButton.addActionListener(actionListener);
     }
 
     public void addDeleteVideoActionListener(ActionListener actionListener) {
-        goToVideoButton.addActionListener(actionListener);
+        removeVideoButton.addActionListener(actionListener);
     }
 
     public void addGoToVideoActionListener(ActionListener actionListener) {
