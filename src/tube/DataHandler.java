@@ -7,16 +7,21 @@ public class DataHandler  implements IDataHandler, Observer {
     Map<Integer,Video> videoMap;
     IStorage videoStorage, userStorage;
     IFormatter<Map<Integer,Video>> videoFormatter;
-    IFormatter<User> userFormatter;
+    XMLFormatter userFormatter;
 
     public DataHandler() {
         //load from xml and json
-        this.userMap = new HashMap<>();
+
         this.videoStorage = new FileStorage("videos.json");
         this.userStorage = new FileStorage("users.xml");
         this.videoFormatter = new JSONFormatter();
-        //this.userFormatter = new XMLFormatter();
+        this.userFormatter = new XMLFormatter();
         this.videoMap = videoFormatter.toObject(videoStorage.read());
+        this.userMap = userFormatter.fromFormat(userStorage.read());
+        for(User u : userMap.values()){
+            System.out.println("Username: " + u.getUsername());
+            System.out.println("Password: " + u.getPassword());
+        }
         addObservers();
     }
 
@@ -24,9 +29,12 @@ public class DataHandler  implements IDataHandler, Observer {
         for (Video video: videoMap.values()){
             video.addObserver(this);
         }
+        /*
         for (User user: userMap.values()){
             user.addObserver(this);
         }
+        */
+
     }
 
     public List<User> getUserList(){
@@ -44,7 +52,7 @@ public class DataHandler  implements IDataHandler, Observer {
     public void putUser(User user){
         userMap.put(user.getUsername(), user);
         //List<User> users = new ArrayList<>(userMap.values());
-        String userAsXML = userFormatter.toFormat(user);
+        String userAsXML = userFormatter.toFormat(userMap);
         userStorage.append(userAsXML);
     }
 

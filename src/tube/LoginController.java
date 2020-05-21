@@ -26,6 +26,7 @@ public class LoginController {
 
 
     private void checkCredentials(String username, char[] password) {
+
         DataHandler dataHandler = new DataHandler();
         User user = dataHandler.getUser(username);
 

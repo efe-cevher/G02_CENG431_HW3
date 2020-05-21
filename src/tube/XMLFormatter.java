@@ -8,9 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class XMLFormatter{
 
@@ -18,7 +16,7 @@ public class XMLFormatter{
     public XMLFormatter() {
     }
 
-    public static String toFormat(List<User> user)
+    public String toFormat(List<User> user)
     {
         String xmlContent = "";
         try
@@ -76,10 +74,7 @@ public class XMLFormatter{
         return xmlContent;
     }*/
 
-
-    public static User toObject(String xmlAsStr) {
-
-        File xmlFile = new File("users.xml");
+    public User toObject(String xmlAsStr) {
 
         User user = null;
 
@@ -98,53 +93,29 @@ public class XMLFormatter{
         return user;
     }
 
+    public String toFormat(Map<String, User> user){
 
+        Users users = new Users(new ArrayList<>(user.values()));
 
-    public static String toFormat(Users user){
         XStream xstream = new XStream();
         xstream.alias("user", User.class);
         xstream.alias("users", Users.class);
         xstream.addImplicitCollection(Users.class, "users");
-        return xstream.toXML(user);
+        return xstream.toXML(users);
     }
 
-    public static Users fromFormat(String data){
+    public Map<String,User> fromFormat(String data){
         XStream xstream = new XStream();
         xstream.alias("user", User.class);
         xstream.alias("users", Users.class);
         xstream.addImplicitCollection(Users.class, "users");
-        String xmlContent = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                "<users>\n" +
-                "    <user>\n" +
-                "        <username>kaanalgan</username>\n" +
-                "        <password>123456</password>\n" +
-                "        <followings/>\n" +
-                "        <followers/>\n" +
-                "        <likedVideos/>\n" +
-                "        <dislikedVideos/>\n" +
-                "        <watchlists/>\n" +
-                "    </user>\n" +
-                "    <user>\n" +
-                "        <username>efecan</username>\n" +
-                "        <password>123456</password>\n" +
-                "        <followings/>\n" +
-                "        <followers/>\n" +
-                "        <likedVideos/>\n" +
-                "        <dislikedVideos/>\n" +
-                "        <watchlists/>\n" +
-                "    </user>\n" +
-                "    <user>\n" +
-                "        <username>zekihan</username>\n" +
-                "        <password>123456</password>\n" +
-                "        <followings/>\n" +
-                "        <followers/>\n" +
-                "        <likedVideos/>\n" +
-                "        <dislikedVideos/>\n" +
-                "        <watchlists/>\n" +
-                "    </user>\n" +
-                "</users>";
-        Users users = (Users)xstream.fromXML(xmlContent);
-        return users;
+        String xmlContent = "";
+        Users users = (Users)xstream.fromXML(data);
+        Map<String,User> userMap = new HashMap<>();
+        for(User user : users.getUsers()){
+            userMap.put(user.getUsername(), user);
+        }
+        return userMap;
 
     }
 
@@ -185,14 +156,30 @@ public class XMLFormatter{
 
         /*Users listOfUsers = new Users(users);
         String xml = toFormat(listOfUsers);
-        System.out.println(xml);*/
-        //marshal(user1);
+        System.out.println(xml);
+        //marshal(user1);*/
 
-        Users users1 = fromFormat("");
-        for(User u : users1.getUsers()){
+        IStorage storage = new FileStorage("users.xml");
+
+
+        XMLFormatter xmlFormatter = new XMLFormatter();
+        System.out.println(storage.read());
+
+        Map<String,User> users1 = xmlFormatter.fromFormat(storage.read());
+        for(User u : users1.values()){
             System.out.println("Username: " + u.getUsername());
             System.out.println("Password: " + u.getPassword());
         }
 
     }
+
+    private class Users {
+        private List<User> users;
+
+        public Users(List<User> users){ this.users = users; }
+
+        public List<User> getUsers(){ return this.users; }
+
+    }
+
 }
