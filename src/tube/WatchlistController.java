@@ -1,20 +1,20 @@
 package tube;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.*;
+
 
 public class WatchlistController {
 
     private WatchlistView watchlistView;
     private Watchlist watchlist;
+    private User currentUser;
 
-    public WatchlistController(WatchlistView watchlistView, Watchlist watchlist){
+    public WatchlistController(WatchlistView watchlistView, Watchlist watchlist, User user){
         this.watchlistView = watchlistView;
         this.watchlist = watchlist;
+        this.currentUser = user;
+
         watchlist.addObserver(watchlistView);
         watchlistView.addGoToVideoActionListener(new goToVideoActionListener());
         watchlistView.addMainMenuActionListener(new mainMenuActionListener());
@@ -22,48 +22,23 @@ public class WatchlistController {
     }
 
 
-    private class addVideoActionListener implements ActionListener {
+    private class deleteVideoActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-        }
-    }
-
-    private class deleteVideoActionListener implements MouseListener {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            int videoIndex = watchlistView.getSelectedListIndex();
-            int videoId = watchlist.getVideos().get(videoIndex);
-            watchlist.remove(videoId);
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
+            if(currentUser.getWatchlists().contains(watchlist)) {
+                int videoIndex = watchlistView.getSelectedListIndex();
+                int videoId = watchlist.getVideos().get(videoIndex);
+                watchlist.remove(videoId);
+            }else{
+                //Not your watchlist! cant remove
+            }
         }
     }
 
 
-    private class goToVideoActionListener implements MouseListener {
-
+    private class goToVideoActionListener implements ActionListener {
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void actionPerformed(ActionEvent e) {
             int i = watchlistView.getSelectedListIndex();
             Integer videoId = watchlist.getVideos().get(i);
             //video from videoId?
@@ -72,33 +47,13 @@ public class WatchlistController {
             VideoView videoView = new VideoView(watchlistView.getFrame(), selectedVideo);
             VideoController videoController = new VideoController(selectedVideo, videoView);
         }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-
     }
 
     private class mainMenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            MenuView mainMenu = new MenuView(watchlistView.getFrame());
+            MenuView menuView = new MenuView(watchlistView.getFrame());
+            MenuController menuController = new MenuController(menuView, currentUser);
         }
     }
 

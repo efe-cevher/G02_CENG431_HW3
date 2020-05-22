@@ -8,69 +8,52 @@ import java.util.List;
 
 public class BrowseUsersView implements Observer {
 
-    private List<User> userList;
+    private List<String> usernames;
     private User user;
     private FrameManager frame;
     private JList<String> jList;
     private DefaultListModel<String> userModels;
     private JButton followButton, unfollowButton, mainMenuButton, logoutButton;
-    private JPanel panel1, panel2, panel3;
+    private JPanel panel;
     private JScrollPane scrollPane;
     private final JLabel label = new JLabel("IZTECHTube Users");
 
-    public BrowseUsersView(FrameManager frame, List<User> userList, User user){
-        this.userList = userList;
+    public BrowseUsersView(FrameManager frame, List<String> usernames, User user){
+        this.usernames = usernames;
         this.user = user;
         this.frame = frame;
         showBrowseUsers();
+        user.addObserver(this);
     }
 
     private void showBrowseUsers(){
 
-        panel1 = new JPanel(new BorderLayout());
-
-        GridLayout gridLayout = new GridLayout(4, 1);
-        gridLayout.setVgap(10);
-        panel2 = new JPanel(gridLayout);
-        panel3 = new JPanel(new GridLayout(2, 1));
+        panel = new JPanel(new GridLayout(3, 1));
+        panel.setLayout(null);
 
         scrollPane = new JScrollPane();
 
-        String[] jListItems = new String[userList.size()];
-
-        int i = 0;
-        for(User u : userList){
-            String following = "Follow";
-            if (user.getFollowing().contains(u)){
-                following = "Following";
-            }
-
-            jListItems[i] = "<html><body>"  + u.getUsername().toUpperCase() + "   " + following + "<br>" + " " + "<br>" + "</span></body></html>}"; ;
-            i++;
-        }
-
-        jList = new JList<>(jListItems);
+        jList = new JList<>();
         scrollPane.setViewportView(jList);
-        panel1.add(scrollPane);
+
+        setJList();
+
+        scrollPane.setBounds(10, 40, 450, 250);
+        panel.add(scrollPane);
 
         mainMenuButton = new JButton("Main Menu");
-        logoutButton = new JButton("Sign out");
+        mainMenuButton.setBounds(310, 320, 120, 35);
         followButton = new JButton("Follow User");
+        followButton.setBounds(10, 320, 120, 35);
         unfollowButton = new JButton("Unfollow User");
+        unfollowButton.setBounds(160, 320, 120, 35);
 
-        panel2.add(followButton);
-        panel2.add(unfollowButton);
-        panel2.add(mainMenuButton);
-        panel2.add(logoutButton);
+        panel.add(followButton);
+        panel.add(unfollowButton);
+        panel.add(mainMenuButton);
 
-        panel3.add(panel1);
-        panel3.add(panel2);
-
-        frame.setNewPanel(panel1);
+        frame.setNewPanel(panel);
     }
-
-    @Override
-    public void update(Observable o, Object arg) {}
 
     public void addFollowActionListener(ActionListener actionListener) {
         followButton.addActionListener(actionListener);
@@ -84,13 +67,38 @@ public class BrowseUsersView implements Observer {
         mainMenuButton.addActionListener(actionListener);
     }
 
-    public void addLogoutActionListener(ActionListener actionListener) {
-        logoutButton.addActionListener(actionListener);
+    public String getSelectedUsername(){
+        return usernames.get(jList.getSelectedIndex());
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        user = (User) o;
+        setJList();
     }
 
 
-/*
+    private void setJList(){
+        String[] jListItems = new String[usernames.size()];
+        int i = 0;
+        usernames.remove(user.getUsername());
+        for(String u : usernames){
+            String following = "- Not Following";
+            if (user.getFollowingUserSet().contains(u)){
+                following = "- Following";
+            }
+            jListItems[i] = "<html><body>"  + u.toUpperCase() + "   " + following + "<br>" + " " + "<br>" + "</span></body></html>}"; ;
+            i++;
 
+        }
+        jList.setListData(jListItems);
+    }
+
+    public FrameManager getFrame(){
+        return frame;
+    }
+
+/*
     public static void main(String[] args) {
 
         User user1 = new User("zekihan","123456", null , null, null, null, null);

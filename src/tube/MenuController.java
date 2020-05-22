@@ -19,10 +19,9 @@ public class MenuController {
     private class BrowseUsersActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            DataHandler dataHandler = new DataHandler();
-
-            BrowseUsersView browseUsersView = new BrowseUsersView(menuView.getFrame(), dataHandler.getUserList(), user);
-            BrowseUsersController browseUsersController = new BrowseUsersController(browseUsersView);
+            IDataHandler dataHandler = new DataHandler();
+            BrowseUsersView browseUsersView = new BrowseUsersView(menuView.getFrame(), dataHandler.getUsernames(), user);
+            BrowseUsersController browseUsersController = new BrowseUsersController(browseUsersView, user);
         }
     }
 
@@ -31,7 +30,6 @@ public class MenuController {
         public void actionPerformed(ActionEvent e) {
             BrowseWatchlistView browseWatchlistView = new BrowseWatchlistView(menuView.getFrame(), user);
             BrowseWatchlistController browseWatchlistController = new BrowseWatchlistController(user, browseWatchlistView);
-
         }
     }
 

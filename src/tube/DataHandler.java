@@ -18,10 +18,6 @@ public class DataHandler  implements IDataHandler, Observer {
         this.userFormatter = new XMLFormatter();
         this.videoMap = videoFormatter.toObject(videoStorage.read());
         this.userMap = userFormatter.toObject(userStorage.read());
-        for(User u : userMap.values()){
-            System.out.println("Username: " + u.getUsername());
-            System.out.println("Password: " + u.getPassword());
-        }
         addObservers();
     }
 
@@ -37,6 +33,11 @@ public class DataHandler  implements IDataHandler, Observer {
 
     public List<User> getUserList(){
         return new ArrayList<>(userMap.values());
+    }
+
+    @Override
+    public List<String> getUsernames() {
+        return new ArrayList<>(userMap.keySet());
     }
 
     public User getUser(String username){
@@ -67,7 +68,7 @@ public class DataHandler  implements IDataHandler, Observer {
             putVideo(video);
         }else{
             User user = (User) o;
-            putUser(user);
+            //putUser(user);
         }
     }
 

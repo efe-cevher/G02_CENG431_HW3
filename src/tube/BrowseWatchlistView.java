@@ -28,6 +28,8 @@ public class BrowseWatchlistView implements Observer {
         scrollPane.setBounds(10, 40, 450, 250);
         panel.add(scrollPane);
 
+        jWatchlists = new JList<>();
+        scrollPane.setViewportView(jWatchlists);
         showLists();
 
         openWatchlistButton = new JButton("Open Watchlist");
@@ -53,8 +55,7 @@ public class BrowseWatchlistView implements Observer {
             watchlistsArr[i] = "<html><body>" + wl.getName() + "<br>" + "By: " + user.getUsername() + "<br>" + " " + "<br>" + "</span></body></html>}";
             i++;
         }
-        jWatchlists = new JList<>(watchlistsArr);
-        scrollPane.setViewportView(jWatchlists);
+        jWatchlists.setListData(watchlistsArr);
     }
 
     //Get user input from a popup

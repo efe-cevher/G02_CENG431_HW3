@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IDataHandler {
 
-    public List<User> getUserList();
+    public List<String> getUsernames();
 
     public User getUser(String username);
 

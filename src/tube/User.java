@@ -74,6 +74,14 @@ public class User extends Observable {
         return followings;
     }
 
+    public Set<String> getFollowingUserSet(){
+        Set<String> names = new HashSet<>();
+        for (User u : followings) {
+            names.add(u.username);
+        }
+        return names;
+    }
+
 
 
     public void setFollowing(List<User> following) {
@@ -127,7 +135,13 @@ public class User extends Observable {
         return watchlists;
     }
 
-
+    public void follow(User user){
+        if(!followings.contains(user)){
+            followings.add(user);
+            setChanged();
+            notifyObservers();
+        }
+    }
 
     public void setWatchlists(List<Watchlist> watchlists) {
         this.watchlists = watchlists;
@@ -142,4 +156,26 @@ public class User extends Observable {
         notifyObservers();
     }
 
+    public void unfollow(User user) {
+        if(followings.contains(user)){
+            followings.remove(user);
+            setChanged();
+            notifyObservers();
+        }
+    }
+
+    public void addFollower(User user) {
+        if(!followers.contains(user)){
+            followers.add(user);
+            setChanged();
+            notifyObservers();
+        }
+    }
+    public void removeFollower(User user) {
+        if(followers.contains(user)){
+            followers.remove(user);
+            setChanged();
+            notifyObservers();
+        }
+    }
 }

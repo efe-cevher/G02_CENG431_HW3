@@ -1,6 +1,5 @@
 package tube;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -10,15 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 public class BrowseWatchlistController {
-    private User user;
+    private User currentUser;
     private BrowseWatchlistView browseWatchlistView;
-    private List<Watchlist> allWatchlists;
 
     public BrowseWatchlistController(User user, BrowseWatchlistView browseWatchlistView) {
-        this.user = user;
+        this.currentUser = user;
         this.browseWatchlistView = browseWatchlistView;
 
-        allWatchlists = user.getAllWatchLists();
         user.addObserver(browseWatchlistView);
         browseWatchlistView.addCreateWatchlistButton(new createWatchlistActionListener());
         browseWatchlistView.addOpenWatchlistButton(new openWatchlistActionListener());
@@ -30,9 +27,11 @@ public class BrowseWatchlistController {
         @Override
         public void actionPerformed(ActionEvent e) {
             String title = browseWatchlistView.getUserInput("Watch List title:");
-            user.addWatchlist(new Watchlist(new ArrayList<>(),title));
+            currentUser.addWatchlist(new Watchlist(new ArrayList<>(),title));
+
+            //problematic
             DataHandler dataHandler = new DataHandler();
-            dataHandler.putUser(user);
+            dataHandler.putUser(currentUser);
         }
     }
 
@@ -40,17 +39,17 @@ public class BrowseWatchlistController {
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = browseWatchlistView.getSelectedListIndex();
-
-            Watchlist watchlist = allWatchlists.get(i);
+            Watchlist watchlist = currentUser.getAllWatchLists().get(i);
             WatchlistView watchlistView = new WatchlistView(browseWatchlistView.getFrame(), watchlist);
-            WatchlistController watchlistController = new WatchlistController(watchlistView, watchlist);
+            WatchlistController watchlistController = new WatchlistController(watchlistView, watchlist, currentUser);
         }
     }
 
     private class mainMenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            MenuView menuView = new MenuView(browseWatchlistView.getFrame());
+            MenuController menuController = new MenuController(menuView, currentUser);
         }
     }
 
@@ -59,9 +58,9 @@ public class BrowseWatchlistController {
         @Override
         public void mouseClicked(MouseEvent e) {
             int i = browseWatchlistView.getSelectedListIndex();
-            Watchlist watchlist = allWatchlists.get(i);
+            Watchlist watchlist = currentUser.getAllWatchLists().get(i);
             WatchlistView watchlistView = new WatchlistView(browseWatchlistView.getFrame(), watchlist);
-            WatchlistController watchlistController = new WatchlistController(watchlistView, watchlist);
+            WatchlistController watchlistController = new WatchlistController(watchlistView, watchlist, currentUser);
         }
         @Override
         public void mousePressed(MouseEvent e) { }
@@ -72,6 +71,7 @@ public class BrowseWatchlistController {
         @Override
         public void mouseExited(MouseEvent e) { }
     }
+
 
     public static void main(String[] args) {
         List<Integer> videos1 = new ArrayList<>();

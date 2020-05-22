@@ -71,22 +71,18 @@ public class WatchlistView implements Observer {
         showWatchlist();
     }
 
-    //Get user input from a popup
-    public String getUserInput(String message){
-        return JOptionPane.showInputDialog(message);
+    public void addDeleteVideoActionListener(ActionListener actionListener) {
+        removeVideoButton.addActionListener(actionListener);
     }
 
-    public void addDeleteVideoActionListener(MouseListener mouseListener) {
-        removeVideoButton.addMouseListener(mouseListener);
-    }
-
-    public void addGoToVideoActionListener(MouseListener mouseListener) {
-        watchVideoButton.addMouseListener(mouseListener);
+    public void addGoToVideoActionListener(ActionListener actionListener) {
+        watchVideoButton.addActionListener(actionListener);
     }
 
     public void addMainMenuActionListener(ActionListener actionListener) {
         mainMenuButton.addActionListener(actionListener);
     }
+
 
     public int getSelectedListIndex(){
         return videos.getSelectedIndex();
@@ -94,6 +90,8 @@ public class WatchlistView implements Observer {
 
     public FrameManager getFrame() { return frame; }
 
+
+    /*
     public static void main(String[] args) {
 
         List<Integer> videos = new ArrayList<>();
@@ -115,7 +113,7 @@ public class WatchlistView implements Observer {
         Watchlist w = new Watchlist(videos, "gayisgay");
 
         WatchlistView watchlistView = new WatchlistView(new FrameManager(), w);
-        WatchlistController wc = new WatchlistController(watchlistView, w);
+        WatchlistController wc = new WatchlistController(watchlistView, w, );
     }
-
+*/
 }
