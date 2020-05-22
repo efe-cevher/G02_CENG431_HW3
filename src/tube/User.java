@@ -82,6 +82,38 @@ public class User extends Observable {
         return names;
     }
 
+    public boolean removeFromDislikes(int videoId){
+        if(dislikedVideos.contains(videoId)){
+            dislikedVideos.remove((Integer) videoId);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeFromLikes(int videoId){
+        if(likedVideos.contains(videoId)){
+            likedVideos.remove((Integer) videoId);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addToLikes(int videoId){
+        if(!likedVideos.contains(videoId)){
+            likedVideos.add(videoId);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addToDislikes(int videoId){
+        if(!dislikedVideos.contains(videoId)){
+            dislikedVideos.add(videoId);
+            return true;
+        }
+        return false;
+    }
+
 
 
     public void setFollowing(List<User> following) {

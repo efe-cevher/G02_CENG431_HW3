@@ -100,12 +100,25 @@
   },
   "12": {
     "id": 12,
-    "title": "video 12",
-    "content": "video 12 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 0,
-    "dislikes": 0,
-    "comments": []
+    "title": "title",
+    "content": "content",
+    "date": "Fri, 22 May 2020 18:55:13 +0300",
+    "likes": 28,
+    "dislikes": 17,
+    "comments": [
+      {
+        "username": "Ali",
+        "comment": "OLAMAAZ"
+      },
+      {
+        "username": "Ali",
+        "comment": "Merhaba Vidyonu vidomda gosterebilirmiyim sagul"
+      },
+      {
+        "username": "efe",
+        "comment": "fdsfasd"
+      }
+    ]
   },
   "13": {
     "id": 13,

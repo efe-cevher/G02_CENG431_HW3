@@ -3,7 +3,6 @@ package tube;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class WatchlistController {
 
     private WatchlistView watchlistView;
@@ -21,7 +20,6 @@ public class WatchlistController {
         watchlistView.addDeleteVideoActionListener(new deleteVideoActionListener());
     }
 
-
     private class deleteVideoActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -35,7 +33,6 @@ public class WatchlistController {
         }
     }
 
-
     private class goToVideoActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -45,7 +42,7 @@ public class WatchlistController {
             DataHandler dataHandler = new DataHandler();
             Video selectedVideo = dataHandler.getVideo(videoId);
             VideoView videoView = new VideoView(watchlistView.getFrame(), selectedVideo);
-            VideoController videoController = new VideoController(selectedVideo, videoView);
+            VideoController videoController = new VideoController(selectedVideo, videoView, currentUser);
         }
     }
 

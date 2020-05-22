@@ -31,14 +31,14 @@ public class Video extends Observable {
 
     public Video(){}
 
-    public void like(){
-        likes++;
+    public void setLikes(int likes) {
+        this.likes = likes;
         setChanged();
         notifyObservers();
     }
 
-    public void dislike(){
-        dislikes++;
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
         setChanged();
         notifyObservers();
     }

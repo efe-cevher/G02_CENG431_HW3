@@ -2,6 +2,9 @@ package tube;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 public class LoginController {
@@ -34,14 +37,14 @@ public class LoginController {
         else{
             loginView.securityCheckFailed();
         }
-        /*
+/*
         List<Comment> comments = new ArrayList<>();
         comments.add(new Comment("Ali", "OLAMAAZ"));
         comments.add(new Comment("Ali", "Merhaba Vidyonu vidomda gosterebilirmiyim sagul"));
         Video video = new Video(12, "title", "content", new Date(), 2, 3, comments);
         VideoView videoView = new VideoView(loginView.getFrame(), video);
 
-        VideoController videoController = new VideoController(video, videoView);
+        VideoController videoController = new VideoController(video, videoView, user);
         System.out.println(username);
         System.out.println(password);
 */
