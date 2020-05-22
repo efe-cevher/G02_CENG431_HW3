@@ -3,38 +3,75 @@
     <username>kaan</username>
     <password>123</password>
     <followings>
+      <string>zekihan</string>
       <string>gayegemen</string>
+      <string>efecan</string>
     </followings>
     <followers>
       <string>efecan</string>
-      <string>gayegemen</string>
     </followers>
-    <likedVideos>
-      <int>1</int>
-      <int>2</int>
-    </likedVideos>
-    <dislikedVideos>
-      <int>3</int>
-    </dislikedVideos>
-    <watchlists/>
+    <likedVideos/>
+    <dislikedVideos/>
+    <watchlists>
+      <watchlist>
+        <name>playlist1</name>
+        <videos>
+          <int>1</int>
+          <int>2</int>
+        </videos>
+      </watchlist>
+      <watchlist>
+        <name>playlist2</name>
+        <videos>
+          <int>3</int>
+        </videos>
+      </watchlist>
+      <watchlist>
+        <name>playlist3</name>
+        <videos/>
+      </watchlist>
+    </watchlists>
   </user>
   <user>
     <username>gayegemen</username>
+    <password>123</password>
+    <followings/>
+    <followers>
+      <string>kaan</string>
+    </followers>
+    <likedVideos/>
+    <dislikedVideos/>
+    <watchlists/>
+  </user>
+  <user>
+    <username>efecan</username>
     <password>123</password>
     <followings>
       <string>kaan</string>
     </followings>
     <followers>
-      <string>efecan</string>
       <string>kaan</string>
     </followers>
-    <likedVideos>
-      <int>1</int>
-      <int>2</int>
-    </likedVideos>
-    <dislikedVideos>
-      <int>3</int>
-    </dislikedVideos>
+    <likedVideos/>
+    <dislikedVideos/>
     <watchlists/>
+  </user>
+  <user>
+    <username>zekihan</username>
+    <password>123</password>
+    <followings>
+      <string>kaan</string>
+    </followings>
+    <followers>
+      <string>kaan</string>
+    </followers>
+    <likedVideos/>
+    <dislikedVideos/>
+    <watchlists>
+      <watchlist>
+        <name>playlist4</name>
+        <videos/>
+      </watchlist>
+    </watchlists>
   </user>
 </users>

@@ -25,7 +25,6 @@ public class BrowseUsersController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User targetUser = dataHandler.getUser(browseUsersView.getSelectedUsername());
-            targetUser.addObserver(dataHandler);
             currentUser.follow(targetUser.getUsername());
             targetUser.addFollower(currentUser.getUsername());
         }

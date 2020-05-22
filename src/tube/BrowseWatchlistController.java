@@ -29,9 +29,13 @@ public class BrowseWatchlistController {
 
         this.allWatchlists = new ArrayList<>();
         allWatchlists.addAll(user.getWatchlists());
+        List<Watchlist> followingsWatchlists = new ArrayList<>();
         for(String username: currentUser.getFollowing()){
-            allWatchlists.addAll(dataHandler.getUser(username).getWatchlists());
+            System.out.println(username);
+            followingsWatchlists.addAll(dataHandler.getUser(username).getWatchlists());
         }
+        allWatchlists.addAll(followingsWatchlists);
+        browseWatchlistView.addFollowingsWatchlists(followingsWatchlists);
     }
 
     private class createWatchlistActionListener implements ActionListener {

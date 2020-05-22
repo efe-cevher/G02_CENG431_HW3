@@ -57,7 +57,7 @@ public class BrowseWatchlistView implements Observer {
         String[] watchlistsArr = new String[allWatchlists.size()];
         int i = 0;
         for(Watchlist wl: allWatchlists){
-            watchlistsArr[i] = "<html><body>" + wl.getName() + "<br>" + "By: " + user.getUsername() + "<br>" + " " + "<br>" + "</span></body></html>}";
+            watchlistsArr[i] = "<html><body>" + wl.getName() + "<br>" + " " + "<br>" + "</span></body></html>}";
             i++;
         }
         jWatchlists.setListData(watchlistsArr);
@@ -90,6 +90,7 @@ public class BrowseWatchlistView implements Observer {
 
     public void addFollowingsWatchlists(List<Watchlist> watchlists){
         followingsWatchlists.addAll(watchlists);
+        showLists();
     }
 
     public FrameManager getFrame() {

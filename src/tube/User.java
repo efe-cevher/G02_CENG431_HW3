@@ -78,6 +78,8 @@ public class User extends Observable {
     public boolean removeFromDislikes(int videoId){
         if(dislikedVideos.contains(videoId)){
             dislikedVideos.remove((Integer) videoId);
+            setChanged();
+            notifyObservers();
             return true;
         }
         return false;
@@ -86,6 +88,8 @@ public class User extends Observable {
     public boolean removeFromLikes(int videoId){
         if(likedVideos.contains(videoId)){
             likedVideos.remove((Integer) videoId);
+            setChanged();
+            notifyObservers();
             return true;
         }
         return false;
@@ -94,6 +98,8 @@ public class User extends Observable {
     public boolean addToLikes(int videoId){
         if(!likedVideos.contains(videoId)){
             likedVideos.add(videoId);
+            setChanged();
+            notifyObservers();
             return true;
         }
         return false;
@@ -102,6 +108,8 @@ public class User extends Observable {
     public boolean addToDislikes(int videoId){
         if(!dislikedVideos.contains(videoId)){
             dislikedVideos.add(videoId);
+            setChanged();
+            notifyObservers();
             return true;
         }
         return false;

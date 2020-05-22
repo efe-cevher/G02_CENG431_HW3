@@ -22,9 +22,18 @@
     "title": "video 3",
     "content": "video 3 content",
     "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 4,
-    "dislikes": 5,
-    "comments": []
+    "likes": 1,
+    "dislikes": 1,
+    "comments": [
+      {
+        "username": "kaan",
+        "comment": "dsfsdafsadfasdfsadf"
+      },
+      {
+        "username": "efecan",
+        "comment": "dasdfsaf"
+      }
+    ]
   },
   "4": {
     "id": 4,
@@ -103,8 +112,8 @@
     "title": "title",
     "content": "content",
     "date": "Fri, 22 May 2020 18:55:13 +0300",
-    "likes": 28,
-    "dislikes": 17,
+    "likes": 0,
+    "dislikes": 0,
     "comments": [
       {
         "username": "Ali",
@@ -121,7 +130,7 @@
     ]
   },
   "13": {
-    "id": 13,
+    "id": 0,
     "title": "video 13",
     "content": "video 13 content",
     "date": "Fri, 22 May 2020 00:53:35 +0300",

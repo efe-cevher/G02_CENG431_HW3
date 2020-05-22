@@ -18,6 +18,9 @@ public class VideoController {
         this.dataHandler = new DataHandler();
         this.currentUser = user;
 
+        video.addObserver(dataHandler);
+        currentUser.addObserver(dataHandler);
+
         videoView.addDislikeActionListener(new DislikeActionListener());
         videoView.addLikeActionListener(new LikeActionListener());
         videoView.addCommentActionListener(new CommentActionListener());

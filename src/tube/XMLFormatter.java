@@ -136,15 +136,7 @@ public class XMLFormatter{
         liked.add(2);
         disliked.add(3);
 
-        User user2 = new User("kaan","123", new ArrayList<>(), new ArrayList<>(), liked, disliked, new ArrayList<>());
-        User user3 = new User("efecan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
-        User user4 = new User("zekihan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
-        User user5 = new User("gayegemen","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
-        List<User> users = new ArrayList<>();
-        users.add(user2);
-        users.add(user3);
-        users.add(user4);
-        users.add(user5);
+
         List<Integer> videos = new ArrayList<>();
         List<Comment> comments = new ArrayList<>();
         comments.add(new Comment("Ali", "OLAMAAZ"));
@@ -152,6 +144,28 @@ public class XMLFormatter{
         videos.add((new Video(1,"video1","content1",new Date(), 0,0,comments).getId()));
         videos.add((new Video(2,"video2","content2",new Date(), 0,0,comments)).getId());
         videos.add((new Video(3,"video3","content3",new Date(), 0,0,comments)).getId());
+
+        Watchlist watchlist = new Watchlist(new ArrayList<>(), "playlist1");
+        watchlist.add((new Video(1,"video1","content1",new Date(), 0,0,comments).getId()));
+        watchlist.add((new Video(2,"video2","content2",new Date(), 0,0,comments).getId()));
+
+        Watchlist watchlist1 = new Watchlist(new ArrayList<>(), "playlist2");
+        watchlist1.add((new Video(3,"video3","content3",new Date(), 0,0,comments)).getId());
+
+        List<Watchlist> watchlists = new ArrayList<>();
+        watchlists.add(watchlist);
+        List<Watchlist> watchlists1 = new ArrayList<>();
+        watchlists.add(watchlist1);
+
+        User user2 = new User("kaan","123", new ArrayList<>(), new ArrayList<>(), liked, disliked, watchlists);
+        User user3 = new User("efecan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
+        User user4 = new User("zekihan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,watchlists1);
+        User user5 = new User("gayegemen","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
+        List<User> users = new ArrayList<>();
+        users.add(user2);
+        users.add(user3);
+        users.add(user4);
+        users.add(user5);
 
         XMLFormatter xmlFormatter = new XMLFormatter();
         IStorage storage = new FileStorage("users.xml");
