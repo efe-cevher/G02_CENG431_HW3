@@ -28,10 +28,6 @@ public class BrowseWatchlistController {
         public void actionPerformed(ActionEvent e) {
             String title = browseWatchlistView.getUserInput("Watch List title:");
             currentUser.addWatchlist(new Watchlist(new ArrayList<>(),title));
-
-            //problematic
-            DataHandler dataHandler = new DataHandler();
-            dataHandler.putUser(currentUser);
         }
     }
 

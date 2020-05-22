@@ -1,73 +1,133 @@
 <users>
   <user>
-    <username>user1</username>
+    <username>kaan</username>
     <password>123</password>
-    <followings>
-      <user>
-        <username>kaan</username>
-        <password>123</password>
-        <followings/>
-        <followers/>
-        <likedVideos/>
-        <dislikedVideos/>
-        <watchlists/>
-      </user>
-      <user>
-        <username>efecan</username>
-        <password>123</password>
-        <followings/>
-        <followers/>
-        <likedVideos/>
-        <dislikedVideos/>
-        <watchlists/>
-      </user>
-      <user>
-        <username>zekihan</username>
-        <password>123</password>
-        <followings/>
-        <followers/>
-        <likedVideos/>
-        <dislikedVideos/>
-        <watchlists/>
-      </user>
-      <user>
-        <username>gayegemen</username>
-        <password>123</password>
-        <followings/>
-        <followers/>
-        <likedVideos/>
-        <dislikedVideos/>
-        <watchlists/>
-      </user>
-    </followings>
+    <followings/>
     <followers/>
     <likedVideos>
       <int>1</int>
       <int>2</int>
-      <int>2</int>
-      <int>2</int>
-      <int>2</int>
-      <int>2</int>
+    </likedVideos>
+    <dislikedVideos>
+      <int>3</int>
+    </dislikedVideos>
+    <watchlists/>
+  </user>
+  <user>
+    <username>gayegemen</username>
+    <password>123</password>
+    <followings/>
+    <followers>
+      <user>
+        <username>efecan</username>
+        <password>123</password>
+        <followings>
+          <user>
+            <username>zekihan</username>
+            <password>123</password>
+            <followings/>
+            <followers>
+              <user reference="../../../.."/>
+            </followers>
+            <likedVideos>
+              <int>1</int>
+              <int>2</int>
+            </likedVideos>
+            <dislikedVideos>
+              <int>3</int>
+            </dislikedVideos>
+            <watchlists/>
+          </user>
+          <user reference="../../../.."/>
+        </followings>
+        <followers/>
+        <likedVideos>
+          <int>1</int>
+          <int>2</int>
+        </likedVideos>
+        <dislikedVideos>
+          <int>3</int>
+        </dislikedVideos>
+        <watchlists>
+          <watchlist>
+            <name>fasdfds</name>
+            <videos/>
+          </watchlist>
+          <watchlist>
+            <name>fdsafdasfdfdsfas</name>
+            <videos/>
+          </watchlist>
+          <watchlist>
+            <name>asDAsrfdsfsadf</name>
+            <videos/>
+          </watchlist>
+        </watchlists>
+      </user>
+      <user>
+        <username>efecan</username>
+        <password>123</password>
+        <followings>
+          <user reference="../../../.."/>
+        </followings>
+        <followers/>
+        <likedVideos>
+          <int>1</int>
+          <int>2</int>
+        </likedVideos>
+        <dislikedVideos>
+          <int>3</int>
+        </dislikedVideos>
+        <watchlists>
+          <watchlist>
+            <name>fasdfds</name>
+            <videos/>
+          </watchlist>
+          <watchlist>
+            <name>fdsafdasfdfdsfas</name>
+            <videos/>
+          </watchlist>
+          <watchlist>
+            <name>asDAsrfdsfsadf</name>
+            <videos/>
+          </watchlist>
+        </watchlists>
+      </user>
+    </followers>
+    <likedVideos>
+      <int>1</int>
       <int>2</int>
     </likedVideos>
-    <dislikedVideos reference="../likedVideos"/>
+    <dislikedVideos>
+      <int>3</int>
+    </dislikedVideos>
+    <watchlists/>
+  </user>
+  <user>
+    <username>efecan</username>
+    <password>123</password>
+    <followings/>
+    <followers/>
+    <likedVideos>
+      <int>1</int>
+      <int>2</int>
+    </likedVideos>
+    <dislikedVideos>
+      <int>3</int>
+    </dislikedVideos>
     <watchlists>
-      <tube.Watchlist>
-        <name>hey1</name>
-        <videos>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </videos>
-      </tube.Watchlist>
-      <tube.Watchlist>
-        <name>hey2</name>
-        <videos>
-          <int>1</int>
-          <int>1</int>
-          <int>1</int>
-        </videos>
-      </tube.Watchlist>
+      <watchlist>
+        <name>fasdfds</name>
+        <videos/>
+      </watchlist>
+      <watchlist>
+        <name>fdsafdasfdfdsfas</name>
+        <videos/>
+      </watchlist>
+      <watchlist>
+        <name>asDAsrfdsfsadf</name>
+        <videos/>
+      </watchlist>
     </watchlists>
   </user>
+  <user reference="../user[2]/followers/user/followings/user"/>
 </users>

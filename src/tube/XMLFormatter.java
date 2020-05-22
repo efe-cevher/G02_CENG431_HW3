@@ -130,53 +130,47 @@ public class XMLFormatter{
 
     public static void main(String[] args) throws JAXBException, IOException {
 
-        User user2 = new User("kaan","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        User user3 = new User("efecan","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        User user4 = new User("zekihan","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        User user5 = new User("gayegemen","123",new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        List<Integer> liked = new ArrayList<>();
+        List<Integer> disliked = new ArrayList<>();
+        liked.add(1);
+        liked.add(2);
+        disliked.add(3);
+
+        User user2 = new User("kaan","123", new ArrayList<>(), new ArrayList<>(), liked, disliked, new ArrayList<>());
+        User user3 = new User("efecan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
+        User user4 = new User("zekihan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
+        User user5 = new User("gayegemen","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
         List<User> users = new ArrayList<>();
         users.add(user2);
         users.add(user3);
         users.add(user4);
         users.add(user5);
         List<Integer> videos = new ArrayList<>();
-        videos.add((new Video(1,"gay","isgay",new Date(), 0,0,null).getId()));
-        videos.add((new Video(1,"gay","isgay",new Date(), 0,0,null)).getId());
-        videos.add((new Video(1,"gay","isgay",new Date(), 0,0,null)).getId());
-        Watchlist watchlist = new Watchlist(videos, "hey1");
-        Watchlist watchlist2 = new Watchlist(videos, "hey2");
-        List<Watchlist> watchlists = new ArrayList<>();
-        watchlists.add(watchlist);
-        watchlists.add(watchlist2);
-
-        List<Integer> liked = new ArrayList<>();
-
-        liked.add(1);
-        liked.add(2);
-        liked.add(2);
-        liked.add(2);
-        liked.add(2);
-        liked.add(2);
-        liked.add(2);
-
-        User user1 = new User("user1","123", users, new ArrayList<>(), liked, liked, watchlists);
+        List<Comment> comments = new ArrayList<>();
+        comments.add(new Comment("Ali", "OLAMAAZ"));
+        comments.add(new Comment("Ali", "Merhaba Vidyonu vidomda gosterebilirmiyim sagul"));
+        videos.add((new Video(1,"video1","content1",new Date(), 0,0,comments).getId()));
+        videos.add((new Video(2,"video2","content2",new Date(), 0,0,comments)).getId());
+        videos.add((new Video(3,"video3","content3",new Date(), 0,0,comments)).getId());
 
         XMLFormatter xmlFormatter = new XMLFormatter();
         IStorage storage = new FileStorage("users.xml");
 
-        /*Map<String,User> usersMap =new HashMap<>();
-        usersMap.put(user1.getUsername(),user1);
+        Map<String,User> usersMap =new HashMap<>();
+        usersMap.put(user2.getUsername(),user2);
+        usersMap.put(user3.getUsername(),user3);
+        usersMap.put(user4.getUsername(),user4);
+        usersMap.put(user5.getUsername(),user5);
         String asd = xmlFormatter.toFormat(usersMap);
-        storage.save(asd);*/
+        storage.save(asd);
 
-        //System.out.println(storage.read());
+        System.out.println(storage.read());
 
         Map<String,User> users1 = xmlFormatter.toObject(storage.read());
         for(User u : users1.values()){
             System.out.println("Username: " + u.getUsername());
             System.out.println("Password: " + u.getPassword());
         }
-
     }
 
     private static class Users {

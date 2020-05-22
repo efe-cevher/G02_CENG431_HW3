@@ -11,7 +11,6 @@ public class DataHandler  implements IDataHandler, Observer {
 
     public DataHandler() {
         //load from xml and json
-
         this.videoStorage = new FileStorage("videos.json");
         this.userStorage = new FileStorage("users.xml");
         this.videoFormatter = new JSONFormatter();
@@ -28,7 +27,6 @@ public class DataHandler  implements IDataHandler, Observer {
         for (User user: userMap.values()){
             user.addObserver(this);
         }
-
     }
 
     public List<User> getUserList(){
@@ -52,7 +50,7 @@ public class DataHandler  implements IDataHandler, Observer {
         userMap.put(user.getUsername(), user);
         //List<User> users = new ArrayList<>(userMap.values());
         String userAsXML = userFormatter.toFormat(userMap);
-        userStorage.append(userAsXML);
+        userStorage.save(userAsXML);
     }
 
     public void putVideo(Video video){
@@ -68,7 +66,7 @@ public class DataHandler  implements IDataHandler, Observer {
             putVideo(video);
         }else{
             User user = (User) o;
-            //putUser(user);
+            putUser(user);
         }
     }
 
