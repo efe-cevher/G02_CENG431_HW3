@@ -17,7 +17,7 @@ public class DataHandler  implements IDataHandler, Observer {
         this.videoFormatter = new JSONFormatter();
         this.userFormatter = new XMLFormatter();
         this.videoMap = videoFormatter.toObject(videoStorage.read());
-        this.userMap = userFormatter.fromFormat(userStorage.read());
+        this.userMap = userFormatter.toObject(userStorage.read());
         for(User u : userMap.values()){
             System.out.println("Username: " + u.getUsername());
             System.out.println("Password: " + u.getPassword());

@@ -2,17 +2,15 @@ package tube;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.List;
 
 public class WatchlistView implements Observer {
 
     private Watchlist watchlist;
-    private JButton goToVideoButton, mainMenuButton, logoutButton, addVideoButton, removeVideoButton;
+    private JButton watchVideoButton, mainMenuButton, removeVideoButton;
     private FrameManager frame;
     private JScrollPane scrollPane;
     private JList<String> videos;
@@ -23,11 +21,7 @@ public class WatchlistView implements Observer {
     public WatchlistView(FrameManager frame, Watchlist watchlist) {
         this.frame = frame;
         this.watchlist = watchlist;
-        showWatchlist();
-    }
 
-
-    public void showWatchlist(){
         panel = new JPanel(new GridLayout(3, 1));
         panel.setLayout(null);
 
@@ -35,43 +29,45 @@ public class WatchlistView implements Observer {
         videoTitle.setBounds(10, 10, 80, 25);
         panel.add(videoTitle);
 
-        DefaultListModel<String> videoModels = new DefaultListModel<>();
-        for(Integer videoId : watchlist.getVideos()){
-            videoModels.addElement("id: " + videoId);
-        }
-        videos = new JList<String>(videoModels);
-        JScrollPane scrollPane = new JScrollPane(videos);
+        videos = new JList<String>();
+        scrollPane = new JScrollPane();
         scrollPane.setBounds(10, 40, 450, 250);
         panel.add(scrollPane);
 
-        addVideoButton = new JButton("Add video");
-        addVideoButton.setBounds(120, 320, 120, 25);
-        panel.add(addVideoButton);
+        showWatchlist();
 
         removeVideoButton = new JButton("Delete video");
-        removeVideoButton.setBounds(270, 320, 120, 25);
+        removeVideoButton.setBounds(160, 320, 120, 35);
         panel.add(removeVideoButton);
 
-        goToVideoButton = new JButton("Watch");
-        goToVideoButton.setBounds(10, 320, 80, 25);
-        panel.add(goToVideoButton);
+        watchVideoButton = new JButton("Watch");
+        watchVideoButton.setBounds(10, 320, 120, 35);
+        panel.add(watchVideoButton);
 
         mainMenuButton = new JButton("Main Menu");
-        mainMenuButton.setBounds(10, 400, 120, 25);
+        mainMenuButton.setBounds(310, 320, 120, 35);
         panel.add(mainMenuButton);
 
-        logoutButton = new JButton("Log Out");
-        logoutButton.setBounds(140, 400, 80, 25);
-        panel.add(logoutButton);
-
         frame.setNewPanel(panel);
+    }
+
+
+    public void showWatchlist(){
+        String[] videoListArr = new String[watchlist.getVideos().size()];
+        int i = 0;
+        for(Integer id: watchlist.getVideos()){
+            videoListArr[i] = "<html><body>" + id + "<br>" + "</span></body></html>}";
+            i++;
+        }
+        videos = new JList<>(videoListArr);
+        scrollPane.setViewportView(videos);
     }
 
 
     @Override
     //Whenever the watchlist changes, update the view
     public void update(Observable o, Object arg) {
-        watchlist = (Watchlist) o;
+        this.watchlist = (Watchlist) o;
         showWatchlist();
     }
 
@@ -80,24 +76,16 @@ public class WatchlistView implements Observer {
         return JOptionPane.showInputDialog(message);
     }
 
-    public void addAddVideoActionListener(ActionListener actionListener) {
-        addVideoButton.addActionListener(actionListener);
-    }
-
-    public void addDeleteVideoActionListener(ActionListener actionListener) {
-        removeVideoButton.addActionListener(actionListener);
+    public void addDeleteVideoActionListener(MouseListener mouseListener) {
+        removeVideoButton.addMouseListener(mouseListener);
     }
 
     public void addGoToVideoActionListener(MouseListener mouseListener) {
-        goToVideoButton.addMouseListener(mouseListener);
+        watchVideoButton.addMouseListener(mouseListener);
     }
 
     public void addMainMenuActionListener(ActionListener actionListener) {
         mainMenuButton.addActionListener(actionListener);
-    }
-
-    public void addLogOutActionListener(ActionListener actionListener) {
-        logoutButton.addActionListener(actionListener);
     }
 
     public int getSelectedListIndex(){
@@ -111,11 +99,11 @@ public class WatchlistView implements Observer {
         List<Integer> videos = new ArrayList<>();
 
         Video video = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
-        Video video2 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
-        Video video3 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
-        Video video4 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
-        Video video5 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
-        Video video6 = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
+        Video video2 = new Video(2, "why", "are you gay", new Date(), 0, 0, null);
+        Video video3 = new Video(3, "why", "are you gay", new Date(), 0, 0, null);
+        Video video4 = new Video(4, "why", "are you gay", new Date(), 0, 0, null);
+        Video video5 = new Video(5, "why", "are you gay", new Date(), 0, 0, null);
+        Video video6 = new Video(6, "why", "are you gay", new Date(), 0, 0, null);
 
         videos.add(video.getId());
         videos.add(video2.getId());
@@ -125,7 +113,9 @@ public class WatchlistView implements Observer {
         videos.add(video6.getId());
 
         Watchlist w = new Watchlist(videos, "gayisgay");
+
         WatchlistView watchlistView = new WatchlistView(new FrameManager(), w);
+        WatchlistController wc = new WatchlistController(watchlistView, w);
     }
 
 }

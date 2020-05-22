@@ -33,7 +33,6 @@ public class Watchlist extends Observable {
 
 
     //Return a copy of videos
-
     public List<Integer> getVideos() {
         return new ArrayList<>(videos);
     }
@@ -48,9 +47,9 @@ public class Watchlist extends Observable {
 
     //Remove video from the watchlist
     public void remove(int id) {
-        videos.removeIf(video -> video == id);
+        videos.removeIf(videoId -> videoId == id);
         setChanged();
-        notifyObservers(getVideos());
+        notifyObservers(this);
     }
 
     @Override

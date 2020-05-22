@@ -23,7 +23,7 @@ public class XMLFormatter{
     public XMLFormatter() {
     }
 
-    public String toFormat(List<User> user)
+    /*public String toFormat(List<User> user)
     {
         String xmlContent = "";
         try
@@ -50,7 +50,7 @@ public class XMLFormatter{
             e.printStackTrace();
         }
         return xmlContent;
-    }
+    }*/
 
    /* public String toFormat(User user)
     {
@@ -81,7 +81,7 @@ public class XMLFormatter{
         return xmlContent;
     }*/
 
-    public User toObject(String xmlAsStr) {
+    /*public User toObject(String xmlAsStr) {
 
         User user = null;
 
@@ -98,13 +98,12 @@ public class XMLFormatter{
             e.printStackTrace();
         }
         return user;
-    }
+    }*/
 
     public String toFormat(Map<String, User> user){
 
         Users users = new Users(new ArrayList<>(user.values()));
-
-        XStream xstream = new XStream();
+        XStream xstream = createXStream();
         xstream.alias("user", User.class);
         xstream.alias("users", Users.class);
         xstream.addImplicitCollection(Users.class, "users");
@@ -170,7 +169,7 @@ public class XMLFormatter{
         return xstream;
     }
 
-    public Map<String,User> fromFormat(String data){
+    public Map<String,User> toObject(String data){
         XStream xstream = createXStream();
         String xmlContent = "";
         Users users = (Users)xstream.fromXML(data);
@@ -179,7 +178,6 @@ public class XMLFormatter{
             userMap.put(user.getUsername(), user);
         }
         return userMap;
-
     }
 
     public static void main(String[] args) throws JAXBException, IOException {
@@ -228,7 +226,7 @@ public class XMLFormatter{
         XMLFormatter xmlFormatter = new XMLFormatter();
         System.out.println(storage.read());
 
-        Map<String,User> users1 = xmlFormatter.fromFormat(storage.read());
+        Map<String,User> users1 = xmlFormatter.toObject(storage.read());
         for(User u : users1.values()){
             System.out.println("Username: " + u.getUsername());
             System.out.println("Password: " + u.getPassword());
