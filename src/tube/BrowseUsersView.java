@@ -84,7 +84,7 @@ public class BrowseUsersView implements Observer {
         usernames.remove(user.getUsername());
         for(String u : usernames){
             String following = "- Not Following";
-            if (user.getFollowingUserSet().contains(u)){
+            if (user.getFollowing().contains(u)){
                 following = "- Following";
             }
             jListItems[i] = "<html><body>"  + u.toUpperCase() + "   " + following + "<br>" + " " + "<br>" + "</span></body></html>}"; ;

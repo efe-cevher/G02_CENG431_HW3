@@ -3,7 +3,9 @@
     <username>kaan</username>
     <password>123</password>
     <followings/>
-    <followers/>
+    <followers>
+      <string>efecan</string>
+    </followers>
     <likedVideos>
       <int>1</int>
       <int>2</int>
@@ -18,80 +20,7 @@
     <password>123</password>
     <followings/>
     <followers>
-      <user>
-        <username>efecan</username>
-        <password>123</password>
-        <followings>
-          <user>
-            <username>zekihan</username>
-            <password>123</password>
-            <followings/>
-            <followers>
-              <user reference="../../../.."/>
-            </followers>
-            <likedVideos>
-              <int>1</int>
-              <int>2</int>
-            </likedVideos>
-            <dislikedVideos>
-              <int>3</int>
-            </dislikedVideos>
-            <watchlists/>
-          </user>
-          <user reference="../../../.."/>
-        </followings>
-        <followers/>
-        <likedVideos>
-          <int>1</int>
-          <int>2</int>
-        </likedVideos>
-        <dislikedVideos>
-          <int>3</int>
-        </dislikedVideos>
-        <watchlists>
-          <watchlist>
-            <name>fasdfds</name>
-            <videos/>
-          </watchlist>
-          <watchlist>
-            <name>fdsafdasfdfdsfas</name>
-            <videos/>
-          </watchlist>
-          <watchlist>
-            <name>asDAsrfdsfsadf</name>
-            <videos/>
-          </watchlist>
-        </watchlists>
-      </user>
-      <user>
-        <username>efecan</username>
-        <password>123</password>
-        <followings>
-          <user reference="../../../.."/>
-        </followings>
-        <followers/>
-        <likedVideos>
-          <int>1</int>
-          <int>2</int>
-        </likedVideos>
-        <dislikedVideos>
-          <int>3</int>
-        </dislikedVideos>
-        <watchlists>
-          <watchlist>
-            <name>fasdfds</name>
-            <videos/>
-          </watchlist>
-          <watchlist>
-            <name>fdsafdasfdfdsfas</name>
-            <videos/>
-          </watchlist>
-          <watchlist>
-            <name>asDAsrfdsfsadf</name>
-            <videos/>
-          </watchlist>
-        </watchlists>
-      </user>
+      <string>efecan</string>
     </followers>
     <likedVideos>
       <int>1</int>
@@ -102,32 +31,4 @@
     </dislikedVideos>
     <watchlists/>
   </user>
-  <user>
-    <username>efecan</username>
-    <password>123</password>
-    <followings/>
-    <followers/>
-    <likedVideos>
-      <int>1</int>
-      <int>2</int>
-    </likedVideos>
-    <dislikedVideos>
-      <int>3</int>
-    </dislikedVideos>
-    <watchlists>
-      <watchlist>
-        <name>fasdfds</name>
-        <videos/>
-      </watchlist>
-      <watchlist>
-        <name>fdsafdasfdfdsfas</name>
-        <videos/>
-      </watchlist>
-      <watchlist>
-        <name>asDAsrfdsfsadf</name>
-        <videos/>
-      </watchlist>
-    </watchlists>
-  </user>
-  <user reference="../user[2]/followers/user/followings/user"/>
 </users>

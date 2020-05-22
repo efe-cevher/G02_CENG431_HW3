@@ -22,8 +22,8 @@ public class BrowseUsersController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User targetUser = dataHandler.getUser(browseUsersView.getSelectedUsername());
-            currentUser.follow(targetUser);
-            targetUser.addFollower(currentUser);
+            currentUser.follow(targetUser.getUsername());
+            targetUser.addFollower(currentUser.getUsername());
         }
     }
 
@@ -31,8 +31,8 @@ public class BrowseUsersController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User targetUser = dataHandler.getUser(browseUsersView.getSelectedUsername());
-            currentUser.unfollow(targetUser);
-            targetUser.removeFollower(currentUser);
+            currentUser.unfollow(targetUser.getUsername());
+            targetUser.removeFollower(currentUser.getUsername());
         }
     }
 

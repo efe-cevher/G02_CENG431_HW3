@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.*;
+import java.util.List;
 
 public class BrowseWatchlistView implements Observer {
     private JPanel panel;
@@ -16,10 +17,12 @@ public class BrowseWatchlistView implements Observer {
     private JList<String> jWatchlists;
     private FrameManager frame;
     private User user;
+    private List<Watchlist> followingsWatchlists;
 
     public BrowseWatchlistView(FrameManager frame, User user) {
         this.frame = frame;
         this.user = user;
+        this.followingsWatchlists = new ArrayList<>();
 
         panel = new JPanel(new GridLayout(3, 1));
         panel.setLayout(null);
@@ -45,13 +48,15 @@ public class BrowseWatchlistView implements Observer {
         panel.add(mainMenuButton);
 
         frame.setNewPanel(panel);
-
     }
 
     private void showLists() {
-        String[] watchlistsArr = new String[user.getAllWatchLists().size()];
+        List<Watchlist> allWatchlists = new ArrayList();
+        allWatchlists.addAll(user.getWatchlists());
+        allWatchlists.addAll(followingsWatchlists);
+        String[] watchlistsArr = new String[allWatchlists.size()];
         int i = 0;
-        for(Watchlist wl: user.getAllWatchLists()){
+        for(Watchlist wl: allWatchlists){
             watchlistsArr[i] = "<html><body>" + wl.getName() + "<br>" + "By: " + user.getUsername() + "<br>" + " " + "<br>" + "</span></body></html>}";
             i++;
         }
@@ -81,6 +86,10 @@ public class BrowseWatchlistView implements Observer {
 
     public int getSelectedListIndex(){
         return jWatchlists.getSelectedIndex();
+    }
+
+    public void addFollowingsWatchlists(List<Watchlist> watchlists){
+        followingsWatchlists.addAll(watchlists);
     }
 
     public FrameManager getFrame() {

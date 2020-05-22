@@ -16,11 +16,11 @@ public class User extends Observable {
 
     @XmlElementWrapper(name="followings")
     @XmlElement(name="following")
-    private List<User> followings;
+    private List<String> followings;
 
     @XmlElementWrapper(name="followers")
     @XmlElement(name="follower")
-    private List<User> followers;
+    private List<String> followers;
 
 
     @XmlElementWrapper(name="likedVideos")
@@ -36,7 +36,7 @@ public class User extends Observable {
     @XmlElement(name="watchlist")
     private List<Watchlist> watchlists;
 
-    public User(String username, String password, List<User> following, List<User> followers, List<Integer> likedVideos, List<Integer> dislikedVideos, List<Watchlist> watchlists) {
+    public User(String username, String password, List<String> following, List<String> followers, List<Integer> likedVideos, List<Integer> dislikedVideos, List<Watchlist> watchlists) {
         this.username = username;
         this.password = password;
         this.followings = following;
@@ -70,17 +70,10 @@ public class User extends Observable {
     }*/
 
 
-    public List<User> getFollowing() {
+    public List<String> getFollowing() {
         return followings;
     }
 
-    public Set<String> getFollowingUserSet(){
-        Set<String> names = new HashSet<>();
-        for (User u : followings) {
-            names.add(u.username);
-        }
-        return names;
-    }
 
     public boolean removeFromDislikes(int videoId){
         if(dislikedVideos.contains(videoId)){
@@ -114,60 +107,11 @@ public class User extends Observable {
         return false;
     }
 
-
-
-    public void setFollowing(List<User> following) {
-        this.followings = following;
-    }
-
-
-    public List<User> getFollowers() {
-        return followers;
-    }
-
-
-
-    public void setFollowers(List<User> followers) {
-        this.followers = followers;
-    }
-
-
-    public List<Integer> getLikedVideos() {
-        return likedVideos;
-    }
-
-
-
-    public void setLikedVideos(List<Integer> likedVideos) {
-        this.likedVideos = likedVideos;
-    }
-
-
-    public List<Integer> getDislikedVideos() {
-        return dislikedVideos;
-    }
-
-
-
-    public void setDislikedVideos(List<Integer> dislikedVideos) {
-        this.dislikedVideos = dislikedVideos;
-    }
-
-
     public List<Watchlist> getWatchlists() {
         return watchlists;
     }
 
-
-    public List<Watchlist> getAllWatchLists(){
-        List<Watchlist> watchlists = new ArrayList<>(getWatchlists());
-        for(User usr : getFollowing()){
-            watchlists.addAll(usr.getWatchlists());
-        }
-        return watchlists;
-    }
-
-    public void follow(User user){
+    public void follow(String user){
         if(!followings.contains(user)){
             followings.add(user);
             setChanged();
@@ -175,20 +119,7 @@ public class User extends Observable {
         }
     }
 
-    public void setWatchlists(List<Watchlist> watchlists) {
-        this.watchlists = watchlists;
-        setChanged();
-        notifyObservers();
-    }
-
-
-    public void addWatchlist(Watchlist watchlist) {
-        this.watchlists.add(watchlist);
-        setChanged();
-        notifyObservers();
-    }
-
-    public void unfollow(User user) {
+    public void unfollow(String user) {
         if(followings.contains(user)){
             followings.remove(user);
             setChanged();
@@ -196,14 +127,21 @@ public class User extends Observable {
         }
     }
 
-    public void addFollower(User user) {
+    public void addWatchlist(Watchlist watchlist) {
+        this.watchlists.add(watchlist);
+        setChanged();
+        notifyObservers();
+    }
+
+    public void addFollower(String user) {
         if(!followers.contains(user)){
             followers.add(user);
             setChanged();
             notifyObservers();
         }
     }
-    public void removeFollower(User user) {
+
+    public void removeFollower(String user) {
         if(followers.contains(user)){
             followers.remove(user);
             setChanged();
