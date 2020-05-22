@@ -104,6 +104,11 @@ public class VideoView implements Observer {
     }
 
 
+    public String inputFromAListOfValues(String title, String[] choices, String message){
+        return (String) JOptionPane.showInputDialog(null, "Choose a watchlist to add...",
+                "Your watchlists", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+    }
+
     public Video getVideo(){ return video; }
 
 

@@ -6,16 +6,26 @@
     "date": "Fri, 22 May 2020 00:53:35 +0300",
     "likes": 0,
     "dislikes": 0,
-    "comments": []
+    "comments": [
+      {
+        "username": "kaan",
+        "comment": "sup guys, subscribe to my channel pls, im not gay"
+      }
+    ]
   },
   "2": {
     "id": 2,
     "title": "video 2",
     "content": "video 2 content",
     "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 0,
+    "likes": 1,
     "dislikes": 0,
-    "comments": []
+    "comments": [
+      {
+        "username": "kaan",
+        "comment": "this video is not appropriate for children!!!!!!!"
+      }
+    ]
   },
   "3": {
     "id": 3,

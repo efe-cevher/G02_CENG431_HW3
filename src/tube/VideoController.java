@@ -4,6 +4,8 @@ import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VideoController {
     private Video video;
@@ -36,12 +38,15 @@ public class VideoController {
             for(int i=0; i<currentUser.getWatchlists().size(); i++){
                 choices[i] = currentUser.getWatchlists().get(i).getName();
             }
-            String input = (String) JOptionPane.showInputDialog(null, "Choose a watchlist to add...",
-                    "Your watchlists", JOptionPane.QUESTION_MESSAGE, null, // Use
-                    // default
-                    // icon
-                    choices, choices[0]); // Array of choices
-            System.out.println(input);
+            String selectedWatchlist = videoView.inputFromAListOfValues("Your watchlists", choices, "Choose a watchlist"); // Array of choices
+            List<Watchlist> currentUserWatchlists = currentUser.getWatchlists();
+            for(Watchlist watchlist : currentUserWatchlists){
+                if(watchlist.getName().equals(selectedWatchlist)){
+                    watchlist.add(video.getId());
+                }
+            }
+            DataHandler dataHandler = new DataHandler();
+            System.out.println(selectedWatchlist);
         }
     }
 
