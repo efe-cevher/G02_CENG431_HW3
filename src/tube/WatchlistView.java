@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.List;
@@ -87,8 +88,8 @@ public class WatchlistView implements Observer {
         removeVideoButton.addActionListener(actionListener);
     }
 
-    public void addGoToVideoActionListener(ActionListener actionListener) {
-        goToVideoButton.addActionListener(actionListener);
+    public void addGoToVideoActionListener(MouseListener mouseListener) {
+        goToVideoButton.addMouseListener(mouseListener);
     }
 
     public void addMainMenuActionListener(ActionListener actionListener) {
@@ -98,6 +99,12 @@ public class WatchlistView implements Observer {
     public void addLogOutActionListener(ActionListener actionListener) {
         logoutButton.addActionListener(actionListener);
     }
+
+    public int getSelectedListIndex(){
+        return videos.getSelectedIndex();
+    }
+
+    public FrameManager getFrame() { return frame; }
 
     public static void main(String[] args) {
 

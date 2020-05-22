@@ -2,6 +2,8 @@ package tube;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.*;
 
 public class WatchlistController {
@@ -36,11 +38,37 @@ public class WatchlistController {
     }
 
 
-    private class goToVideoActionListener implements ActionListener {
+    private class goToVideoActionListener implements MouseListener {
+
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void mouseClicked(MouseEvent e) {
+            int i = watchlistView.getSelectedListIndex();
+            Integer videoId = watchlist.getVideos().get(i);
+            //video from videoId?
+            //VideoView videoView = new VideoView(watchlistView.getFrame(), videoId);
+            //VideoController videoController = new VideoController(videoView, watchlist);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
 
         }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+
     }
 
     private class mainMenuActionListener implements ActionListener {
