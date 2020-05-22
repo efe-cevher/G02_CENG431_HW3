@@ -10,9 +10,12 @@ public class BrowseUsersController {
     DataHandler dataHandler;
 
     public BrowseUsersController(BrowseUsersView browseUsersView, User user){
+        this.dataHandler =  new DataHandler();
         this.browseUsersView = browseUsersView;
         this.currentUser = user;
-        this.dataHandler =  new DataHandler();
+        user.addObserver(dataHandler);
+        user.addObserver(browseUsersView);
+
         browseUsersView.addFollowActionListener(new FollowActionListener());
         browseUsersView.addUnfollowActionListener(new UnfollowActionListener());
         browseUsersView.addMainMenuActionListener(new MainMenuActionListener());
@@ -22,6 +25,7 @@ public class BrowseUsersController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User targetUser = dataHandler.getUser(browseUsersView.getSelectedUsername());
+            targetUser.addObserver(dataHandler);
             currentUser.follow(targetUser.getUsername());
             targetUser.addFollower(currentUser.getUsername());
         }

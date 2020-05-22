@@ -17,17 +17,8 @@ public class DataHandler  implements IDataHandler, Observer {
         this.userFormatter = new XMLFormatter();
         this.videoMap = videoFormatter.toObject(videoStorage.read());
         this.userMap = userFormatter.toObject(userStorage.read());
-        addObservers();
     }
 
-    private void addObservers(){
-        for (Video video: videoMap.values()){
-            video.addObserver(this);
-        }
-        for (User user: userMap.values()){
-            user.addObserver(this);
-        }
-    }
 
     public List<User> getUserList(){
         return new ArrayList<>(userMap.values());
@@ -48,7 +39,6 @@ public class DataHandler  implements IDataHandler, Observer {
 
     public void putUser(User user){
         userMap.put(user.getUsername(), user);
-        //List<User> users = new ArrayList<>(userMap.values());
         String userAsXML = userFormatter.toFormat(userMap);
         userStorage.save(userAsXML);
     }

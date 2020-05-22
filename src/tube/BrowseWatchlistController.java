@@ -20,6 +20,8 @@ public class BrowseWatchlistController {
         this.dataHandler = new DataHandler();
 
         user.addObserver(browseWatchlistView);
+        user.addObserver(dataHandler);
+
         browseWatchlistView.addCreateWatchlistButton(new createWatchlistActionListener());
         browseWatchlistView.addOpenWatchlistButton(new openWatchlistActionListener());
         browseWatchlistView.addMainMenuActionListener(new mainMenuActionListener());

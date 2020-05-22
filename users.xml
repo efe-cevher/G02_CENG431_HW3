@@ -2,9 +2,12 @@
   <user>
     <username>kaan</username>
     <password>123</password>
-    <followings/>
+    <followings>
+      <string>gayegemen</string>
+    </followings>
     <followers>
       <string>efecan</string>
+      <string>gayegemen</string>
     </followers>
     <likedVideos>
       <int>1</int>
@@ -18,9 +21,12 @@
   <user>
     <username>gayegemen</username>
     <password>123</password>
-    <followings/>
+    <followings>
+      <string>kaan</string>
+    </followings>
     <followers>
       <string>efecan</string>
+      <string>kaan</string>
     </followers>
     <likedVideos>
       <int>1</int>
