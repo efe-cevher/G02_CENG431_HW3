@@ -31,12 +31,8 @@ public class BrowseWatchlistController {
         public void actionPerformed(ActionEvent e) {
             String title = browseWatchlistView.getUserInput("Watch List title:");
             user.addWatchlist(new Watchlist(new ArrayList<>(),title));
-            StringBuilder s = new StringBuilder();
-            for (Watchlist wl:user.getWatchlists() ) {
-                s.append(wl.getName());
-                s.append(", ");
-            }
-            System.out.println(s);
+            DataHandler dataHandler = new DataHandler();
+            dataHandler.putUser(user);
         }
     }
 
@@ -44,6 +40,7 @@ public class BrowseWatchlistController {
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = browseWatchlistView.getSelectedListIndex();
+
             Watchlist watchlist = allWatchlists.get(i);
             WatchlistView watchlistView = new WatchlistView(browseWatchlistView.getFrame(), watchlist);
             WatchlistController watchlistController = new WatchlistController(watchlistView, watchlist);

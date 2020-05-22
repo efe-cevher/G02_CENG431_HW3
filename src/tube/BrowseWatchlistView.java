@@ -53,7 +53,6 @@ public class BrowseWatchlistView implements Observer {
             watchlistsArr[i] = "<html><body>" + wl.getName() + "<br>" + "By: " + user.getUsername() + "<br>" + " " + "<br>" + "</span></body></html>}";
             i++;
         }
-        System.out.println(watchlistsArr[2]);
         jWatchlists = new JList<>(watchlistsArr);
         scrollPane.setViewportView(jWatchlists);
     }

@@ -120,8 +120,7 @@ public class User extends Observable {
 
 
     public List<Watchlist> getAllWatchLists(){
-        List<Watchlist> watchlists = new ArrayList<>();
-        watchlists.addAll(getWatchlists());
+        List<Watchlist> watchlists = new ArrayList<>(getWatchlists());
         for(User usr : getFollowing()){
             watchlists.addAll(usr.getWatchlists());
         }

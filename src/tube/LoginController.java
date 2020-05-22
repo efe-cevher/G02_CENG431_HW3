@@ -30,14 +30,14 @@ public class LoginController {
         DataHandler dataHandler = new DataHandler();
         User user = dataHandler.getUser(username);
 
-        if(user.getPassword().equals(String.valueOf(password))){
+        if(user != null && user.getPassword().equals(String.valueOf(password))){
             MenuView menuView = new MenuView(loginView.getFrame());
             MenuController menuController = new MenuController(menuView, user);
         }
         else{
             loginView.securityCheckFailed();
         }
-
+        /*
         List<Comment> comments = new ArrayList<>();
         comments.add(new Comment("Ali", "OLAMAAZ"));
         comments.add(new Comment("Ali", "Merhaba Vidyonu vidomda gosterebilirmiyim sagul"));
@@ -47,7 +47,7 @@ public class LoginController {
         VideoController videoController = new VideoController(video, videoView);
         System.out.println(username);
         System.out.println(password);
-
+*/
     }
 
 }

@@ -19,22 +19,27 @@ public class MenuController {
     private class BrowseUsersActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //BrowseUsersView browseUsersView = new BrowseUsersView(menuView.getFrame(), user);
-            //BrowseUsersController browseUsersController = new BrowseUsersController(browseUsersView);
+            DataHandler dataHandler = new DataHandler();
+
+            BrowseUsersView browseUsersView = new BrowseUsersView(menuView.getFrame(), dataHandler.getUserList(), user);
+            BrowseUsersController browseUsersController = new BrowseUsersController(browseUsersView);
         }
     }
 
     private class BrowseWatchlistsActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //BrowseWatchlistView browseWatchlistView = new BrowseWatchlistView(menuView.getFrame(), user);
+            BrowseWatchlistView browseWatchlistView = new BrowseWatchlistView(menuView.getFrame(), user);
+            BrowseWatchlistController browseWatchlistController = new BrowseWatchlistController(user, browseWatchlistView);
+
         }
     }
 
     private class LogoutActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            LoginView loginView = new LoginView(menuView.getFrame());
+            LoginController loginController = new LoginController(loginView);
         }
     }
 }

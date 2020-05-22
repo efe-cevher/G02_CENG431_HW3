@@ -1,27 +1,25 @@
 package tube;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 public class BrowseUsersView implements Observer {
 
+    private List<User> userList;
     private User user;
     private FrameManager frame;
-    private JList<String> users;
+    private JList<String> jList;
     private DefaultListModel<String> userModels;
     private JButton followButton, unfollowButton, mainMenuButton, logoutButton;
     private JPanel panel1, panel2, panel3;
     private JScrollPane scrollPane;
     private final JLabel label = new JLabel("IZTECHTube Users");
 
-    public BrowseUsersView(FrameManager frame, User user){
+    public BrowseUsersView(FrameManager frame, List<User> userList, User user){
+        this.userList = userList;
         this.user = user;
         this.frame = frame;
         showBrowseUsers();
@@ -38,16 +36,21 @@ public class BrowseUsersView implements Observer {
 
         scrollPane = new JScrollPane();
 
-        userModels = new DefaultListModel<String>();
-        /*for(User nextUser: user.getFollowers()){
-            userModels.addElement("User:    " + nextUser.getUsername());
-        }
-        for(User nextUser: user.getFollowing()){
-            userModels.addElement("User:    " + nextUser.getUsername());
-        }*/
+        String[] jListItems = new String[userList.size()];
 
-        users = new JList<String>(userModels);
-        scrollPane.setViewportView(users);
+        int i = 0;
+        for(User u : userList){
+            String following = "Follow";
+            if (user.getFollowing().contains(u)){
+                following = "Following";
+            }
+
+            jListItems[i] = "<html><body>"  + u.getUsername().toUpperCase() + "   " + following + "<br>" + " " + "<br>" + "</span></body></html>}"; ;
+            i++;
+        }
+
+        jList = new JList<>(jListItems);
+        scrollPane.setViewportView(jList);
         panel1.add(scrollPane);
 
         mainMenuButton = new JButton("Main Menu");

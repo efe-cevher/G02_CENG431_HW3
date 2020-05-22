@@ -29,11 +29,9 @@ public class DataHandler  implements IDataHandler, Observer {
         for (Video video: videoMap.values()){
             video.addObserver(this);
         }
-        /*
         for (User user: userMap.values()){
             user.addObserver(this);
         }
-        */
 
     }
 
