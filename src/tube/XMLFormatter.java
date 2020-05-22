@@ -9,9 +9,12 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
+import com.thoughtworks.xstream.security.ArrayTypePermission;
 import com.thoughtworks.xstream.security.NoTypePermission;
+import com.thoughtworks.xstream.security.PrimitiveTypePermission;
 import com.thoughtworks.xstream.security.WildcardTypePermission;
 
+import javax.lang.model.type.ArrayType;
 import javax.xml.*;
 import javax.xml.bind.*;
 import java.io.*;
@@ -23,91 +26,20 @@ public class XMLFormatter{
     public XMLFormatter() {
     }
 
-    /*public String toFormat(List<User> user)
-    {
-        String xmlContent = "";
-        try
-        {
-            //Create JAXB Context
-            JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
-
-            //Create Marshaller
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            //Required formatting??
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            //Print XML String to Console
-            StringWriter sw = new StringWriter();
-
-            //Write XML to StringWriter
-            jaxbMarshaller.marshal(user, sw);
-
-            //Verify XML Content
-            xmlContent = sw.toString();
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        return xmlContent;
-    }*/
-
-   /* public String toFormat(User user)
-    {
-        String xmlContent = "";
-        try
-        {
-            //Create JAXB Context
-            JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
-
-            //Create Marshaller
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            //Required formatting??
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            //Print XML String to Console
-            StringWriter sw = new StringWriter();
-
-            //Write XML to StringWriter
-            jaxbMarshaller.marshal(user, sw);
-
-            //Verify XML Content
-            xmlContent = sw.toString();
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        return xmlContent;
-    }*/
-
-    /*public User toObject(String xmlAsStr) {
-
-        User user = null;
-
-        JAXBContext jaxbContext;
-        try
-        {
-            jaxbContext = JAXBContext.newInstance(User.class);
-            StringReader reader = new StringReader(xmlAsStr);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            user = (User) jaxbUnmarshaller.unmarshal(reader);
-        }
-        catch (JAXBException e)
-        {
-            e.printStackTrace();
-        }
-        return user;
-    }*/
-
     public String toFormat(Map<String, User> user){
 
         Users users = new Users(new ArrayList<>(user.values()));
-        XStream xstream = createXStream();
+        XStream xstream = new XStream();
+        xstream.autodetectAnnotations(true);
+        xstream.omitField(Observable.class,"changed");
+        xstream.omitField(Observable.class,"obs");
         xstream.alias("user", User.class);
         xstream.alias("users", Users.class);
+        xstream.alias("watchlist", Watchlist.class);
         xstream.addImplicitCollection(Users.class, "users");
-        return xstream.toXML(users);
+        StringWriter stringWriter = new StringWriter();
+        xstream.marshal(users, new PrettyPrintWriter(stringWriter));
+        return stringWriter.toString();
     }
 
     public XStream createXStream() {
@@ -156,13 +88,30 @@ public class XMLFormatter{
                         return type.equals(User.class);
                     }
                 }),PRIORITY_VERY_LOW);
+                registerConverter((new ReflectionConverter(getMapper(), getReflectionProvider()){
+                    @Override
+                    public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
+                        Object result = new Watchlist();
+                        result = this.doUnmarshal(result, reader, context);
+                        return this.serializationMembers.callReadResolve(result);
+                    }
+                    @Override
+                    public boolean canConvert(Class type) {
+                        return type.equals(Watchlist.class);
+                    }
+                }),PRIORITY_VERY_LOW);
             }
         };
 
-        xstream.autodetectAnnotations(true);
         xstream.addPermission(NoTypePermission.NONE);
-        xstream.addPermission(new WildcardTypePermission(new String[] {Users.class.getName(), User.class.getName()}));
+        xstream.addPermission(ArrayTypePermission.ARRAYS);
+        xstream.addPermission(PrimitiveTypePermission.PRIMITIVES);
+        xstream.addPermission(new WildcardTypePermission(new String[]{
+                User.class.getName(),Users.class.getName(),Watchlist.class.getName()
+        }));
+        xstream.autodetectAnnotations(true);
         xstream.alias("user", User.class);
+        xstream.alias("watchlist", Watchlist.class);
         xstream.alias("users", Users.class);
         xstream.addImplicitCollection(Users.class, "users");
 
@@ -171,7 +120,6 @@ public class XMLFormatter{
 
     public Map<String,User> toObject(String data){
         XStream xstream = createXStream();
-        String xmlContent = "";
         Users users = (Users)xstream.fromXML(data);
         Map<String,User> userMap = new HashMap<>();
         for(User user : users.getUsers()){
@@ -213,18 +161,15 @@ public class XMLFormatter{
 
         User user1 = new User("user1","123", users, new ArrayList<>(), liked, liked, watchlists);
 
-        //serializationDriver(users);
-
-        /*Users listOfUsers = new Users(users);
-        String xml = toFormat(listOfUsers);
-        System.out.println(xml);
-        //marshal(user1);*/
-
+        XMLFormatter xmlFormatter = new XMLFormatter();
         IStorage storage = new FileStorage("users.xml");
 
+        /*Map<String,User> usersMap =new HashMap<>();
+        usersMap.put(user1.getUsername(),user1);
+        String asd = xmlFormatter.toFormat(usersMap);
+        storage.save(asd);*/
 
-        XMLFormatter xmlFormatter = new XMLFormatter();
-        System.out.println(storage.read());
+        //System.out.println(storage.read());
 
         Map<String,User> users1 = xmlFormatter.toObject(storage.read());
         for(User u : users1.values()){
@@ -234,7 +179,7 @@ public class XMLFormatter{
 
     }
 
-    private class Users {
+    private static class Users {
         private List<User> users;
 
         public Users(List<User> users){ this.users = users; }
