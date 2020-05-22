@@ -19,6 +19,7 @@ public class VideoView implements Observer {
     private JButton dislikeButton;
     private JButton likeButton;
     private JButton commentButton;
+    private JButton addToWatchlistButton;
     private JLabel likeCount;
     private JLabel dislikeCount;
     private JList<Comment> commentJList;
@@ -40,12 +41,10 @@ public class VideoView implements Observer {
         panel.add(videoTitle);
 
         JTextArea content = new JTextArea(video.getContent());
+        content.setEditable(false);
         content.setBounds(10, 40, 400, 225);
         panel.add(content);
 
-        videoTitle = new JLabel(video.getTitle());
-        videoTitle.setBounds(10, 10, 80, 25);
-        panel.add(videoTitle);
 
         likeCount = new JLabel((video.getLikes() + ""));
         likeCount.setBounds(100, 290, 80, 25);
@@ -62,6 +61,10 @@ public class VideoView implements Observer {
         likeButton = new JButton("Like");
         likeButton.setBounds(10, 290, 80, 25);
         panel.add(likeButton);
+
+        addToWatchlistButton = new JButton("Add to watchlist");
+        addToWatchlistButton.setBounds(270, 290, 140, 25);
+        panel.add(addToWatchlistButton);
 
         commentField = new JTextField(20);
         commentField.setBounds(10, 340, 300, 25);
@@ -92,9 +95,17 @@ public class VideoView implements Observer {
         commentButton.addActionListener(actionListener);
     }
 
+    public void addAddToWatchlistActionListener(ActionListener actionListener){
+        addToWatchlistButton.addActionListener(actionListener);
+    }
+
     public String getCommentText(){
         return commentField.getText();
     }
+
+
+    public Video getVideo(){ return video; }
+
 
     @Override
     public void update(Observable o, Object arg) {
@@ -110,5 +121,26 @@ public class VideoView implements Observer {
         Comment[] comments = {};
         comments = reversed.toArray(comments);
         return comments;
+    }
+
+    public FrameManager getFrame() { return this.frame; }
+
+    public static void main(String[] args) {
+        Video v1 = new Video(1, "titl", "content", new Date(), 0, 0, new ArrayList<>());
+        Video v2 = new Video(2, "titl", "content", new Date(), 0, 0, new ArrayList<>());
+        Video v3 = new Video(3, "titl", "content", new Date(), 0, 0, new ArrayList<>());
+        List<Integer> videos = new ArrayList<>();
+        videos.add(v1.getId());
+        videos.add(v2.getId());
+        videos.add(v3.getId());
+        Watchlist w1 = new Watchlist(videos, "mywatchlist");
+        List<Watchlist> watchlists = new ArrayList<>();
+        watchlists.add(w1);
+        Comment comment = new Comment("kaanalgan", "what's up?");
+        User user = new User("kaanalgan", "123456", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), watchlists);
+        List<Comment> comments = new ArrayList<>();
+        comments.add(comment);
+        VideoView v = new VideoView(new FrameManager(), new Video(1, "gay", "isgay", new Date(), 12, 0, comments));
+        VideoController videoController = new VideoController(v.getVideo(), v, user);
     }
 }

@@ -1,4 +1,5 @@
 package tube;
+import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,25 @@ public class VideoController {
         videoView.addDislikeActionListener(new DislikeActionListener());
         videoView.addLikeActionListener(new LikeActionListener());
         videoView.addCommentActionListener(new CommentActionListener());
+        videoView.addAddToWatchlistActionListener(new AddToWatchlistActionListener());
+    }
+
+
+    private class AddToWatchlistActionListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String[] choices = new String[currentUser.getWatchlists().size()];
+            for(int i=0; i<currentUser.getWatchlists().size(); i++){
+                choices[i] = currentUser.getWatchlists().get(i).getName();
+            }
+            String input = (String) JOptionPane.showInputDialog(null, "Choose a watchlist to add...",
+                    "Your watchlists", JOptionPane.QUESTION_MESSAGE, null, // Use
+                    // default
+                    // icon
+                    choices, choices[0]); // Array of choices
+            System.out.println(input);
+        }
     }
 
     private class LikeActionListener implements ActionListener {
