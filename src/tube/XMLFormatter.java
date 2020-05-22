@@ -9,15 +9,12 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
-import com.thoughtworks.xstream.security.ArrayTypePermission;
-import com.thoughtworks.xstream.security.NoTypePermission;
-import com.thoughtworks.xstream.security.PrimitiveTypePermission;
-import com.thoughtworks.xstream.security.WildcardTypePermission;
+import com.thoughtworks.xstream.security.*;
 
-import javax.lang.model.type.ArrayType;
-import javax.xml.*;
-import javax.xml.bind.*;
-import java.io.*;
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.*;
 
 public class XMLFormatter{
@@ -106,8 +103,11 @@ public class XMLFormatter{
         xstream.addPermission(NoTypePermission.NONE);
         xstream.addPermission(ArrayTypePermission.ARRAYS);
         xstream.addPermission(PrimitiveTypePermission.PRIMITIVES);
+        xstream.addPermission(NullPermission.NULL);
+        xstream.allowTypeHierarchy(Collection.class);
         xstream.addPermission(new WildcardTypePermission(new String[]{
-                User.class.getName(),Users.class.getName(),Watchlist.class.getName()
+                User.class.getName(),Users.class.getName(),Watchlist.class.getName(),
+                "java.lang.*"
         }));
         xstream.autodetectAnnotations(true);
         xstream.alias("user", User.class);
