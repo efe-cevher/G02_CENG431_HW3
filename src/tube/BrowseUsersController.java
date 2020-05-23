@@ -5,14 +5,15 @@ import java.awt.event.ActionListener;
 
 public class BrowseUsersController {
 
-    private BrowseUsersView browseUsersView;
-    private User currentUser;
-    DataHandler dataHandler;
+    private final BrowseUsersView browseUsersView;
+    private final User currentUser;
+    private final DataHandler dataHandler;
 
     public BrowseUsersController(BrowseUsersView browseUsersView, User user){
         this.dataHandler =  new DataHandler();
         this.browseUsersView = browseUsersView;
         this.currentUser = user;
+
         user.addObserver(dataHandler);
         user.addObserver(browseUsersView);
 

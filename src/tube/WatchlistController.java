@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 public class WatchlistController {
 
-    private WatchlistView watchlistView;
-    private Watchlist watchlist;
+    private final WatchlistView watchlistView;
+    private final Watchlist watchlist;
     private User currentUser;
 
     public WatchlistController(WatchlistView watchlistView, Watchlist watchlist, User user){

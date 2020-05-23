@@ -3,9 +3,7 @@ package tube;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.util.*;
-import java.util.List;
 
 public class WatchlistView implements Observer {
 
@@ -63,7 +61,6 @@ public class WatchlistView implements Observer {
         scrollPane.setViewportView(videos);
     }
 
-
     @Override
     //Whenever the watchlist changes, update the view
     public void update(Observable o, Object arg) {
@@ -90,30 +87,4 @@ public class WatchlistView implements Observer {
 
     public FrameManager getFrame() { return frame; }
 
-
-    /*
-    public static void main(String[] args) {
-
-        List<Integer> videos = new ArrayList<>();
-
-        Video video = new Video(1, "why", "are you gay", new Date(), 0, 0, null);
-        Video video2 = new Video(2, "why", "are you gay", new Date(), 0, 0, null);
-        Video video3 = new Video(3, "why", "are you gay", new Date(), 0, 0, null);
-        Video video4 = new Video(4, "why", "are you gay", new Date(), 0, 0, null);
-        Video video5 = new Video(5, "why", "are you gay", new Date(), 0, 0, null);
-        Video video6 = new Video(6, "why", "are you gay", new Date(), 0, 0, null);
-
-        videos.add(video.getId());
-        videos.add(video2.getId());
-        videos.add(video3.getId());
-        videos.add(video4.getId());
-        videos.add(video5.getId());
-        videos.add(video6.getId());
-
-        Watchlist w = new Watchlist(videos, "gayisgay");
-
-        WatchlistView watchlistView = new WatchlistView(new FrameManager(), w);
-        WatchlistController wc = new WatchlistController(watchlistView, w, );
-    }
-*/
 }

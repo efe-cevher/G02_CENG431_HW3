@@ -1,15 +1,12 @@
 package tube;
-import javax.swing.*;
-import javax.xml.crypto.Data;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class VideoController {
-    private Video video;
-    private VideoView videoView;
+    private final Video video;
+    private final VideoView videoView;
     private DataHandler dataHandler;
     private User currentUser;
 

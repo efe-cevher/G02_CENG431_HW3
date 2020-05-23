@@ -5,14 +5,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class BrowseWatchlistController {
-    private User currentUser;
-    private BrowseWatchlistView browseWatchlistView;
-    private List<Watchlist> allWatchlists;
-    private DataHandler dataHandler;
+    private final User currentUser;
+    private final BrowseWatchlistView browseWatchlistView;
+    private final List<Watchlist> allWatchlists;
+    private final DataHandler dataHandler;
 
     public BrowseWatchlistController(User user, BrowseWatchlistView browseWatchlistView) {
         this.currentUser = user;
@@ -65,7 +64,6 @@ public class BrowseWatchlistController {
     }
 
     private  class openWatchlistMouseListener implements MouseListener {
-
         @Override
         public void mouseClicked(MouseEvent e) {
             int i = browseWatchlistView.getSelectedListIndex();

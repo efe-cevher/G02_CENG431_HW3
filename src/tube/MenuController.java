@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 
 public class MenuController {
-    MenuView menuView;
-    User user;
+    private final MenuView menuView;
+    private final User user;
 
     public MenuController(MenuView menuView, User user) {
         this.menuView = menuView;

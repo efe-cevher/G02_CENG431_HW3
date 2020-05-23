@@ -30,11 +30,6 @@ public class DataHandler  implements IDataHandler, Observer {
         }
     }
 
-
-    public List<User> getUserList(){
-        return new ArrayList<>(userMap.values());
-    }
-
     @Override
     public List<String> getUsernames() {
         return new ArrayList<>(userMap.keySet());

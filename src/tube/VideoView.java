@@ -1,13 +1,8 @@
 package tube;
 
-import org.w3c.dom.Document;
-
 import javax.swing.*;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.TextListener;
 import java.util.*;
 import java.util.List;
 
@@ -29,7 +24,6 @@ public class VideoView implements Observer {
         this.frame = frame;
         showVideoView();
         video.addObserver(this);
-
     }
 
     public void showVideoView(){
@@ -44,7 +38,6 @@ public class VideoView implements Observer {
         content.setEditable(false);
         content.setBounds(10, 40, 400, 225);
         panel.add(content);
-
 
         likeCount = new JLabel((video.getLikes() + ""));
         likeCount.setBounds(100, 290, 80, 25);
@@ -130,22 +123,4 @@ public class VideoView implements Observer {
 
     public FrameManager getFrame() { return this.frame; }
 
-    public static void main(String[] args) {
-        Video v1 = new Video(1, "titl", "content", new Date(), 0, 0, new ArrayList<>());
-        Video v2 = new Video(2, "titl", "content", new Date(), 0, 0, new ArrayList<>());
-        Video v3 = new Video(3, "titl", "content", new Date(), 0, 0, new ArrayList<>());
-        List<Integer> videos = new ArrayList<>();
-        videos.add(v1.getId());
-        videos.add(v2.getId());
-        videos.add(v3.getId());
-        Watchlist w1 = new Watchlist(videos, "mywatchlist");
-        List<Watchlist> watchlists = new ArrayList<>();
-        watchlists.add(w1);
-        Comment comment = new Comment("kaanalgan", "what's up?");
-        User user = new User("kaanalgan", "123456", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), watchlists);
-        List<Comment> comments = new ArrayList<>();
-        comments.add(comment);
-        VideoView v = new VideoView(new FrameManager(), new Video(1, "gay", "isgay", new Date(), 12, 0, comments));
-        VideoController videoController = new VideoController(v.getVideo(), v, user);
-    }
 }

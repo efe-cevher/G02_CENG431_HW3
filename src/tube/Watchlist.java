@@ -31,12 +31,10 @@ public class Watchlist extends Observable {
         return this.name;
     }
 
-
     //Return a copy of videos
     public List<Integer> getVideos() {
         return new ArrayList<>(videos);
     }
-
 
     //Add a video to the watchlist
     public void add(Integer videoId) {

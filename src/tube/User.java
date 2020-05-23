@@ -2,13 +2,11 @@ package tube;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import java.util.Observer;
 
 @XmlRootElement(name = "user")
 @XmlType(propOrder={"username", "password", "followings", "followers", "likedVideos", "dislikedVideos", "watchlists"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class User extends Observable {
-
 
     private String username;
 
@@ -48,31 +46,17 @@ public class User extends Observable {
 
     public User(){}
 
-
     public String getUsername() {
         return username;
     }
-
-    
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
 
     public String getPassword() {
         return password;
     }
 
-
-    /*public void setPassword(String password) {
-        this.password = password;
-    }*/
-
-
     public List<String> getFollowing() {
         return followings;
     }
-
 
     public boolean removeFromDislikes(int videoId){
         if(dislikedVideos.contains(videoId)){
@@ -114,16 +98,16 @@ public class User extends Observable {
         return false;
     }
 
-    public List<Watchlist> getWatchlists() {
-        return watchlists;
-    }
-
     public void follow(String user){
         if(!followings.contains(user)){
             followings.add(user);
             setChanged();
             notifyObservers();
         }
+    }
+
+    public List<Watchlist> getWatchlists() {
+        return watchlists;
     }
 
     public void setWatchlists(List<Watchlist> watchlists) {

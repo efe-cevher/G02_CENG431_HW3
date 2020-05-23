@@ -1,7 +1,6 @@
 package tube;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 
@@ -27,7 +26,6 @@ public class Video extends Observable {
         this.dislikes = dislikes;
         this.comments = comments;
     }
-
 
     public Video(){}
 
@@ -76,6 +74,5 @@ public class Video extends Observable {
     public List<Comment> getComments() {
         return comments;
     }
-
 
 }

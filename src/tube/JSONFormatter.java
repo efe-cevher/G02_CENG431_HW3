@@ -2,17 +2,13 @@ package tube;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-
-import java.io.IOException;
 import java.lang.reflect.Type;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.*;
 
 public class JSONFormatter implements IFormatter<Map<Integer,Video>>{
-    private Gson gson;
+
+    private final Gson gson;
 
     public JSONFormatter() {
         this.gson = new GsonBuilder()
@@ -23,10 +19,7 @@ public class JSONFormatter implements IFormatter<Map<Integer,Video>>{
                         if (field.getDeclaringClass() == Observable.class && field.getName().equals("changed")) {
                             return true;
                         }
-                        else if (field.getDeclaringClass() == Observable.class && field.getName().equals("obs")) {
-                            return true;
-                        }
-                        return false;
+                        else return field.getDeclaringClass() == Observable.class && field.getName().equals("obs");
                     }
                     @Override
                     public boolean shouldSkipClass(Class<?> clazz) {

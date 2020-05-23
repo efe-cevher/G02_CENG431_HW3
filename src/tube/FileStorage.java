@@ -79,6 +79,4 @@ public class FileStorage implements IStorage{
         }
     }
 
-    public void setFilePath(String filePath) { this.filePath = filePath; }
-
 }

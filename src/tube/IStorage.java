@@ -6,6 +6,6 @@ public interface IStorage {
 
     public String read();
 
-    //public void append(String data);
+    public void append(String data);
 
 }
