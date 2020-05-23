@@ -17,11 +17,13 @@ public class BrowseUsersController {
         user.addObserver(dataHandler);
         user.addObserver(browseUsersView);
 
+        //Connect action listeners to the view.
         browseUsersView.addFollowActionListener(new FollowActionListener());
         browseUsersView.addUnfollowActionListener(new UnfollowActionListener());
         browseUsersView.addMainMenuActionListener(new MainMenuActionListener());
     }
 
+    //Event performed whenever the user selects a user and clicks on 'Follow User' button.
     private class FollowActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -31,6 +33,7 @@ public class BrowseUsersController {
         }
     }
 
+    //Event performed whenever the user selects a user and clicks on 'Unfollow User' button
     private class UnfollowActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -40,6 +43,7 @@ public class BrowseUsersController {
         }
     }
 
+    //Event performed whenver the user clicks on the 'Main Menu' button
     private class MainMenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

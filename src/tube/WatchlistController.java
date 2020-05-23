@@ -20,6 +20,7 @@ public class WatchlistController {
         watchlistView.addDeleteVideoActionListener(new deleteVideoActionListener());
     }
 
+    //Event performed whenever the user selects a video and clicks on 'Delete video' button
     private class deleteVideoActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -33,6 +34,7 @@ public class WatchlistController {
         }
     }
 
+    //Event performed whenever the user selects a video and clicks on 'Watch' button
     private class goToVideoActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -46,6 +48,7 @@ public class WatchlistController {
         }
     }
 
+    //Event performed whenever the user clicks on 'Main Menu' button
     private class mainMenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

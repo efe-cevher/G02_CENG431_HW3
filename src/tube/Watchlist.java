@@ -19,12 +19,13 @@ public class Watchlist extends Observable {
     private List<Integer> videos;
 
     public Watchlist(List<Integer> videos, String name) {
-        this.videos = new ArrayList<>(videos.size());
-        this.videos.addAll(videos);
-        this.name = name;
+        setVideos(videos);
+        setName(name);
     }
 
     public Watchlist() {
+        this.videos = new ArrayList<>();
+        this.name = "No-name";
     }
 
     public String getName() {
@@ -54,5 +55,22 @@ public class Watchlist extends Observable {
     public String toString() {
         return "Watchlist " + "name='" + name;
     }
+
+    private void setName(String name){
+        if(name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Name of the watchlist cannot be empty or null");
+        }
+        this.name = name;
+    }
+
+    private void setVideos(List<Integer> videos){
+        if(videos == null){
+            throw new IllegalArgumentException("List of videos of a watchlist cannot be null");
+        }else{
+            this.videos = new ArrayList<>(videos);
+        }
+
+    }
+
 
 }

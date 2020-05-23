@@ -44,7 +44,13 @@ public class User extends Observable {
         this.watchlists = watchlists;
     }
 
-    public User(){}
+    public User(User user){
+        this(user.getUsername(), user.getPassword(), user.getFollowing(), user.getFollowers(), user.getLikedVideos(), user.getDislikedVideos(), user.getWatchlists());
+    }
+
+    public User(){
+        this("no-name", "123456", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+    }
 
     public String getUsername() {
         return username;
@@ -55,7 +61,16 @@ public class User extends Observable {
     }
 
     public List<String> getFollowing() {
-        return followings;
+        List<String> copyFollowings = new ArrayList<>(followings.size());
+        copyFollowings.addAll(followings);
+        return copyFollowings;
+    }
+
+
+    public List<String> getFollowers(){
+        List<String> copyFollowers = new ArrayList<>(followers.size());
+        copyFollowers.addAll(followers);
+        return copyFollowers;
     }
 
     public boolean removeFromDislikes(int videoId){
@@ -111,6 +126,9 @@ public class User extends Observable {
     }
 
     public void setWatchlists(List<Watchlist> watchlists) {
+        if(watchlists == null){
+            throw new IllegalArgumentException("List of watchlists cannot be null");
+        }
         this.watchlists = watchlists;
         setChanged();
         notifyObservers();
@@ -125,6 +143,9 @@ public class User extends Observable {
     }
 
     public void addWatchlist(Watchlist watchlist) {
+        if(watchlist == null){
+            throw new IllegalArgumentException("Watchlist to add cannot be null.");
+        }
         this.watchlists.add(watchlist);
         setChanged();
         notifyObservers();
@@ -145,4 +166,17 @@ public class User extends Observable {
             notifyObservers();
         }
     }
+
+    public List<Integer> getLikedVideos(){
+        List<Integer> copyLikedVideos = new ArrayList<>(likedVideos.size());
+        copyLikedVideos.addAll(likedVideos);
+        return copyLikedVideos;
+    }
+
+    public List<Integer> getDislikedVideos(){
+        List<Integer> copyDislikedVideos = new ArrayList<>(dislikedVideos.size());
+        copyDislikedVideos.addAll(dislikedVideos);
+        return copyDislikedVideos;
+    }
+
 }

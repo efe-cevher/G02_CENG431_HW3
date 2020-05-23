@@ -15,7 +15,11 @@ public class DataHandler  implements IDataHandler, Observer {
         this.userStorage = new FileStorage("users.xml");
         this.videoFormatter = new JSONFormatter();
         this.userFormatter = new XMLFormatter();
+
+        //Read videos from the JSON file
         this.videoMap = videoFormatter.toObject(videoStorage.read());
+
+        //Read users from the XML file
         this.userMap = userFormatter.toObject(userStorage.read());
 
         addObservers();
@@ -30,7 +34,7 @@ public class DataHandler  implements IDataHandler, Observer {
         }
     }
 
-    @Override
+
     public List<String> getUsernames() {
         return new ArrayList<>(userMap.keySet());
     }
@@ -55,6 +59,7 @@ public class DataHandler  implements IDataHandler, Observer {
         videoStorage.save(videoMapJson);
     }
 
+    /* If any information related to observers change, update the database(XML and JSON files) */
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof Video){

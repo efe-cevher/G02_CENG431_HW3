@@ -9,6 +9,7 @@ public class FileStorage implements IStorage{
 
     public FileStorage(String filePath) { this.filePath = filePath; }
 
+    //Save string to the file
     public void save(String data){
         File file = new File(filePath);
         FileWriter fr = null;
@@ -53,6 +54,7 @@ public class FileStorage implements IStorage{
         return content.toString();
     }
 
+    //Add string at the end of the file
     public void append(String data){
         File file = new File(filePath);
         FileWriter fr = null;
