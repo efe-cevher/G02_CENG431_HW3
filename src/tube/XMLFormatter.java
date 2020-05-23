@@ -136,7 +136,6 @@ public class XMLFormatter{
         liked.add(2);
         disliked.add(3);
 
-
         List<Integer> videos = new ArrayList<>();
         List<Comment> comments = new ArrayList<>();
         comments.add(new Comment("Ali", "OLAMAAZ"));

@@ -26,23 +26,26 @@ public class VideoController {
         videoView.addAddToWatchlistActionListener(new AddToWatchlistActionListener());
     }
 
-
     private class AddToWatchlistActionListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
             String[] choices = new String[currentUser.getWatchlists().size()];
-            for(int i=0; i<currentUser.getWatchlists().size(); i++){
-                choices[i] = currentUser.getWatchlists().get(i).getName();
-            }
-            String selectedWatchlist = videoView.inputFromAListOfValues("Your watchlists", choices, "Choose a watchlist"); // Array of choices
-            List<Watchlist> currentUserWatchlists = currentUser.getWatchlists();
-            for(Watchlist watchlist : currentUserWatchlists){
-                if(watchlist.getName().equals(selectedWatchlist)){
-                    watchlist.add(video.getId());
+            if(!currentUser.getWatchlists().isEmpty()){
+                for(int i=0; i<currentUser.getWatchlists().size(); i++){
+                    choices[i] = currentUser.getWatchlists().get(i).getName();
                 }
+                String selectedWatchlist = videoView.inputFromAListOfValues("Your watchlists", choices, "Choose a watchlist"); // Array of choices
+                List<Watchlist> currentUserWatchlists = currentUser.getWatchlists();
+                for(Watchlist watchlist : currentUserWatchlists){
+                    if(watchlist.getName().equals(selectedWatchlist)){
+                        watchlist.add(video.getId());
+                        currentUser.setWatchlist(watchlist);
+                    }
+                }
+            }else{
+                //TODO FEEDBACK YOU HAVE NO WATCHLIST TO ADD A VIDEO
             }
-            currentUser.setWatchlists(currentUserWatchlists);
         }
     }
 

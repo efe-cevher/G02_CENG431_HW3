@@ -14,6 +14,7 @@ public class BrowseUsersController {
         this.browseUsersView = browseUsersView;
         this.currentUser = user;
 
+        dataHandler.observeUsers();
         user.addObserver(dataHandler);
         user.addObserver(browseUsersView);
 

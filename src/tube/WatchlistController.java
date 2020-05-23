@@ -29,6 +29,7 @@ public class WatchlistController {
                 int videoId = watchlist.getVideos().get(videoIndex);
                 watchlist.remove(videoId);
             }else{
+                //TODO FEEDBACK
                 //Not your watchlist! cant remove
             }
         }

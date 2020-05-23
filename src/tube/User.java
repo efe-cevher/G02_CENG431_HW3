@@ -125,13 +125,18 @@ public class User extends Observable {
         return watchlists;
     }
 
-    public void setWatchlists(List<Watchlist> watchlists) {
+    public void setWatchlist(Watchlist watchlist){
         if(watchlists == null){
-            throw new IllegalArgumentException("List of watchlists cannot be null");
+            throw new IllegalArgumentException("Watchlist cannot be null");
         }
-        this.watchlists = watchlists;
-        setChanged();
-        notifyObservers();
+        for(int i=0; i<watchlists.size(); i++){
+            if(watchlists.get(i).getName().equals(watchlist.getName())){
+                watchlists.set(i, watchlist);
+                setChanged();
+                notifyObservers();
+                break;
+            }
+        }
     }
 
     public void unfollow(String user) {
@@ -146,9 +151,14 @@ public class User extends Observable {
         if(watchlist == null){
             throw new IllegalArgumentException("Watchlist to add cannot be null.");
         }
-        this.watchlists.add(watchlist);
-        setChanged();
-        notifyObservers();
+        if(!getWatchlistNames().contains(watchlist.getName())){
+            watchlists.add(watchlist);
+            setChanged();
+            notifyObservers();
+        }else{
+            // TODO HANDLE THIS
+        }
+
     }
 
     public void addFollower(String user) {
@@ -177,6 +187,14 @@ public class User extends Observable {
         List<Integer> copyDislikedVideos = new ArrayList<>(dislikedVideos.size());
         copyDislikedVideos.addAll(dislikedVideos);
         return copyDislikedVideos;
+    }
+
+    private Set<String> getWatchlistNames(){
+        Set<String> names = new HashSet<>();
+        for(Watchlist watchlist : watchlists){
+            names.add(watchlist.getName());
+        }
+        return names;
     }
 
 }

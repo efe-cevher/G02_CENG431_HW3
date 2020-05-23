@@ -21,19 +21,13 @@ public class DataHandler  implements IDataHandler, Observer {
 
         //Read users from the XML file
         this.userMap = userFormatter.toObject(userStorage.read());
-
-        addObservers();
     }
 
-    private void addObservers(){
+    public void observeUsers(){
         for(User u: userMap.values()){
             u.addObserver(this);
         }
-        for(Video v: videoMap.values()){
-            v.addObserver(this);
-        }
     }
-
 
     public List<String> getUsernames() {
         return new ArrayList<>(userMap.keySet());

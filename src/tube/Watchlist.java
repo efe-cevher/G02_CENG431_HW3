@@ -39,9 +39,11 @@ public class Watchlist extends Observable {
 
     //Add a video to the watchlist
     public void add(Integer videoId) {
-        videos.add(videoId);
-        setChanged();
-        notifyObservers(getVideos());
+        if(!videos.contains(videoId)){
+            videos.add(videoId);
+            setChanged();
+            notifyObservers(getVideos());
+        }
     }
 
     //Remove video from the watchlist
