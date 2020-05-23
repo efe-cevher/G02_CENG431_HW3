@@ -31,7 +31,9 @@
       </watchlist>
       <watchlist>
         <name>playlist3</name>
-        <videos/>
+        <videos>
+          <int>2</int>
+        </videos>
       </watchlist>
     </watchlists>
   </user>

@@ -45,8 +45,7 @@ public class VideoController {
                     watchlist.add(video.getId());
                 }
             }
-            DataHandler dataHandler = new DataHandler();
-            System.out.println(selectedWatchlist);
+            currentUser.setWatchlists(currentUserWatchlists);
         }
     }
 

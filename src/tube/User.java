@@ -126,6 +126,12 @@ public class User extends Observable {
         }
     }
 
+    public void setWatchlists(List<Watchlist> watchlists) {
+        this.watchlists = watchlists;
+        setChanged();
+        notifyObservers();
+    }
+
     public void unfollow(String user) {
         if(followings.contains(user)){
             followings.remove(user);
