@@ -22,8 +22,8 @@ public class LoginController {
 
     private void checkCredentials(String username, char[] password) {
 
-        DataHandler dataHandler = new DataHandler();
-        User user = dataHandler.getUser(username);
+        UserHandler userHandler = new UserHandler();
+        User user = userHandler.get(username);
 
         if(user != null && user.getPassword().equals(String.valueOf(password))){
             MenuView menuView = new MenuView(loginView.getFrame());

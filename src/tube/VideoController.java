@@ -7,18 +7,18 @@ import java.util.List;
 public class VideoController {
     private final Video video;
     private final VideoView videoView;
-    private DataHandler dataHandler;
+    private VideoHandler videoHandler;
     private User currentUser;
 
     public VideoController(Video video, VideoView videoView, User user) {
 
         this.video = video;
         this.videoView = videoView;
-        this.dataHandler = new DataHandler();
+        this.videoHandler = new VideoHandler();
         this.currentUser = user;
 
-        video.addObserver(dataHandler);
-        currentUser.addObserver(dataHandler);
+        video.addObserver(videoHandler);
+        currentUser.addObserver(videoHandler);
 
         videoView.addDislikeActionListener(new DislikeActionListener());
         videoView.addLikeActionListener(new LikeActionListener());
@@ -84,7 +84,7 @@ public class VideoController {
         public void actionPerformed(ActionEvent e) {
             String commentText = videoView.getCommentText();
             video.addComment(new Comment(currentUser.getUsername(), commentText));
-            dataHandler.putVideo(video);
+            videoHandler.modify(video.getId(), video);
         }
     }
 

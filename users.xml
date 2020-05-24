@@ -43,8 +43,8 @@
     <password>123</password>
     <followings/>
     <followers>
-      <string>kaan</string>
       <string>efecan</string>
+      <string>kaan</string>
     </followers>
     <likedVideos/>
     <dislikedVideos/>
@@ -73,6 +73,7 @@
     </followings>
     <followers>
       <string>efecan</string>
+      <string>kaan</string>
     </followers>
     <likedVideos/>
     <dislikedVideos/>

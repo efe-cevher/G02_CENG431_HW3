@@ -42,8 +42,8 @@ public class WatchlistController {
             int i = watchlistView.getSelectedListIndex();
             Integer videoId = watchlist.getVideos().get(i);
             //video from videoId?
-            DataHandler dataHandler = new DataHandler();
-            Video selectedVideo = dataHandler.getVideo(videoId);
+            VideoHandler videoHandler = new VideoHandler();
+            Video selectedVideo = videoHandler.get(videoId);
             VideoView videoView = new VideoView(watchlistView.getFrame(), selectedVideo);
             VideoController videoController = new VideoController(selectedVideo, videoView, currentUser);
         }

@@ -17,7 +17,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.*;
 
-public class XMLFormatter{
+public class XMLFormatter implements IFormatter<Map<String, User>>{
 
 
     public XMLFormatter() {

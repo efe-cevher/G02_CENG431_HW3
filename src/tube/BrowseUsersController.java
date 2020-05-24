@@ -7,15 +7,14 @@ public class BrowseUsersController {
 
     private final BrowseUsersView browseUsersView;
     private final User currentUser;
-    private final DataHandler dataHandler;
+    private final UserHandler userHandler;
 
     public BrowseUsersController(BrowseUsersView browseUsersView, User user){
-        this.dataHandler =  new DataHandler();
+        this.userHandler =  new UserHandler();
         this.browseUsersView = browseUsersView;
         this.currentUser = user;
 
-        dataHandler.observeUsers();
-        user.addObserver(dataHandler);
+        user.addObserver(userHandler);
         user.addObserver(browseUsersView);
 
         //Connect action listeners to the view.
@@ -28,7 +27,7 @@ public class BrowseUsersController {
     private class FollowActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            User targetUser = dataHandler.getUser(browseUsersView.getSelectedUsername());
+            User targetUser = userHandler.get(browseUsersView.getSelectedUsername());
             currentUser.follow(targetUser.getUsername());
             targetUser.addFollower(currentUser.getUsername());
         }
@@ -38,7 +37,7 @@ public class BrowseUsersController {
     private class UnfollowActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            User targetUser = dataHandler.getUser(browseUsersView.getSelectedUsername());
+            User targetUser = userHandler.get(browseUsersView.getSelectedUsername());
             currentUser.unfollow(targetUser.getUsername());
             targetUser.removeFollower(currentUser.getUsername());
         }

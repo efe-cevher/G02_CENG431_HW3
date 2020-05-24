@@ -11,12 +11,12 @@ public class BrowseWatchlistController {
     private final User currentUser;
     private final BrowseWatchlistView browseWatchlistView;
     private final List<Watchlist> allWatchlists;
-    private final DataHandler dataHandler;
+    private final UserHandler dataHandler;
 
     public BrowseWatchlistController(User user, BrowseWatchlistView browseWatchlistView) {
         this.currentUser = user;
         this.browseWatchlistView = browseWatchlistView;
-        this.dataHandler = new DataHandler();
+        this.dataHandler = new UserHandler();
 
         user.addObserver(browseWatchlistView);
         user.addObserver(dataHandler);
@@ -31,7 +31,7 @@ public class BrowseWatchlistController {
         List<Watchlist> followingsWatchlists = new ArrayList<>();
         for(String username: currentUser.getFollowing()){
             System.out.println(username);
-            followingsWatchlists.addAll(dataHandler.getUser(username).getWatchlists());
+            followingsWatchlists.addAll(dataHandler.get(username).getWatchlists());
         }
         allWatchlists.addAll(followingsWatchlists);
         browseWatchlistView.addFollowingsWatchlists(followingsWatchlists);
