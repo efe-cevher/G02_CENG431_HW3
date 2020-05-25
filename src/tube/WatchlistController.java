@@ -7,12 +7,12 @@ public class WatchlistController {
 
     private final WatchlistView watchlistView;
     private final Watchlist watchlist;
-    private User currentUser;
+    private SessionManager session;
 
-    public WatchlistController(WatchlistView watchlistView, Watchlist watchlist, User user){
+    public WatchlistController(WatchlistView watchlistView, Watchlist watchlist, SessionManager session){
         this.watchlistView = watchlistView;
         this.watchlist = watchlist;
-        this.currentUser = user;
+        this.session = session;
 
         watchlist.addObserver(watchlistView);
         watchlistView.addGoToVideoActionListener(new goToVideoActionListener());
@@ -24,7 +24,7 @@ public class WatchlistController {
     private class deleteVideoActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(currentUser.getWatchlists().contains(watchlist)) {
+            if(session.getUser().getWatchlists().contains(watchlist)) {
                 int videoIndex = watchlistView.getSelectedListIndex();
                 int videoId = watchlist.getVideos().get(videoIndex);
                 watchlist.remove(videoId);
@@ -44,17 +44,15 @@ public class WatchlistController {
             //video from videoId?
             VideoHandler videoHandler = new VideoHandler();
             Video selectedVideo = videoHandler.get(videoId);
-            VideoView videoView = new VideoView(watchlistView.getFrame(), selectedVideo);
-            VideoController videoController = new VideoController(selectedVideo, videoView, currentUser);
+            session.openVideo(selectedVideo);
         }
     }
 
-    //Event performed whenever the user clicks on 'Main Menu' button
+    //TODO CHANGE BUTTON TO "BACK" TO BROWSE PLAYLISTS
     private class mainMenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            MenuView menuView = new MenuView(watchlistView.getFrame());
-            MenuController menuController = new MenuController(menuView, currentUser);
+            session.openBrowseWatchlists();
         }
     }
 

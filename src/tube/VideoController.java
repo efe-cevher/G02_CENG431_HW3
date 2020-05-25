@@ -9,18 +9,18 @@ public class VideoController {
     private final VideoView videoView;
     private final VideoHandler videoHandler;
     private UserHandler userHandler;
-    private User currentUser;
+    private SessionManager session;
 
-    public VideoController(Video video, VideoView videoView, User user) {
+    public VideoController(Video video, VideoView videoView, SessionManager session) {
 
         this.video = video;
         this.videoView = videoView;
         this.videoHandler = new VideoHandler();
         this.userHandler = new UserHandler();
-        this.currentUser = user;
+        this.session = session;
 
         video.addObserver(videoHandler);
-        currentUser.addObserver(userHandler);
+        session.getUser().addObserver(userHandler);
 
         videoView.addDislikeActionListener(new DislikeActionListener());
         videoView.addLikeActionListener(new LikeActionListener());
@@ -32,17 +32,17 @@ public class VideoController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String[] choices = new String[currentUser.getWatchlists().size()];
-            if(!currentUser.getWatchlists().isEmpty()){
-                for(int i=0; i<currentUser.getWatchlists().size(); i++){
-                    choices[i] = currentUser.getWatchlists().get(i).getName();
+            String[] choices = new String[session.getUser().getWatchlists().size()];
+            if(!session.getUser().getWatchlists().isEmpty()){
+                for(int i=0; i<session.getUser().getWatchlists().size(); i++){
+                    choices[i] = session.getUser().getWatchlists().get(i).getName();
                 }
                 String selectedWatchlist = videoView.inputFromAListOfValues("Your watchlists", choices, "Choose a watchlist"); // Array of choices
-                List<Watchlist> currentUserWatchlists = currentUser.getWatchlists();
+                List<Watchlist> currentUserWatchlists = session.getUser().getWatchlists();
                 for(Watchlist watchlist : currentUserWatchlists){
                     if(watchlist.getName().equals(selectedWatchlist)){
                         watchlist.add(video.getId());
-                        currentUser.setWatchlist(watchlist);
+                        session.getUser().setWatchlist(watchlist);
                     }
                 }
             }else{
@@ -54,13 +54,13 @@ public class VideoController {
     private class LikeActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(currentUser.removeFromDislikes(video.getId())){
+            if(session.getUser().removeFromDislikes(video.getId())){
                 video.setDislikes(video.getDislikes() - 1);
             }
-            if(currentUser.addToLikes(video.getId())){
+            if(session.getUser().addToLikes(video.getId())){
                 video.setLikes(video.getLikes() + 1);
             }else{
-                currentUser.removeFromLikes(video.getId());
+                session.getUser().removeFromLikes(video.getId());
                 video.setLikes(video.getLikes() - 1);
             }
         }
@@ -69,13 +69,13 @@ public class VideoController {
     private class DislikeActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(currentUser.removeFromLikes(video.getId())){
+            if(session.getUser().removeFromLikes(video.getId())){
                 video.setLikes(video.getLikes() - 1);
             }
-            if(currentUser.addToDislikes(video.getId())){
+            if(session.getUser().addToDislikes(video.getId())){
                 video.setDislikes(video.getDislikes() + 1);
             }else{
-                currentUser.removeFromDislikes(video.getId());
+                session.getUser().removeFromDislikes(video.getId());
                 video.setDislikes(video.getDislikes() - 1);
             }
         }
@@ -85,7 +85,7 @@ public class VideoController {
         @Override
         public void actionPerformed(ActionEvent e) {
             String commentText = videoView.getCommentText();
-            video.addComment(new Comment(currentUser.getUsername(), commentText));
+            video.addComment(new Comment(session.getUser().getUsername(), commentText));
             videoHandler.modify(video.getId(), video);
         }
     }

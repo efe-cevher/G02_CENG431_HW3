@@ -26,8 +26,8 @@ public class LoginController {
         User user = userHandler.get(username);
 
         if(user != null && user.getPassword().equals(String.valueOf(password))){
-            MenuView menuView = new MenuView(loginView.getFrame());
-            MenuController menuController = new MenuController(menuView, user);
+            SessionManager session = new SessionManager(user,loginView.getFrame());
+            session.openMainMenu();
         }
         else{
             loginView.securityCheckFailed();

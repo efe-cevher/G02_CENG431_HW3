@@ -6,16 +6,16 @@ import java.awt.event.ActionListener;
 public class BrowseUsersController {
 
     private final BrowseUsersView browseUsersView;
-    private final User currentUser;
+    private final SessionManager session;
     private final UserHandler userHandler;
 
-    public BrowseUsersController(BrowseUsersView browseUsersView, User user){
+    public BrowseUsersController(BrowseUsersView browseUsersView, SessionManager session){
         this.userHandler =  new UserHandler();
         this.browseUsersView = browseUsersView;
-        this.currentUser = user;
+        this.session = session;
 
-        currentUser.addObserver(userHandler);
-        currentUser.addObserver(browseUsersView);
+        session.getUser().addObserver(userHandler);
+        session.getUser().addObserver(browseUsersView);
 
         //Connect action listeners to the view.
         browseUsersView.addFollowActionListener(new FollowActionListener());
@@ -28,8 +28,8 @@ public class BrowseUsersController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User targetUser = userHandler.get(browseUsersView.getSelectedUsername());
-            currentUser.follow(targetUser.getUsername());
-            targetUser.addFollower(currentUser.getUsername());
+            session.getUser().follow(targetUser.getUsername());
+            targetUser.addFollower(session.getUser().getUsername());
         }
     }
 
@@ -38,8 +38,8 @@ public class BrowseUsersController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User targetUser = userHandler.get(browseUsersView.getSelectedUsername());
-            currentUser.unfollow(targetUser.getUsername());
-            targetUser.removeFollower(currentUser.getUsername());
+            session.getUser().unfollow(targetUser.getUsername());
+            targetUser.removeFollower(session.getUser().getUsername());
         }
     }
 
@@ -47,8 +47,7 @@ public class BrowseUsersController {
     private class MainMenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            MenuView menuView = new MenuView(browseUsersView.getFrame());
-            MenuController menuController = new MenuController(menuView, currentUser);
+            session.openMainMenu();
         }
     }
 }

@@ -3,14 +3,14 @@ package tube;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class MenuController {
     private final MenuView menuView;
-    private final User user;
+    private final SessionManager session;
 
-    public MenuController(MenuView menuView, User user) {
+    public MenuController(MenuView menuView, SessionManager session) {
         this.menuView = menuView;
-        this.user = user;
+        this.session = session;
+
         menuView.addBrowseUsersActionListener(new BrowseUsersActionListener());
         menuView.addBrowseWatchlistsActionListener(new BrowseWatchlistsActionListener());
         menuView.addLogoutActionListener(new LogoutActionListener());
@@ -19,25 +19,21 @@ public class MenuController {
     private class BrowseUsersActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            UserHandler dataHandler = new UserHandler();
-            BrowseUsersView browseUsersView = new BrowseUsersView(menuView.getFrame(), dataHandler.getUsernames(), user);
-            BrowseUsersController browseUsersController = new BrowseUsersController(browseUsersView, user);
+            session.openBrowseUsers();
         }
     }
 
     private class BrowseWatchlistsActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            BrowseWatchlistView browseWatchlistView = new BrowseWatchlistView(menuView.getFrame(), user);
-            BrowseWatchlistController browseWatchlistController = new BrowseWatchlistController(user, browseWatchlistView);
+            session.openBrowseWatchlists();
         }
     }
 
     private class LogoutActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            LoginView loginView = new LoginView(menuView.getFrame());
-            LoginController loginController = new LoginController(loginView);
+            session.logout();
         }
     }
 }
