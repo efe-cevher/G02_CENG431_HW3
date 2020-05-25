@@ -10,6 +10,7 @@ public class MenuView {
     JPanel panel;
     JButton browseUsersButton;
     JButton browseWatchlistsButton;
+    JButton browseVideosButton;
     JButton logoutButton;
 
     public MenuView(FrameManager frame) {
@@ -29,8 +30,12 @@ public class MenuView {
         browseWatchlistsButton.setBounds(135, 130, 200, 35);
         panel.add(browseWatchlistsButton);
 
+        browseVideosButton = new JButton("Browse Videos");
+        browseVideosButton.setBounds(135, 180, 200, 35);
+        panel.add(browseVideosButton);
+
         logoutButton = new JButton("Logout");
-        logoutButton.setBounds(135, 180, 200, 35);
+        logoutButton.setBounds(135, 230, 200, 35);
         panel.add(logoutButton);
 
         frame.setNewPanel(panel);
@@ -42,6 +47,10 @@ public class MenuView {
 
     public void addBrowseWatchlistsActionListener(ActionListener actionListener){
         browseWatchlistsButton.addActionListener(actionListener);
+    }
+
+    public void addBrowseVideosActionListener(ActionListener actionListener){
+        browseVideosButton.addActionListener(actionListener);
     }
 
     public void addLogoutActionListener(ActionListener actionListener){

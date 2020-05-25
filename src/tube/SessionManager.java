@@ -29,6 +29,11 @@ public class SessionManager {
         BrowseWatchlistController browseWatchlistController = new BrowseWatchlistController(browseWatchlistView, this);
     }
 
+    public void openBrowseAllVideos(){
+        BrowseVideosView browseVideosView = new BrowseVideosView(frame);
+        BrowseVideosController browseVideosController = new BrowseVideosController(browseVideosView, this);
+    }
+
     public void openWatchlist(Watchlist watchlist){
         WatchlistView watchlistView = new WatchlistView(frame, watchlist);
         WatchlistController watchlistController = new WatchlistController(watchlistView, watchlist, this);

@@ -13,6 +13,7 @@ public class MenuController {
 
         menuView.addBrowseUsersActionListener(new BrowseUsersActionListener());
         menuView.addBrowseWatchlistsActionListener(new BrowseWatchlistsActionListener());
+        menuView.addBrowseVideosActionListener(new BrowseVideosActionListener());
         menuView.addLogoutActionListener(new LogoutActionListener());
     }
 
@@ -27,6 +28,13 @@ public class MenuController {
         @Override
         public void actionPerformed(ActionEvent e) {
             session.openBrowseWatchlists();
+        }
+    }
+
+    private class BrowseVideosActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            session.openBrowseAllVideos();
         }
     }
 

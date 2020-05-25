@@ -37,7 +37,7 @@ public class VideoController {
             if(currentWatchlist != null){
                 session.openWatchlist(currentWatchlist);
             }else{
-                session.openMainMenu();
+                session.openBrowseAllVideos();
             }
         }
     }

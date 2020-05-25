@@ -8,40 +8,40 @@ import java.util.*;
 public class WatchlistView implements Observer {
 
     private Watchlist watchlist;
+    private Map<Integer, String> videoNameMap;
     private JButton watchVideoButton, backButton, removeVideoButton;
     private FrameManager frame;
     private JScrollPane scrollPane;
-    private JList<String> videos;
+    private JList<String> jVideosList;
     private JPanel panel;
 
     public WatchlistView(FrameManager frame, Watchlist watchlist) {
         this.frame = frame;
         this.watchlist = watchlist;
+        this.videoNameMap = null;
 
         panel = new JPanel(new GridLayout(3, 1));
         panel.setLayout(null);
 
-        JLabel videoTitle = new JLabel(watchlist.getName());
-        videoTitle.setBounds(10, 10, 80, 25);
+        JLabel videoTitle = new JLabel("Watchlist: " + watchlist.getName());
+        videoTitle.setBounds(10, 10, 250, 25);
         panel.add(videoTitle);
 
-        videos = new JList<String>();
+        jVideosList = new JList<String>();
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 40, 420, 250);
+        scrollPane.setBounds(10, 40, 420, 500);
         panel.add(scrollPane);
 
-        showWatchlist();
-
-        removeVideoButton = new JButton("Delete video");
-        removeVideoButton.setBounds(160, 320, 120, 35);
-        panel.add(removeVideoButton);
-
         watchVideoButton = new JButton("Watch");
-        watchVideoButton.setBounds(10, 320, 120, 35);
+        watchVideoButton.setBounds(10, 560, 130, 35);
         panel.add(watchVideoButton);
 
+        removeVideoButton = new JButton("Delete video");
+        removeVideoButton.setBounds(160, 560, 130, 35);
+        panel.add(removeVideoButton);
+
         backButton = new JButton("Back");
-        backButton.setBounds(310, 320, 120, 35);
+        backButton.setBounds(310, 560, 120, 35);
         panel.add(backButton);
 
         frame.setNewPanel(panel);
@@ -51,11 +51,16 @@ public class WatchlistView implements Observer {
         String[] videoListArr = new String[watchlist.getVideos().size()];
         int i = 0;
         for(Integer id: watchlist.getVideos()){
-            videoListArr[i] = "<html><body>" + id + "<br>" + "</span></body></html>}";
+            videoListArr[i] = "<html><body>id: " + id + " title: " + videoNameMap.get(id) + "<br>" + " <br></span></body></html>}";
             i++;
         }
-        videos = new JList<>(videoListArr);
-        scrollPane.setViewportView(videos);
+        jVideosList = new JList<>(videoListArr);
+        scrollPane.setViewportView(jVideosList);
+    }
+
+    public void setVideoNameMap(Map<Integer, String> videoNameMap){
+        this.videoNameMap = videoNameMap;
+        showWatchlist();
     }
 
     @Override
@@ -78,7 +83,7 @@ public class WatchlistView implements Observer {
     }
 
     public int getSelectedListIndex(){
-        return videos.getSelectedIndex();
+        return jVideosList.getSelectedIndex();
     }
 
 }

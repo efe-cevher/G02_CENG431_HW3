@@ -22,12 +22,12 @@ public class BrowseWatchlistController {
 
         browseWatchlistView.setFollowingsWatchlists(getFollowingsWatchlists());
 
-        browseWatchlistView.addCreateWatchlistButton(new createWatchlistActionListener());
-        browseWatchlistView.addOpenWatchlistButton(new openWatchlistActionListener());
-        browseWatchlistView.addMainMenuActionListener(new mainMenuActionListener());
+        browseWatchlistView.addCreateWatchlistButton(new CreateWatchlistActionListener());
+        browseWatchlistView.addOpenWatchlistButton(new OpenWatchlistActionListener());
+        browseWatchlistView.addMainMenuActionListener(new MainMenuActionListener());
     }
 
-    private class createWatchlistActionListener implements ActionListener {
+    private class CreateWatchlistActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
             try{
@@ -40,7 +40,7 @@ public class BrowseWatchlistController {
         }
     }
 
-    private class openWatchlistActionListener implements ActionListener {
+    private class OpenWatchlistActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = browseWatchlistView.getSelectedListIndex();
@@ -49,7 +49,7 @@ public class BrowseWatchlistController {
         }
     }
 
-    private class mainMenuActionListener implements ActionListener {
+    private class MainMenuActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             session.openMainMenu();

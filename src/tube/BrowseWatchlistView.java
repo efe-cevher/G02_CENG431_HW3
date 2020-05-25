@@ -84,10 +84,6 @@ public class BrowseWatchlistView implements Observer {
         mainMenuButton.addActionListener(actionListener);
     }
 
-    public void addOpenWatchlistMouseListener(MouseListener mouseListener) {
-        jWatchlists.addMouseListener(mouseListener);
-    }
-
     public int getSelectedListIndex(){
         return jWatchlists.getSelectedIndex();
     }
