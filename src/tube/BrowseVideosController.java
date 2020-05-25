@@ -9,12 +9,12 @@ public class BrowseVideosController {
 
     SessionManager session;
     BrowseVideosView browseVideosView;
-    VideoHandler videoHandler;
+    VideoDataHandler videoHandler;
 
     public BrowseVideosController(BrowseVideosView browseVideosView, SessionManager session) {
         this.session = session;
         this.browseVideosView = browseVideosView;
-        this.videoHandler = new VideoHandler();
+        this.videoHandler = new VideoDataHandler();
 
         Map<Integer,Video> videoMap = videoHandler.getDataMap();
         browseVideosView.setVideolist(new ArrayList<>(videoMap.values()));

@@ -8,8 +8,8 @@ public class VideoController {
     private final Video video;
     private final Watchlist currentWatchlist;
     private final VideoView videoView;
-    private final VideoHandler videoHandler;
-    private UserHandler userHandler;
+    private final VideoDataHandler videoHandler;
+    private UserDataHandler userHandler;
     private SessionManager session;
 
     public VideoController(Video video, VideoView videoView, Watchlist watchlist, SessionManager session) {
@@ -17,8 +17,8 @@ public class VideoController {
         this.video = video;
         this.currentWatchlist = watchlist;
         this.videoView = videoView;
-        this.videoHandler = new VideoHandler();
-        this.userHandler = new UserHandler();
+        this.videoHandler = new VideoDataHandler();
+        this.userHandler = new UserDataHandler();
         this.session = session;
 
         video.addObserver(videoHandler);

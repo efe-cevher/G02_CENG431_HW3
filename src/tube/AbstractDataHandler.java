@@ -2,20 +2,19 @@ package tube;
 
 import java.util.Map;
 
-public abstract class AbstractHandler<E, T> implements IDynamicStorage<E, T>{
+public abstract class AbstractDataHandler<E, T> implements IDynamicStorage<E, T>{
 
     private final IFormatter<Map<E, T>> formatter;
     private final Map<E, T> dataMap;
     private final IStorage storage;
 
-    protected AbstractHandler(IFormatter<Map<E, T>> formatter, IStorage storage){
+    protected AbstractDataHandler(IFormatter<Map<E, T>> formatter, IStorage storage){
         this.formatter = formatter;
         this.storage = storage;
         this.dataMap = formatter.toObject(storage.read());
     }
 
     public T get(E identifier) {
-
         return dataMap.get(identifier);
     }
 

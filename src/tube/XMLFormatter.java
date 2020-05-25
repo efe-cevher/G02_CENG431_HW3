@@ -11,19 +11,13 @@ import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 import com.thoughtworks.xstream.security.*;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.*;
 
 public class XMLFormatter implements IFormatter<Map<String, User>>{
 
-    public XMLFormatter() {
-    }
-
     public String toFormat(Map<String, User> user){
-
         Users users = new Users(new ArrayList<>(user.values()));
         XStream xstream = new XStream();
         xstream.autodetectAnnotations(true);
@@ -125,64 +119,6 @@ public class XMLFormatter implements IFormatter<Map<String, User>>{
             userMap.put(user.getUsername(), user);
         }
         return userMap;
-    }
-
-    public static void main(String[] args) throws JAXBException, IOException {
-
-        List<Integer> liked = new ArrayList<>();
-        List<Integer> disliked = new ArrayList<>();
-        liked.add(1);
-        liked.add(2);
-        disliked.add(3);
-
-        List<Integer> videos = new ArrayList<>();
-        List<Comment> comments = new ArrayList<>();
-        comments.add(new Comment("Ali", "OLAMAAZ"));
-        comments.add(new Comment("Ali", "Merhaba Vidyonu vidomda gosterebilirmiyim sagul"));
-        videos.add((new Video(1,"video1","content1",new Date(), 0,0,comments).getId()));
-        videos.add((new Video(2,"video2","content2",new Date(), 0,0,comments)).getId());
-        videos.add((new Video(3,"video3","content3",new Date(), 0,0,comments)).getId());
-
-        Watchlist watchlist = new Watchlist(new ArrayList<>(), "playlist1");
-        watchlist.add((new Video(1,"video1","content1",new Date(), 0,0,comments).getId()));
-        watchlist.add((new Video(2,"video2","content2",new Date(), 0,0,comments).getId()));
-
-        Watchlist watchlist1 = new Watchlist(new ArrayList<>(), "playlist2");
-        watchlist1.add((new Video(3,"video3","content3",new Date(), 0,0,comments)).getId());
-
-        List<Watchlist> watchlists = new ArrayList<>();
-        watchlists.add(watchlist);
-        List<Watchlist> watchlists1 = new ArrayList<>();
-        watchlists.add(watchlist1);
-
-        User user2 = new User("kaan","123", new ArrayList<>(), new ArrayList<>(), liked, disliked, watchlists);
-        User user3 = new User("efecan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
-        User user4 = new User("zekihan","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,watchlists1);
-        User user5 = new User("gayegemen","123",new ArrayList<>(),new ArrayList<>(),liked,disliked,new ArrayList<>());
-        List<User> users = new ArrayList<>();
-        users.add(user2);
-        users.add(user3);
-        users.add(user4);
-        users.add(user5);
-
-        XMLFormatter xmlFormatter = new XMLFormatter();
-        IStorage storage = new FileStorage("users.xml");
-
-        Map<String,User> usersMap =new HashMap<>();
-        usersMap.put(user2.getUsername(),user2);
-        usersMap.put(user3.getUsername(),user3);
-        usersMap.put(user4.getUsername(),user4);
-        usersMap.put(user5.getUsername(),user5);
-        String asd = xmlFormatter.toFormat(usersMap);
-        storage.save(asd);
-
-        System.out.println(storage.read());
-
-        Map<String,User> users1 = xmlFormatter.toObject(storage.read());
-        for(User u : users1.values()){
-            System.out.println("Username: " + u.getUsername());
-            System.out.println("Password: " + u.getPassword());
-        }
     }
 
     private static class Users {

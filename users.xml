@@ -38,36 +38,31 @@
     </watchlists>
   </user>
   <user>
-    <username>gayegemen</username>
-    <password>123</password>
-    <followings/>
-    <followers>
-      <string>kaan</string>
-    </followers>
-    <likedVideos/>
-    <dislikedVideos/>
-    <watchlists/>
-  </user>
-  <user>
     <username>efecan</username>
     <password>123</password>
     <followings>
       <string>kaan</string>
+      <string>zekihan</string>
+      <string>gayegemen</string>
     </followings>
     <followers>
       <string>kaan</string>
     </followers>
     <likedVideos>
       <int>1</int>
+      <int>44</int>
     </likedVideos>
     <dislikedVideos>
       <int>2</int>
       <int>36</int>
+      <int>43</int>
     </dislikedVideos>
     <watchlists>
       <watchlist>
         <name>p1</name>
-        <videos/>
+        <videos>
+          <int>44</int>
+        </videos>
       </watchlist>
       <watchlist>
         <name>p2</name>
@@ -97,7 +92,9 @@
     <followings>
       <string>kaan</string>
     </followings>
-    <followers/>
+    <followers>
+      <string>efecan</string>
+    </followers>
     <likedVideos/>
     <dislikedVideos/>
     <watchlists>

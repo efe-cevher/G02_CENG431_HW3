@@ -9,12 +9,12 @@ public class BrowseWatchlistController {
     private final SessionManager session;
     private final BrowseWatchlistView browseWatchlistView;
     private List<Watchlist> allWatchlists;
-    private final UserHandler dataHandler;
+    private final UserDataHandler dataHandler;
 
     public BrowseWatchlistController(BrowseWatchlistView browseWatchlistView, SessionManager session) {
         this.session = session;
         this.browseWatchlistView = browseWatchlistView;
-        this.dataHandler = new UserHandler();
+        this.dataHandler = new UserDataHandler();
         this.allWatchlists = getAllWatchlists();
 
         session.getUser().addObserver(browseWatchlistView);

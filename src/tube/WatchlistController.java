@@ -3,21 +3,20 @@ package tube;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class WatchlistController {
 
     private final WatchlistView watchlistView;
     private final Watchlist watchlist;
-    private final VideoHandler videoHandler;
+    private final VideoDataHandler videoHandler;
     private SessionManager session;
 
     public WatchlistController(WatchlistView watchlistView, Watchlist watchlist, SessionManager session){
         this.watchlistView = watchlistView;
         this.watchlist = watchlist;
         this.session = session;
-        this.videoHandler = new VideoHandler();
+        this.videoHandler = new VideoDataHandler();
 
         watchlistView.setVideoNameMap(getVideoNameMap());
 
@@ -51,7 +50,7 @@ public class WatchlistController {
                 return;
             }
             Integer videoId = watchlist.getVideos().get(i);
-            VideoHandler videoHandler = new VideoHandler();
+            VideoDataHandler videoHandler = new VideoDataHandler();
             Video selectedVideo = videoHandler.get(videoId);
             session.openVideo(selectedVideo, watchlist);
         }

@@ -7,10 +7,10 @@ public class BrowseUsersController {
 
     private final BrowseUsersView browseUsersView;
     private final SessionManager session;
-    private final UserHandler userHandler;
+    private final UserDataHandler userHandler;
 
     public BrowseUsersController(BrowseUsersView browseUsersView, SessionManager session){
-        this.userHandler =  new UserHandler();
+        this.userHandler =  new UserDataHandler();
         this.browseUsersView = browseUsersView;
         this.session = session;
 

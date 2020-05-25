@@ -2,9 +2,9 @@ package tube;
 
 import java.util.*;
 
-public class VideoHandler extends AbstractHandler<Integer, Video> implements Observer {
+public class VideoDataHandler extends AbstractDataHandler<Integer, Video> implements Observer {
 
-    public VideoHandler(){
+    public VideoDataHandler(){
         super(new JSONFormatter(), new FileStorage("videos.json"));
     }
 

@@ -19,7 +19,7 @@ public class SessionManager {
     }
 
     public void openBrowseUsers(){
-        UserHandler dataHandler = new UserHandler();
+        UserDataHandler dataHandler = new UserDataHandler();
         BrowseUsersView browseUsersView = new BrowseUsersView(frame, dataHandler.getUsernames(), user);
         BrowseUsersController browseUsersController = new BrowseUsersController(browseUsersView, this);
     }

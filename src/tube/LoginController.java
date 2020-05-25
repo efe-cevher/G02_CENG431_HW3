@@ -22,7 +22,7 @@ public class LoginController {
 
     private void checkCredentials(String username, char[] password) {
 
-        UserHandler userHandler = new UserHandler();
+        UserDataHandler userHandler = new UserDataHandler();
         User user = userHandler.get(username);
 
         if(user != null && user.getPassword().equals(String.valueOf(password))){

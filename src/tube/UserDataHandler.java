@@ -2,9 +2,9 @@ package tube;
 
 import java.util.*;
 
-public class UserHandler extends AbstractHandler<String, User>  implements Observer {
+public class UserDataHandler extends AbstractDataHandler<String, User> implements Observer {
 
-    public UserHandler() {
+    public UserDataHandler() {
         super(new XMLFormatter(), new FileStorage("users.xml"));
         //load from xml and json
     }
