@@ -19,7 +19,6 @@ import java.util.*;
 
 public class XMLFormatter implements IFormatter<Map<String, User>>{
 
-
     public XMLFormatter() {
     }
 

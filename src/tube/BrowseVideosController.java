@@ -17,7 +17,7 @@ public class BrowseVideosController {
         this.videoHandler = new VideoHandler();
 
         Map<Integer,Video> videoMap = videoHandler.getDataMap();
-        browseVideosView.setVideolist(new ArrayList(videoMap.values()));
+        browseVideosView.setVideolist(new ArrayList<>(videoMap.values()));
         browseVideosView.addOpenVideoActionListener(new OpenVideoActionListener());
         browseVideosView.addMainMenuActionListener(new MainMenuActionListener());
     }

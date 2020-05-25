@@ -57,7 +57,6 @@ public class WatchlistController {
         }
     }
 
-    //TODO CHANGE BUTTON TO "BACK" TO BROWSE PLAYLISTS
     private class backActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
