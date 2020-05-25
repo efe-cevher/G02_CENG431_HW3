@@ -3,6 +3,7 @@ package iztechtube.watchlistbrowser;
 import iztechtube.FrameManager;
 import iztechtube.usersession.User;
 import iztechtube.watchlistvideosbrowser.Watchlist;
+import org.jaxen.expr.Step;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,7 @@ public class BrowseWatchlistView implements Observer {
     private JList<String> jWatchlists;
     private FrameManager frame;
     private User user;
-    private List<Watchlist> followingsWatchlists;
+    private List<String> followingsWatchlists;
 
     public BrowseWatchlistView(FrameManager frame, User user) {
         this.frame = frame;
@@ -58,16 +59,15 @@ public class BrowseWatchlistView implements Observer {
     }
 
     private void setWatchlists() {
-        List<Watchlist> allWatchlists = new ArrayList();
-        allWatchlists.addAll(user.getWatchlists());
-        allWatchlists.addAll(followingsWatchlists);
-        String[] watchlistsArr = new String[allWatchlists.size()];
-        int i = 0;
-        for(Watchlist wl: allWatchlists){
-            watchlistsArr[i] = "<html><body>" + wl.getName() + "<br>" + " " + "<br>" + "</span></body></html>}";
-            i++;
+        List<String> allWatchlists = new ArrayList<>();
+        for(Watchlist wl: user.getWatchlists()){
+            allWatchlists.add("<html><body>" + wl.getName() + " -my" + "<br>" + " " + "<br>" + "</span></body></html>}");
         }
-        jWatchlists.setListData(watchlistsArr);
+        for(String wl: followingsWatchlists){
+            allWatchlists.add("<html><body>" + wl + "<br>" + " " + "<br>" + "</span></body></html>}");
+        }
+        String[] watchlistArr = {};
+        jWatchlists.setListData(allWatchlists.toArray(watchlistArr));
     }
 
     //Get user input from a popup
@@ -93,7 +93,7 @@ public class BrowseWatchlistView implements Observer {
         return jWatchlists.getSelectedIndex();
     }
 
-    public void setFollowingsWatchlists(List<Watchlist> watchlists){
+    public void setFollowingsWatchlists(List<String> watchlists){
         this.followingsWatchlists = watchlists;
         setWatchlists();
     }

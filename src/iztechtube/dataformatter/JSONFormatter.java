@@ -2,6 +2,9 @@ package iztechtube.dataformatter;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import iztechtube.storage.FileStorage;
+import iztechtube.storage.IStorage;
+import iztechtube.video.IntendedAudience;
 import iztechtube.video.Video;
 
 import java.lang.reflect.Type;
@@ -49,4 +52,23 @@ public class JSONFormatter implements IFormatter<Map<Integer, Video>>{
         return gson.toJson(videoMap);
     }
 
+
+    public static void main(String[] args) {
+        Map<Integer,Video> videoMap = new HashMap<>();
+        for (int i = 1; i < 51; i++) {
+            Video video = new Video(i,"video "+ i,"video " + i + " content",new Date(), IntendedAudience.EVERYONE,0,0,new ArrayList<>());
+            videoMap.put(i,video);
+        }
+
+        JSONFormatter jsonFormatter = new JSONFormatter();
+        IStorage storage = new FileStorage("videos.json");
+
+        String videoMapJson = jsonFormatter.toFormat(videoMap);
+        System.out.println(videoMapJson);
+        storage.save(videoMapJson);
+
+        Map<Integer,Video> videoMap2 = jsonFormatter.toObject(storage.read());
+        String videoMapJson2 = jsonFormatter.toFormat(videoMap2);
+        System.out.println(videoMapJson2);
+    }
 }

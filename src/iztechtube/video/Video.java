@@ -13,15 +13,17 @@ public class Video extends Observable {
     private String title;
     private String content;
     private Date date;
+    private IntendedAudience audience;
     private int likes;
     private int dislikes;
     private List<Comment> comments;
 
-    public Video(int id, String title, String content, Date date, int likes, int dislikes, List<Comment> comments){
+    public Video(int id, String title, String content, Date date, IntendedAudience audience, int likes, int dislikes, List<Comment> comments){
         this.id = id;
         this.title = title;
         this.content = content;
         this.date = date;
+        this.audience = audience;
         this.likes = likes;
         this.dislikes = dislikes;
         this.comments = comments;
@@ -75,4 +77,7 @@ public class Video extends Observable {
         return comments;
     }
 
+    public IntendedAudience getAudience() {
+        return audience;
+    }
 }

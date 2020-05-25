@@ -25,7 +25,7 @@ public class BrowseWatchlistController {
         session.getUser().addObserver(browseWatchlistView);
         session.getUser().addObserver(dataHandler);
 
-        browseWatchlistView.setFollowingsWatchlists(getFollowingsWatchlists());
+        browseWatchlistView.setFollowingsWatchlists(getFollowingsWatchlistItems());
 
         browseWatchlistView.addCreateWatchlistButton(new CreateWatchlistActionListener());
         browseWatchlistView.addOpenWatchlistButton(new OpenWatchlistActionListener());
@@ -80,4 +80,13 @@ public class BrowseWatchlistController {
         return followingsWatchlists;
     }
 
+    private List<String> getFollowingsWatchlistItems(){
+        List<String> followingsWatchlists = new ArrayList<>();
+        for(String username: session.getUser().getFollowing()){
+           for(Watchlist watchlist : dataHandler.get(username).getWatchlists()){
+               followingsWatchlists.add(watchlist.getName() + " -" + username);
+           }
+        }
+        return followingsWatchlists;
+    }
 }

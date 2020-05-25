@@ -3,13 +3,18 @@
     "id": 1,
     "title": "video 1",
     "content": "video 1 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 1,
+    "date": "Fri, 15 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
+    "likes": 2,
     "dislikes": 1,
     "comments": [
       {
+        "username": "efecan",
+        "comment": "nice"
+      },
+      {
         "username": "kaan",
-        "comment": "sup guys, subscribe to my channel pls"
+        "comment": "please subscribe to my channel"
       }
     ]
   },
@@ -17,17 +22,14 @@
     "id": 2,
     "title": "video 2",
     "content": "video 2 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 0,
-    "dislikes": 2,
+    "date": "Sat, 16 May 2020 23:36:34 +0300",
+    "audience": "CHILDREN",
+    "likes": 1,
+    "dislikes": 1,
     "comments": [
       {
-        "username": "kaan",
-        "comment": "this video is not appropriate for children!!!!!!!"
-      },
-      {
         "username": "efecan",
-        "comment": "yep"
+        "comment": "kids loved it"
       }
     ]
   },
@@ -35,8 +37,9 @@
     "id": 3,
     "title": "video 3",
     "content": "video 3 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 1,
+    "date": "Sun, 17 May 2020 17:10:34 +0300",
+    "audience": "ADULT",
+    "likes": 0,
     "dislikes": 1,
     "comments": []
   },
@@ -44,7 +47,8 @@
     "id": 4,
     "title": "video 4",
     "content": "video 4 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -53,7 +57,8 @@
     "id": 5,
     "title": "video 5",
     "content": "video 5 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -62,8 +67,9 @@
     "id": 6,
     "title": "video 6",
     "content": "video 6 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 1,
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
+    "likes": 0,
     "dislikes": 0,
     "comments": []
   },
@@ -71,7 +77,8 @@
     "id": 7,
     "title": "video 7",
     "content": "video 7 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -80,7 +87,8 @@
     "id": 8,
     "title": "video 8",
     "content": "video 8 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -89,7 +97,8 @@
     "id": 9,
     "title": "video 9",
     "content": "video 9 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -98,34 +107,43 @@
     "id": 10,
     "title": "video 10",
     "content": "video 10 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 0,
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
+    "likes": 1,
     "dislikes": 0,
-    "comments": []
+    "comments": [
+      {
+        "username": "zekihan",
+        "comment": "nice beats"
+      }
+    ]
   },
   "11": {
     "id": 11,
     "title": "video 11",
     "content": "video 11 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
-    "dislikes": 1,
+    "dislikes": 0,
     "comments": []
   },
   "12": {
     "id": 12,
     "title": "video 12",
-    "content": "content",
-    "date": "Fri, 22 May 2020 18:55:13 +0300",
+    "content": "video 12 content",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
   },
   "13": {
-    "id": 0,
+    "id": 13,
     "title": "video 13",
     "content": "video 13 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -134,7 +152,8 @@
     "id": 14,
     "title": "video 14",
     "content": "video 14 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -143,7 +162,8 @@
     "id": 15,
     "title": "video 15",
     "content": "video 15 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -152,7 +172,8 @@
     "id": 16,
     "title": "video 16",
     "content": "video 16 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -161,7 +182,8 @@
     "id": 17,
     "title": "video 17",
     "content": "video 17 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -170,7 +192,8 @@
     "id": 18,
     "title": "video 18",
     "content": "video 18 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -179,7 +202,8 @@
     "id": 19,
     "title": "video 19",
     "content": "video 19 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -188,8 +212,9 @@
     "id": 20,
     "title": "video 20",
     "content": "video 20 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 0,
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
+    "likes": 1,
     "dislikes": 0,
     "comments": []
   },
@@ -197,7 +222,8 @@
     "id": 21,
     "title": "video 21",
     "content": "video 21 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -206,7 +232,8 @@
     "id": 22,
     "title": "video 22",
     "content": "video 22 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -215,7 +242,8 @@
     "id": 23,
     "title": "video 23",
     "content": "video 23 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -224,7 +252,8 @@
     "id": 24,
     "title": "video 24",
     "content": "video 24 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -233,7 +262,8 @@
     "id": 25,
     "title": "video 25",
     "content": "video 25 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -242,7 +272,8 @@
     "id": 26,
     "title": "video 26",
     "content": "video 26 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -251,7 +282,8 @@
     "id": 27,
     "title": "video 27",
     "content": "video 27 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -260,7 +292,8 @@
     "id": 28,
     "title": "video 28",
     "content": "video 28 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -269,7 +302,8 @@
     "id": 29,
     "title": "video 29",
     "content": "video 29 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -278,7 +312,8 @@
     "id": 30,
     "title": "video 30",
     "content": "video 30 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -287,7 +322,8 @@
     "id": 31,
     "title": "video 31",
     "content": "video 31 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -296,7 +332,8 @@
     "id": 32,
     "title": "video 32",
     "content": "video 32 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -305,7 +342,8 @@
     "id": 33,
     "title": "video 33",
     "content": "video 33 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -314,7 +352,8 @@
     "id": 34,
     "title": "video 34",
     "content": "video 34 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -323,7 +362,8 @@
     "id": 35,
     "title": "video 35",
     "content": "video 35 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -332,16 +372,18 @@
     "id": 36,
     "title": "video 36",
     "content": "video 36 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
-    "dislikes": 1,
+    "dislikes": 0,
     "comments": []
   },
   "37": {
     "id": 37,
     "title": "video 37",
     "content": "video 37 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -350,7 +392,8 @@
     "id": 38,
     "title": "video 38",
     "content": "video 38 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -359,7 +402,8 @@
     "id": 39,
     "title": "video 39",
     "content": "video 39 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -368,7 +412,8 @@
     "id": 40,
     "title": "video 40",
     "content": "video 40 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -377,7 +422,8 @@
     "id": 41,
     "title": "video 41",
     "content": "video 41 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -386,7 +432,8 @@
     "id": 42,
     "title": "video 42",
     "content": "video 42 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -395,30 +442,28 @@
     "id": 43,
     "title": "video 43",
     "content": "video 43 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
-    "dislikes": 1,
+    "dislikes": 0,
     "comments": []
   },
   "44": {
     "id": 44,
     "title": "video 44",
     "content": "video 44 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
-    "comments": [
-      {
-        "username": "efecan",
-        "comment": "merhaba"
-      }
-    ]
+    "comments": []
   },
   "45": {
     "id": 45,
     "title": "video 45",
     "content": "video 45 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -427,7 +472,8 @@
     "id": 46,
     "title": "video 46",
     "content": "video 46 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -436,7 +482,8 @@
     "id": 47,
     "title": "video 47",
     "content": "video 47 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -445,7 +492,8 @@
     "id": 48,
     "title": "video 48",
     "content": "video 48 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -454,7 +502,8 @@
     "id": 49,
     "title": "video 49",
     "content": "video 49 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
     "likes": 0,
     "dislikes": 0,
     "comments": []
@@ -463,8 +512,9 @@
     "id": 50,
     "title": "video 50",
     "content": "video 50 content",
-    "date": "Fri, 22 May 2020 00:53:35 +0300",
-    "likes": 0,
+    "date": "Mon, 25 May 2020 23:36:34 +0300",
+    "audience": "EVERYONE",
+    "likes": 1,
     "dislikes": 0,
     "comments": []
   }

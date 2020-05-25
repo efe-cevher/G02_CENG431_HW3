@@ -29,6 +29,7 @@ public class VideoController {
         this.session = session;
 
         video.addObserver(videoHandler);
+        video.addObserver(videoView);
         session.getUser().addObserver(userHandler);
 
         videoView.addDislikeActionListener(new DislikeActionListener());
@@ -119,6 +120,7 @@ public class VideoController {
             }else{
                 video.addComment(new Comment(session.getUser().getUsername(), commentText));
                 videoHandler.modify(video.getId(), video);
+                videoView.cleanCommentField();
             }
         }
     }

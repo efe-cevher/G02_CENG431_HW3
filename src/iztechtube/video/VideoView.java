@@ -5,6 +5,7 @@ import iztechtube.FrameManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class VideoView implements Observer {
     private JButton commentButton;
     private JButton addToWatchlistButton;
     private JButton backButton;
+    private JLabel audience;
+    private JLabel date;
     private JLabel likeCount;
     private JLabel dislikeCount;
     private JList<String> commentJList;
@@ -27,7 +30,6 @@ public class VideoView implements Observer {
         this.video = video;
         this.frame = frame;
         showVideoView();
-        video.addObserver(this);
     }
 
     public void showVideoView(){
@@ -40,8 +42,17 @@ public class VideoView implements Observer {
 
         JTextArea content = new JTextArea(video.getContent());
         content.setEditable(false);
-        content.setBounds(10, 40, 400, 225);
+        content.setBounds(10, 40, 420, 200);
         panel.add(content);
+
+        audience = new JLabel(("Audience: " + video.getAudience().name()));
+        audience.setBounds(30, 250, 150, 25);
+        panel.add(audience);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        date = new JLabel(("Date: " + dateFormat.format(video.getDate())));
+        date.setBounds(280, 250, 200, 25);
+        panel.add(date);
 
         likeCount = new JLabel((video.getLikes() + ""));
         likeCount.setBounds(100, 290, 80, 25);
@@ -60,25 +71,25 @@ public class VideoView implements Observer {
         panel.add(likeButton);
 
         addToWatchlistButton = new JButton("Add to watchlist");
-        addToWatchlistButton.setBounds(270, 290, 140, 25);
+        addToWatchlistButton.setBounds(290, 290, 140, 25);
         panel.add(addToWatchlistButton);
 
         commentField = new JTextField(20);
-        commentField.setBounds(10, 340, 300, 25);
+        commentField.setBounds(10, 340, 320, 25);
         panel.add(commentField);
 
         commentButton = new JButton("Comment");
-        commentButton.setBounds(320, 340, 90, 25);
+        commentButton.setBounds(340, 340, 90, 25);
         panel.add(commentButton);
 
         backButton = new JButton("Back");
-        backButton.setBounds(330, 10, 80, 25);
+        backButton.setBounds(350, 5, 80, 25);
         panel.add(backButton);
 
         commentJList = new JList<>();
 
         scrollPane = new JScrollPane(commentJList);
-        scrollPane.setBounds(10, 380, 400, 250);
+        scrollPane.setBounds(10, 380, 420, 250);
         panel.add(scrollPane);
 
         setCommentList();
@@ -130,6 +141,9 @@ public class VideoView implements Observer {
         commentJList.setListData(commentsArr);
     }
 
+    public void cleanCommentField(){
+        commentField.setText("");
+    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -147,6 +161,5 @@ public class VideoView implements Observer {
         return comments;
     }
 
-    public FrameManager getFrame() { return this.frame; }
 
 }
