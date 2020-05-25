@@ -35,7 +35,7 @@ public class BrowseWatchlistController {
                 session.getUser().addWatchlist(new Watchlist(new ArrayList<>(),title));
                 allWatchlists = getAllWatchlists();
             }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
+
             }
         }
     }
@@ -44,6 +44,9 @@ public class BrowseWatchlistController {
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = browseWatchlistView.getSelectedListIndex();
+            if(i<0 || i>= allWatchlists.size()){
+                return;
+            }
             Watchlist watchlist = allWatchlists.get(i);
             session.openWatchlist(watchlist);
         }

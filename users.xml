@@ -3,7 +3,6 @@
     <username>kaan</username>
     <password>123</password>
     <followings>
-      <string>gayegemen</string>
       <string>efecan</string>
     </followings>
     <followers>
@@ -42,15 +41,12 @@
     <password>123</password>
     <followings>
       <string>kaan</string>
-      <string>zekihan</string>
-      <string>gayegemen</string>
     </followings>
     <followers>
       <string>kaan</string>
     </followers>
     <likedVideos>
       <int>1</int>
-      <int>44</int>
     </likedVideos>
     <dislikedVideos>
       <int>2</int>
@@ -82,6 +78,7 @@
         <name>p5</name>
         <videos>
           <int>1</int>
+          <int>44</int>
         </videos>
       </watchlist>
     </watchlists>
@@ -92,16 +89,9 @@
     <followings>
       <string>kaan</string>
     </followings>
-    <followers>
-      <string>efecan</string>
-    </followers>
+    <followers/>
     <likedVideos/>
     <dislikedVideos/>
-    <watchlists>
-      <watchlist>
-        <name>playlist4</name>
-        <videos/>
-      </watchlist>
-    </watchlists>
+    <watchlists/>
   </user>
 </users>

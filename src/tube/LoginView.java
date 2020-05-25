@@ -24,23 +24,23 @@ public class LoginView {
         panel.setLayout(null);
 
         userLabel = new JLabel("User");
-        userLabel.setBounds(10, 10, 80, 25);
+        userLabel.setBounds(80, 250, 80, 25);
         panel.add(userLabel);
 
         usernameText = new JTextField(20);
-        usernameText.setBounds(100, 10, 160, 25);
+        usernameText.setBounds(170, 250, 160, 25);
         panel.add(usernameText);
 
         passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(10, 40, 80, 25);
+        passwordLabel.setBounds(80, 280, 80, 25);
         panel.add(passwordLabel);
 
         passwordText = new JPasswordField(20);
-        passwordText.setBounds(100, 40, 160, 25);
+        passwordText.setBounds(170, 280, 160, 25);
         panel.add(passwordText);
 
         loginButton = new JButton("login");
-        loginButton.setBounds(180, 70, 80, 25);
+        loginButton.setBounds(250, 310, 80, 25);
         panel.add(loginButton);
 
         frame.setNewPanel(panel);

@@ -12,7 +12,9 @@ public class UserDataHandler extends AbstractDataHandler<String, User> implement
     @Override
     public User get(String identifier) {
         User user = super.get(identifier);
-        user.addObserver(this);
+        if(user !=null){
+            user.addObserver(this);
+        }
         return user;
     }
 
