@@ -27,9 +27,12 @@ public class BrowseUsersController {
     private class FollowActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            User targetUser = userHandler.get(browseUsersView.getSelectedUsername());
-            session.getUser().follow(targetUser.getUsername());
-            targetUser.addFollower(session.getUser().getUsername());
+            String selectedUser = browseUsersView.getSelectedUsername();
+            if(selectedUser != null){
+                User targetUser = userHandler.get(selectedUser);
+                session.getUser().follow(targetUser.getUsername());
+                targetUser.addFollower(session.getUser().getUsername());
+            }
         }
     }
 
@@ -37,9 +40,12 @@ public class BrowseUsersController {
     private class UnfollowActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            User targetUser = userHandler.get(browseUsersView.getSelectedUsername());
-            session.getUser().unfollow(targetUser.getUsername());
-            targetUser.removeFollower(session.getUser().getUsername());
+            String selectedUser = browseUsersView.getSelectedUsername();
+            if(selectedUser != null) {
+                User targetUser = userHandler.get(browseUsersView.getSelectedUsername());
+                session.getUser().unfollow(targetUser.getUsername());
+                targetUser.removeFollower(session.getUser().getUsername());
+            }
         }
     }
 

@@ -40,7 +40,7 @@ public class LoginView {
         panel.add(passwordText);
 
         loginButton = new JButton("login");
-        loginButton.setBounds(10, 80, 80, 25);
+        loginButton.setBounds(180, 70, 80, 25);
         panel.add(loginButton);
 
         frame.setNewPanel(panel);

@@ -22,15 +22,15 @@ public class MenuView {
         panel.setLayout(null);
 
         browseUsersButton = new JButton("Browse Users");
-        browseUsersButton.setBounds(135, 80, 200, 25);
+        browseUsersButton.setBounds(135, 80, 200, 35);
         panel.add(browseUsersButton);
 
         browseWatchlistsButton = new JButton("Browse Watchlists");
-        browseWatchlistsButton.setBounds(135, 120, 200, 25);
+        browseWatchlistsButton.setBounds(135, 130, 200, 35);
         panel.add(browseWatchlistsButton);
 
         logoutButton = new JButton("Logout");
-        logoutButton.setBounds(135, 160, 200, 25);
+        logoutButton.setBounds(135, 180, 200, 35);
         panel.add(logoutButton);
 
         frame.setNewPanel(panel);

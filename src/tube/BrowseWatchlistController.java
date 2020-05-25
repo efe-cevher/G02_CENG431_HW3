@@ -2,8 +2,6 @@ package tube;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,16 +25,18 @@ public class BrowseWatchlistController {
         browseWatchlistView.addCreateWatchlistButton(new createWatchlistActionListener());
         browseWatchlistView.addOpenWatchlistButton(new openWatchlistActionListener());
         browseWatchlistView.addMainMenuActionListener(new mainMenuActionListener());
-        browseWatchlistView.addOpenWatchlistMouseListener(new openWatchlistMouseListener());
-
     }
 
     private class createWatchlistActionListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            String title = browseWatchlistView.getUserInput("Watch List title:");
-            session.getUser().addWatchlist(new Watchlist(new ArrayList<>(),title));
-            allWatchlists = getAllWatchlists();
+        public void actionPerformed(ActionEvent event) {
+            try{
+                String title = browseWatchlistView.getUserInput("Watch List title:");
+                session.getUser().addWatchlist(new Watchlist(new ArrayList<>(),title));
+                allWatchlists = getAllWatchlists();
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -54,24 +54,6 @@ public class BrowseWatchlistController {
         public void actionPerformed(ActionEvent e) {
             session.openMainMenu();
         }
-    }
-
-    private  class openWatchlistMouseListener implements MouseListener {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            int i = browseWatchlistView.getSelectedListIndex();
-            Watchlist watchlist = allWatchlists.get(i);
-
-            session.openWatchlist(watchlist);
-        }
-        @Override
-        public void mousePressed(MouseEvent e) { }
-        @Override
-        public void mouseReleased(MouseEvent e) { }
-        @Override
-        public void mouseEntered(MouseEvent e) { }
-        @Override
-        public void mouseExited(MouseEvent e) { }
     }
 
     private List<Watchlist> getAllWatchlists() {

@@ -29,6 +29,10 @@ public class BrowseUsersView implements Observer {
         panel = new JPanel(new GridLayout(3, 1));
         panel.setLayout(null);
 
+        JLabel title = new JLabel("Users");
+        title.setBounds(10, 10, 80, 25);
+        panel.add(title);
+
         scrollPane = new JScrollPane();
 
         jList = new JList<>();
@@ -36,15 +40,15 @@ public class BrowseUsersView implements Observer {
 
         setJList();
 
-        scrollPane.setBounds(10, 40, 450, 250);
+        scrollPane.setBounds(10, 40, 420, 500);
         panel.add(scrollPane);
 
         mainMenuButton = new JButton("Main Menu");
-        mainMenuButton.setBounds(310, 320, 120, 35);
+        mainMenuButton.setBounds(310, 560, 120, 35);
         followButton = new JButton("Follow User");
-        followButton.setBounds(10, 320, 120, 35);
+        followButton.setBounds(10, 560, 130, 35);
         unfollowButton = new JButton("Unfollow User");
-        unfollowButton.setBounds(160, 320, 120, 35);
+        unfollowButton.setBounds(160, 560, 130, 35);
 
         panel.add(followButton);
         panel.add(unfollowButton);
@@ -66,7 +70,12 @@ public class BrowseUsersView implements Observer {
     }
 
     public String getSelectedUsername(){
-        return usernames.get(jList.getSelectedIndex());
+        int i = jList.getSelectedIndex();
+        if(0 <= i && i < usernames.size()){
+            return usernames.get(i);
+        }else{
+            return null;
+        }
     }
 
     @Override

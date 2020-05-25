@@ -27,7 +27,7 @@ public class WatchlistView implements Observer {
 
         videos = new JList<String>();
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 40, 450, 250);
+        scrollPane.setBounds(10, 40, 420, 250);
         panel.add(scrollPane);
 
         showWatchlist();

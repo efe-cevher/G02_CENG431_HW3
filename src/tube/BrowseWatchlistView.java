@@ -27,30 +27,34 @@ public class BrowseWatchlistView implements Observer {
         panel = new JPanel(new GridLayout(3, 1));
         panel.setLayout(null);
 
+        JLabel title = new JLabel("Watchlists");
+        title.setBounds(10, 10, 80, 25);
+        panel.add(title);
+
         scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 40, 450, 250);
+        scrollPane.setBounds(10, 40, 420, 500);
         panel.add(scrollPane);
 
         jWatchlists = new JList<>();
         scrollPane.setViewportView(jWatchlists);
-        showLists();
+        setWatchlists();
 
         openWatchlistButton = new JButton("Open Watchlist");
-        openWatchlistButton.setBounds(150, 320, 140, 25);
+        openWatchlistButton.setBounds(10, 560, 130, 35);
         panel.add(openWatchlistButton);
 
         createWatchlistButton = new JButton("Create Watchlist");
-        createWatchlistButton.setBounds(10, 320, 140, 25);
+        createWatchlistButton.setBounds(160, 560, 130, 35);
         panel.add(createWatchlistButton);
 
         mainMenuButton = new JButton("Main Menu");
-        mainMenuButton.setBounds(10, 400, 120, 25);
+        mainMenuButton.setBounds(310, 560, 120, 35);
         panel.add(mainMenuButton);
 
         frame.setNewPanel(panel);
     }
 
-    private void showLists() {
+    private void setWatchlists() {
         List<Watchlist> allWatchlists = new ArrayList();
         allWatchlists.addAll(user.getWatchlists());
         allWatchlists.addAll(followingsWatchlists);
@@ -90,12 +94,12 @@ public class BrowseWatchlistView implements Observer {
 
     public void setFollowingsWatchlists(List<Watchlist> watchlists){
         this.followingsWatchlists = watchlists;
-        showLists();
+        setWatchlists();
     }
 
     @Override
     public void update(Observable o, Object arg) {
         user = (User) o;
-        showLists();
+        setWatchlists();
     }
 }
