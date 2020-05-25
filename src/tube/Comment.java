@@ -10,8 +10,12 @@ public class Comment {
         this.comment = comment;
     }
 
-    @Override
-    public String toString() {
-        return "<html><body>" + username + "<br>" + comment + "<br>" + " " + "<br>" + "</span></body></html>}";
+    public String getUsername() {
+        return username;
     }
+
+    public String getComment() {
+        return comment;
+    }
+
 }

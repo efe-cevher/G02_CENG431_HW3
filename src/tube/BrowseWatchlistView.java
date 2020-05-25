@@ -93,10 +93,6 @@ public class BrowseWatchlistView implements Observer {
         showLists();
     }
 
-    public FrameManager getFrame() {
-        return frame;
-    }
-
     @Override
     public void update(Observable o, Object arg) {
         user = (User) o;

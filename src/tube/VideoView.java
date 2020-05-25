@@ -18,7 +18,8 @@ public class VideoView implements Observer {
     private JButton backButton;
     private JLabel likeCount;
     private JLabel dislikeCount;
-    private JList<Comment> commentJList;
+    private JList<String> commentJList;
+    JScrollPane scrollPane;
 
     public VideoView(FrameManager frame, Video video) {
         this.video = video;
@@ -72,11 +73,13 @@ public class VideoView implements Observer {
         backButton.setBounds(330, 10, 80, 25);
         panel.add(backButton);
 
-        commentJList = new JList<>(reverseList(video.getComments()));
+        commentJList = new JList<>();
 
-        JScrollPane scrollCommentPane = new JScrollPane(commentJList);
-        scrollCommentPane.setBounds(10, 380, 400, 250);
-        panel.add(scrollCommentPane);
+        scrollPane = new JScrollPane(commentJList);
+        scrollPane.setBounds(10, 380, 400, 250);
+        panel.add(scrollPane);
+
+        setCommentList();
 
         frame.setNewPanel(panel);
     }
@@ -112,13 +115,24 @@ public class VideoView implements Observer {
 
     public Video getVideo(){ return video; }
 
+    private void setCommentList(){
+        String[] commentsArr = new String[video.getComments().size()];
+        int i = 0;
+        for(Comment comment : reverseList(video.getComments())){
+            commentsArr[i] = "<html><body>" + comment.getUsername() + "<br>" + comment.getComment()
+                    + "<br>" + " " + "<br>" + "</span></body></html>}";
+            i++;
+        }
+        commentJList.setListData(commentsArr);
+    }
+
 
     @Override
     public void update(Observable o, Object arg) {
         video = (Video) o;
         likeCount.setText(video.getLikes() + "");
         dislikeCount.setText(video.getDislikes() + "");
-        commentJList.setListData(reverseList(video.getComments()));
+        setCommentList();
     }
 
     private Comment[] reverseList(List<Comment> commentList){

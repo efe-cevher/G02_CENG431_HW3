@@ -91,10 +91,6 @@ public class BrowseUsersView implements Observer {
         jList.setListData(jListItems);
     }
 
-    public FrameManager getFrame(){
-        return frame;
-    }
-
 }
 
 

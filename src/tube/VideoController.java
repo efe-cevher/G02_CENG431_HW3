@@ -43,7 +43,6 @@ public class VideoController {
     }
 
     private class AddToWatchlistActionListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             String[] choices = new String[session.getUser().getWatchlists().size()];
@@ -64,7 +63,6 @@ public class VideoController {
             }
         }
     }
-
 
     private class LikeActionListener implements ActionListener {
         @Override

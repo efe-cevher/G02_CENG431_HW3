@@ -48,7 +48,4 @@ public class MenuView {
         logoutButton.addActionListener(actionListener);
     }
 
-    public FrameManager getFrame() {
-        return frame;
-    }
 }
