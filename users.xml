@@ -34,6 +34,7 @@
           <int>2</int>
         </videos>
       </watchlist>
+      <watchlist/>
     </watchlists>
   </user>
   <user>
@@ -92,6 +93,22 @@
     <followers/>
     <likedVideos/>
     <dislikedVideos/>
+    <watchlists/>
+  </user>
+  <user>
+    <username>nowatchlist-test</username>
+    <password>123</password>
+    <followings/>
+    <followers/>
+    <likedVideos>
+      <int>1</int>
+    </likedVideos>
+    <dislikedVideos>
+      <int>2</int>
+      <int>36</int>
+      <int>43</int>
+      <int>11</int>
+    </dislikedVideos>
     <watchlists/>
   </user>
 </users>
