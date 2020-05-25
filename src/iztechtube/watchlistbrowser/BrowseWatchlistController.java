@@ -41,7 +41,7 @@ public class BrowseWatchlistController {
                 allWatchlists = getAllWatchlists();
             }catch (WatchlistAlreadyPresentException e){
                 browseWatchlistView.displayMessage("A watchlist with the same title already exists.");
-            }
+            }catch (IllegalArgumentException ignored) { } //Watchlist name left blank or creation cancelled
         }
     }
 

@@ -15,7 +15,9 @@ public class VideoDataHandler extends AbstractDataHandler<Integer, Video> implem
     @Override
     public Video get(Integer identifier) {
         Video video = super.get(identifier);
-        video.addObserver(this);
+        if(video !=null){
+            video.addObserver(this);
+        }
         return video;
     }
 

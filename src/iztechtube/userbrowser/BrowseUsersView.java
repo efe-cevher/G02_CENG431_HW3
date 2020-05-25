@@ -96,7 +96,7 @@ public class BrowseUsersView implements Observer {
             if (user.getFollowing().contains(u)){
                 following = "- Following";
             }
-            jListItems[i] = "<html><body>"  + u.toUpperCase() + "   " + following + "<br>" + " " + "<br>" + "</span></body></html>}"; ;
+            jListItems[i] = "<html><body>"  + u + "   " + following + "<br>" + " " + "<br>" + "</span></body></html>}"; ;
             i++;
 
         }

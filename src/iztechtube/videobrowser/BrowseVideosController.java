@@ -7,6 +7,7 @@ import iztechtube.video.Video;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class BrowseVideosController {
@@ -14,11 +15,13 @@ public class BrowseVideosController {
     SessionManager session;
     BrowseVideosView browseVideosView;
     VideoDataHandler videoHandler;
+    List<Video> videoList;
 
     public BrowseVideosController(BrowseVideosView browseVideosView, SessionManager session) {
         this.session = session;
         this.browseVideosView = browseVideosView;
         this.videoHandler = new VideoDataHandler();
+        this.videoList = new ArrayList<>(videoHandler.getDataMap().values());
 
         Map<Integer, Video> videoMap = videoHandler.getDataMap();
         browseVideosView.setVideolist(new ArrayList<>(videoMap.values()));
@@ -33,7 +36,7 @@ public class BrowseVideosController {
             if(selectedVideoIndex < 0){
                 browseVideosView.displayMessage("Select a video first!");
             }else{
-                session.openVideo(videoHandler.get(selectedVideoIndex), null);
+                session.openVideo(videoList.get(selectedVideoIndex), null);
             }
         }
     }

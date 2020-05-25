@@ -1,6 +1,6 @@
 package iztechtube;
 
-public class Main {
+public class IztechTubeApp {
 
     public static void main(String[] args) {
 

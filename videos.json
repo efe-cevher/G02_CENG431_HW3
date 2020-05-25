@@ -9,7 +9,7 @@
     "comments": [
       {
         "username": "kaan",
-        "comment": "sup guys, subscribe to my channel pls, im not gay"
+        "comment": "sup guys, subscribe to my channel pls"
       }
     ]
   },
@@ -27,15 +27,7 @@
       },
       {
         "username": "efecan",
-        "comment": "doru"
-      },
-      {
-        "username": "efecan",
-        "comment": "cok doru"
-      },
-      {
-        "username": "kaan",
-        "comment": "dimi"
+        "comment": "yep"
       }
     ]
   },
@@ -46,16 +38,7 @@
     "date": "Fri, 22 May 2020 00:53:35 +0300",
     "likes": 1,
     "dislikes": 1,
-    "comments": [
-      {
-        "username": "kaan",
-        "comment": "dsfsdafsadfasdfsadf"
-      },
-      {
-        "username": "efecan",
-        "comment": "dasdfsaf"
-      }
-    ]
+    "comments": []
   },
   "4": {
     "id": 4,
@@ -82,28 +65,7 @@
     "date": "Fri, 22 May 2020 00:53:35 +0300",
     "likes": 1,
     "dislikes": 0,
-    "comments": [
-      {
-        "username": "kaan",
-        "comment": ""
-      },
-      {
-        "username": "kaan",
-        "comment": ""
-      },
-      {
-        "username": "kaan",
-        "comment": ""
-      },
-      {
-        "username": "kaan",
-        "comment": ""
-      },
-      {
-        "username": "kaan",
-        "comment": ""
-      }
-    ]
+    "comments": []
   },
   "7": {
     "id": 7,
@@ -152,25 +114,12 @@
   },
   "12": {
     "id": 12,
-    "title": "title",
+    "title": "video 12",
     "content": "content",
     "date": "Fri, 22 May 2020 18:55:13 +0300",
     "likes": 0,
     "dislikes": 0,
-    "comments": [
-      {
-        "username": "Ali",
-        "comment": "OLAMAAZ"
-      },
-      {
-        "username": "Ali",
-        "comment": "Merhaba Vidyonu vidomda gosterebilirmiyim sagul"
-      },
-      {
-        "username": "efe",
-        "comment": "fdsfasd"
-      }
-    ]
+    "comments": []
   },
   "13": {
     "id": 0,

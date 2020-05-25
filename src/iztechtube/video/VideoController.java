@@ -114,7 +114,6 @@ public class VideoController {
                 try {
                     throw new EmptyCommentException("Your comment cannot be empty!");
                 } catch (EmptyCommentException emptyCommentException) {
-                    emptyCommentException.printStackTrace();
                     videoView.displayMessage("Your comment cannot be empty!");
                 }
             }else{
