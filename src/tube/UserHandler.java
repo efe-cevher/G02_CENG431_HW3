@@ -7,19 +7,18 @@ public class UserHandler extends AbstractHandler<String, User>  implements Obser
     public UserHandler() {
         super(new XMLFormatter(), new FileStorage("users.xml"));
         //load from xml and json
-        addObserver();
     }
 
-    private void addObserver(){
-        for(User u: getDataMap().values()){
-            u.addObserver(this);
-        }
+    @Override
+    public User get(String identifier) {
+        User user = super.get(identifier);
+        user.addObserver(this);
+        return user;
     }
 
     public List<String> getUsernames() {
         return new ArrayList<>(getDataMap().keySet());
     }
-
 
     /* If any information related to observers change, update the database(XML and JSON files) */
     @Override

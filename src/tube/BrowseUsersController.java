@@ -14,8 +14,8 @@ public class BrowseUsersController {
         this.browseUsersView = browseUsersView;
         this.currentUser = user;
 
-        user.addObserver(userHandler);
-        user.addObserver(browseUsersView);
+        currentUser.addObserver(userHandler);
+        currentUser.addObserver(browseUsersView);
 
         //Connect action listeners to the view.
         browseUsersView.addFollowActionListener(new FollowActionListener());

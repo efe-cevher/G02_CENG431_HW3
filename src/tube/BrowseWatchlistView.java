@@ -88,8 +88,8 @@ public class BrowseWatchlistView implements Observer {
         return jWatchlists.getSelectedIndex();
     }
 
-    public void addFollowingsWatchlists(List<Watchlist> watchlists){
-        followingsWatchlists.addAll(watchlists);
+    public void setFollowingsWatchlists(List<Watchlist> watchlists){
+        this.followingsWatchlists = watchlists;
         showLists();
     }
 

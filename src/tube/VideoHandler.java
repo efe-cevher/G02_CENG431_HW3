@@ -8,10 +8,11 @@ public class VideoHandler extends AbstractHandler<Integer, Video> implements Obs
         super(new JSONFormatter(), new FileStorage("videos.json"));
     }
 
-    public void addObserver(){
-        for(Video v: getDataMap().values()){
-            v.addObserver(this);
-        }
+    @Override
+    public Video get(Integer identifier) {
+        Video video = super.get(identifier);
+        video.addObserver(this);
+        return video;
     }
 
     public List<Integer> getVideoIds() { return new ArrayList<>(getDataMap().keySet()); }

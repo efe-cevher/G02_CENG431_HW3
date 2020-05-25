@@ -7,7 +7,8 @@ import java.util.List;
 public class VideoController {
     private final Video video;
     private final VideoView videoView;
-    private VideoHandler videoHandler;
+    private final VideoHandler videoHandler;
+    private UserHandler userHandler;
     private User currentUser;
 
     public VideoController(Video video, VideoView videoView, User user) {
@@ -15,10 +16,11 @@ public class VideoController {
         this.video = video;
         this.videoView = videoView;
         this.videoHandler = new VideoHandler();
+        this.userHandler = new UserHandler();
         this.currentUser = user;
 
         video.addObserver(videoHandler);
-        currentUser.addObserver(videoHandler);
+        currentUser.addObserver(userHandler);
 
         videoView.addDislikeActionListener(new DislikeActionListener());
         videoView.addLikeActionListener(new LikeActionListener());
