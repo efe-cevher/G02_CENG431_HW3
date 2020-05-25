@@ -8,7 +8,9 @@
     <followers>
       <string>efecan</string>
     </followers>
-    <likedVideos/>
+    <likedVideos>
+      <int>6</int>
+    </likedVideos>
     <dislikedVideos>
       <int>1</int>
       <int>2</int>
@@ -34,7 +36,6 @@
           <int>2</int>
         </videos>
       </watchlist>
-      <watchlist/>
     </watchlists>
   </user>
   <user>

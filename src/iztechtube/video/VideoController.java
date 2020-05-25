@@ -1,4 +1,5 @@
 package iztechtube.video;
+import iztechtube.exceptions.EmptyCommentException;
 import iztechtube.exceptions.NoWatchlistAvailableException;
 import iztechtube.updatehandler.UserDataHandler;
 import iztechtube.updatehandler.VideoDataHandler;
@@ -109,8 +110,17 @@ public class VideoController {
         @Override
         public void actionPerformed(ActionEvent e) {
             String commentText = videoView.getCommentText();
-            video.addComment(new Comment(session.getUser().getUsername(), commentText));
-            videoHandler.modify(video.getId(), video);
+            if(commentText.isEmpty()){
+                try {
+                    throw new EmptyCommentException("Your comment cannot be empty!");
+                } catch (EmptyCommentException emptyCommentException) {
+                    emptyCommentException.printStackTrace();
+                    videoView.displayMessage("Your comment cannot be empty!");
+                }
+            }else{
+                video.addComment(new Comment(session.getUser().getUsername(), commentText));
+                videoHandler.modify(video.getId(), video);
+            }
         }
     }
 
