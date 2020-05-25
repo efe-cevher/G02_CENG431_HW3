@@ -6,14 +6,16 @@ import java.util.List;
 
 public class VideoController {
     private final Video video;
+    private final Watchlist currentWatchlist;
     private final VideoView videoView;
     private final VideoHandler videoHandler;
     private UserHandler userHandler;
     private SessionManager session;
 
-    public VideoController(Video video, VideoView videoView, SessionManager session) {
+    public VideoController(Video video, VideoView videoView, Watchlist watchlist, SessionManager session) {
 
         this.video = video;
+        this.currentWatchlist = watchlist;
         this.videoView = videoView;
         this.videoHandler = new VideoHandler();
         this.userHandler = new UserHandler();
@@ -26,6 +28,18 @@ public class VideoController {
         videoView.addLikeActionListener(new LikeActionListener());
         videoView.addCommentActionListener(new CommentActionListener());
         videoView.addAddToWatchlistActionListener(new AddToWatchlistActionListener());
+        videoView.addBackActionListener(new BackActionListener());
+    }
+
+    private class BackActionListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(currentWatchlist != null){
+                session.openWatchlist(currentWatchlist);
+            }else{
+                session.openMainMenu();
+            }
+        }
     }
 
     private class AddToWatchlistActionListener implements ActionListener{
@@ -50,6 +64,7 @@ public class VideoController {
             }
         }
     }
+
 
     private class LikeActionListener implements ActionListener {
         @Override

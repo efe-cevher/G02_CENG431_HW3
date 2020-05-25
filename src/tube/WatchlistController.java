@@ -16,7 +16,7 @@ public class WatchlistController {
 
         watchlist.addObserver(watchlistView);
         watchlistView.addGoToVideoActionListener(new goToVideoActionListener());
-        watchlistView.addMainMenuActionListener(new mainMenuActionListener());
+        watchlistView.addBackActionListener(new backActionListener());
         watchlistView.addDeleteVideoActionListener(new deleteVideoActionListener());
     }
 
@@ -44,12 +44,12 @@ public class WatchlistController {
             //video from videoId?
             VideoHandler videoHandler = new VideoHandler();
             Video selectedVideo = videoHandler.get(videoId);
-            session.openVideo(selectedVideo);
+            session.openVideo(selectedVideo, watchlist);
         }
     }
 
     //TODO CHANGE BUTTON TO "BACK" TO BROWSE PLAYLISTS
-    private class mainMenuActionListener implements ActionListener {
+    private class backActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             session.openBrowseWatchlists();

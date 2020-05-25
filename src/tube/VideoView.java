@@ -15,6 +15,7 @@ public class VideoView implements Observer {
     private JButton likeButton;
     private JButton commentButton;
     private JButton addToWatchlistButton;
+    private JButton backButton;
     private JLabel likeCount;
     private JLabel dislikeCount;
     private JList<Comment> commentJList;
@@ -67,6 +68,10 @@ public class VideoView implements Observer {
         commentButton.setBounds(320, 340, 90, 25);
         panel.add(commentButton);
 
+        backButton = new JButton("Back");
+        backButton.setBounds(330, 10, 80, 25);
+        panel.add(backButton);
+
         commentJList = new JList<>(reverseList(video.getComments()));
 
         JScrollPane scrollCommentPane = new JScrollPane(commentJList);
@@ -90,6 +95,10 @@ public class VideoView implements Observer {
 
     public void addAddToWatchlistActionListener(ActionListener actionListener){
         addToWatchlistButton.addActionListener(actionListener);
+    }
+
+    public void addBackActionListener(ActionListener actionListener) {
+        backButton.addActionListener(actionListener);
     }
 
     public String getCommentText(){

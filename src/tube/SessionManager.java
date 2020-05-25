@@ -34,9 +34,9 @@ public class SessionManager {
         WatchlistController watchlistController = new WatchlistController(watchlistView, watchlist, this);
     }
 
-    public void openVideo(Video video){
+    public void openVideo(Video video, Watchlist watchlist){
         VideoView videoView = new VideoView(frame, video);
-        VideoController videoController = new VideoController(video, videoView, this);
+        VideoController videoController = new VideoController(video, videoView, watchlist, this);
     }
 
     public void logout(){

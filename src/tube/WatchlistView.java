@@ -8,13 +8,11 @@ import java.util.*;
 public class WatchlistView implements Observer {
 
     private Watchlist watchlist;
-    private JButton watchVideoButton, mainMenuButton, removeVideoButton;
+    private JButton watchVideoButton, backButton, removeVideoButton;
     private FrameManager frame;
     private JScrollPane scrollPane;
     private JList<String> videos;
-    private DefaultListModel<String> videoModels;
     private JPanel panel;
-    private JLabel label;
 
     public WatchlistView(FrameManager frame, Watchlist watchlist) {
         this.frame = frame;
@@ -42,13 +40,12 @@ public class WatchlistView implements Observer {
         watchVideoButton.setBounds(10, 320, 120, 35);
         panel.add(watchVideoButton);
 
-        mainMenuButton = new JButton("Main Menu");
-        mainMenuButton.setBounds(310, 320, 120, 35);
-        panel.add(mainMenuButton);
+        backButton = new JButton("Back");
+        backButton.setBounds(310, 320, 120, 35);
+        panel.add(backButton);
 
         frame.setNewPanel(panel);
     }
-
 
     public void showWatchlist(){
         String[] videoListArr = new String[watchlist.getVideos().size()];
@@ -76,15 +73,12 @@ public class WatchlistView implements Observer {
         watchVideoButton.addActionListener(actionListener);
     }
 
-    public void addMainMenuActionListener(ActionListener actionListener) {
-        mainMenuButton.addActionListener(actionListener);
+    public void addBackActionListener(ActionListener actionListener) {
+        backButton.addActionListener(actionListener);
     }
-
 
     public int getSelectedListIndex(){
         return videos.getSelectedIndex();
     }
-
-    public FrameManager getFrame() { return frame; }
 
 }
